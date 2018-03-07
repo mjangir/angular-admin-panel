@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { TranslateModule }              from 'ng2-translate';
 import { SimpleLayoutComponent } from './simple-layout/simple-layout.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
@@ -53,6 +54,7 @@ export const CONTAINERS = [
   imports: [
     CommonModule,
     RouterModule,
+    TranslateModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule

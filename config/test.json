@@ -1,0 +1,29 @@
+{
+  "api": {
+    "baseUrl": "http://192.192.5.93:8881/api/v1"
+  },
+
+  "paths": {
+    "imagesRoot": "/assets/images/",
+    "userImageFolder": "/assets/images/avatars/"
+  },
+
+  "localization": {
+    "languages": [
+      {"code": "en", "name": "EN", "culture": "en-EN"}
+    ],
+    "defaultLanguage": "en"
+  },
+
+  "notifications": {
+    "options": {
+      "timeOut": 5000,
+      "showProgressBar": true,
+      "pauseOnHover": true,
+      "position": ["top", "right"],
+      "theClass": "sy-notification"
+    }
+  },
+
+  "debugging": true
+}
