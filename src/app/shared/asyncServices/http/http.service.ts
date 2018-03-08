@@ -36,7 +36,9 @@ export class HttpService {
   }
 
   protected getDefaultHeaders(): Object {
-    return null;
+    return {
+      Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE1MjA1MjI5NDMsImV4cCI6MTUyMDUyNjU0MywibmJmIjoxNTIwNTIyOTQzLCJqdGkiOiJGVEhsZ0tnM1FjQ0lyTVhOIiwic3ViIjoxLCJwcnYiOiI5NGRiZDk2MWFhZWYwZTNjZTY2YWQ3ZDUwZTY0NzcxNzYwOWRkYTI0In0.Bl_UIiz-ttBdTfj-iY1f2wykIokSr9wdNsJk1SED6bc'
+    };
   }
 
   /**

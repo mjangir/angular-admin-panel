@@ -14,7 +14,7 @@ export class UserService {
    * @param users
    */
   static gridAdapter(users: any): Array<User> {
-    return users.map(user => new User(user));
+    return users.data ? users.data.map(user => new User(user)): [];
   }
 
   /**
