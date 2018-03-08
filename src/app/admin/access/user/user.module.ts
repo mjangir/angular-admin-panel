@@ -9,7 +9,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { UserComponent } from './user.component';
-import { TooltipModule }      from 'ngx-bootstrap';
+import { TooltipModule, BsDropdownModule }      from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -17,7 +17,8 @@ import { TooltipModule }      from 'ngx-bootstrap';
     TranslateModule,
     NgxDatatableModule,
     UserRoutingModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   declarations: [
     ListUsersComponent, 
