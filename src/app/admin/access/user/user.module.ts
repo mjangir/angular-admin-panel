@@ -15,6 +15,12 @@ import { UserComponent } from './user.component';
     TranslateModule,
     UserRoutingModule
   ],
-  declarations: [ListUsersComponent, CreateUserComponent, UpdateUserComponent, ViewUserComponent, UserComponent]
+  declarations: [
+    ListUsersComponent, 
+    CreateUserComponent, 
+    UpdateUserComponent, 
+    ViewUserComponent, 
+    UserComponent
+  ]
 })
 export class UserModule { }

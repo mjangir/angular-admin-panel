@@ -1,12 +1,14 @@
 import { 
   Component, 
-  OnInit 
-}                     from '@angular/core';
+  OnInit,
+  ViewContainerRef
+}                         from '@angular/core';
 import { 
   Router, 
   NavigationEnd 
-}                     from '@angular/router';
-import { AppSandbox } from './app.sandbox';
+}                         from '@angular/router';
+import { AppSandbox }     from './app.sandbox';
+import { ToastsManager }  from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,14 @@ import { AppSandbox } from './app.sandbox';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor(private router: Router, public appSandbox: AppSandbox) { }
+  constructor(
+    private router: Router, 
+    public appSandbox: AppSandbox,
+    public toastr: ToastsManager,
+    vRef: ViewContainerRef
+  ) {
+    this.toastr.setRootViewContainerRef(vRef);
+  }
 
   ngOnInit() {
     this.appSandbox.setupLanguage();

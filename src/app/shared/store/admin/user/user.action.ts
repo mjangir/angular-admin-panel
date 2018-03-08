@@ -6,8 +6,8 @@ export const LOAD_USERS_SUCCESS   = '[ALL] Users Success';
 export const LOAD_USERS_ERROR     = '[ALL] Users Error';
 
 export const LOAD_USER            = '[GET] User';
-export const LOAD_USER_SUCCESS    = '[GET] Users Success';
-export const LOAD_USER_ERROR      = '[GET] Users Error';
+export const LOAD_USER_SUCCESS    = '[GET] User Success';
+export const LOAD_USER_ERROR      = '[GET] User Error';
 
 export const CREATE_USER          = '[CREATE] User';
 export const CREATE_USER_SUCCESS  = '[CREATE] User Success';
@@ -27,6 +27,8 @@ export const UPDATE_USER_ERROR    = '[UPDATE] User Error';
  ****************************************/
 export class LoadAllUsers implements Action {
   readonly type = LOAD_USERS;
+
+  constructor(public payload: any = null) { }
 }
 
 export class LoadAllUsersSuccess implements Action {
@@ -95,6 +97,8 @@ export class UpdateUser implements Action {
 
 export class UpdateUserSuccess implements Action {
   readonly type = UPDATE_USER_SUCCESS;
+
+  constructor(public payload: any = null) { }
 }
 
 export class UpdateUserError implements Action {
@@ -128,6 +132,9 @@ export type Actions
   = LoadAllUsers
   | LoadAllUsersSuccess
   | LoadAllUsersError
+  | LoadUser
+  | LoadUserSuccess
+  | LoadUserError
   | CreateUser
   | CreateUserSuccess
   | CreateUserError

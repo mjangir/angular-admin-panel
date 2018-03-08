@@ -31,13 +31,15 @@ import {
   DeleteUserError
 }                                 from './user.action';
 import { User }                   from '../../../models/admin/access';
+import { UserApiClient }          from '../../../../admin/access/user/userApiClient.service';
 
 
 @Injectable()
 export class UserEffects {
 
   constructor(
-    private actions$: Actions) {}
+    private actions$: Actions,
+    private userApiClient: UserApiClient) {}
 
   /**
    * Load All Users
@@ -45,7 +47,7 @@ export class UserEffects {
   @Effect()
   loadAllUsers$: Observable<Action> = this.actions$
     .ofType(LOAD_USERS)
-    .switchMap(() => Observable.of([]))
+    .switchMap(() => this.userApiClient.all())
     .map(users => new LoadAllUsersSuccess(users))
     .catch((err) => of(new LoadAllUsersError(err)));
 
@@ -56,40 +58,40 @@ export class UserEffects {
   loadUser$ = this.actions$
     .ofType(LOAD_USER)
     .map((action: LoadUser) => action.payload)
-    .switchMap(id => Observable.of(new User()))
+    .switchMap(id => this.userApiClient.get(id))
     .map(user => new LoadUserSuccess(user))
     .catch((err) => of(new LoadUserError(err)));
 
-  /**
-   * Create New User
-   */
-  @Effect()
-  createUser$ = this.actions$
-    .ofType(CREATE_USER)
-    .map((action: CreateUser) => action.payload)
-    .switchMap(newUser => Observable.of(newUser))
-    .map((response) => new CreateUserSuccess(response.id))
-    .catch((err) => of(new CreateUserError(err)));
+  // /**
+  //  * Create New User
+  //  */
+  // @Effect()
+  // createUser$ = this.actions$
+  //   .ofType(CREATE_USER)
+  //   .map((action: CreateUser) => action.payload)
+  //   .switchMap(newUser => this.userApiClient.create(newUser))
+  //   .map((response) => new CreateUserSuccess(response.id))
+  //   .catch((err) => of(new CreateUserError(err)));
 
-  /**
-   * Update User
-   */
-  @Effect()
-  updateUser$ = this.actions$
-    .ofType(UPDATE_USER)
-    .map((action: UpdateUser) => action.payload)
-    .switchMap(user => Observable.of(user))
-    .map(() => new UpdateUserSuccess())
-    .catch((err) => of(new UpdateUserError(err)));
+  // /**
+  //  * Update User
+  //  */
+  // @Effect()
+  // updateUser$ = this.actions$
+  //   .ofType(UPDATE_USER)
+  //   .map((action: UpdateUser) => action.payload)
+  //   .switchMap(user => this.userApiClient.update(user))
+  //   .map(() => new UpdateUserSuccess())
+  //   .catch((err) => of(new UpdateUserError(err)));
 
-  /**
-   * Delete User
-   */
-  @Effect()
-  deleteUser$ = this.actions$
-    .ofType(DELETE_USER)
-    .map((action: DeleteUser) => action.payload)
-    .switchMap(id => Observable.of(new User()))
-    .map((user: User) => new DeleteUserSuccess(user))
-    .catch((err) => of(new DeleteUserError(err)));
+  // /**
+  //  * Delete User
+  //  */
+  // @Effect()
+  // deleteUser$ = this.actions$
+  //   .ofType(DELETE_USER)
+  //   .map((action: DeleteUser) => action.payload)
+  //   .switchMap(id => this.userApiClient.delete(id))
+  //   .map((user: User) => new DeleteUserSuccess(user))
+  //   .catch((err) => of(new DeleteUserError(err)));
 }

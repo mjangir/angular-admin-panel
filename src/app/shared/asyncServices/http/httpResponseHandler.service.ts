@@ -12,7 +12,7 @@ export class HttpResponseHandler {
     private translateService: TranslateService,
     private notificationsService: ToastsManager,
     private configService: ConfigService
-  ) {}
+  ) { }
 
   /**
    * Global http error handler.
@@ -114,8 +114,8 @@ export class HttpResponseHandler {
    * Shows notification errors when server response status is 500
    */
   private handleServerError(): void {
-    let message = this.translateService.instant('ServerError500'),
-        title   = this.translateService.instant('ErrorNotificationTitle');
+    let message = this.translateService.instant('error.internalServerError.description'),
+        title   = this.translateService.instant('error.internalServerError.title');
 
     this.showNotificationError(title, message);
   }

@@ -4,11 +4,17 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
+    "start": "npm run sy-pre-start & ng serve",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "test": "npm run sy-pre-test & ng test",
+    "pree2e": "webdriver-manager update --standalone false --gecko false",
+    "e2e": "ng e2e",
+    "sy-pre-test": "node hooks/pre-test.js",
+    "sy-pre-start": "node hooks/pre-start.js",
+    "sy-pre-build": "node hooks/pre-build.js",
+    "sy-post-build": "node hooks/post-build.js",
+    "sw": "sw-precache --root=./dist --config=sw-precache-config.js",
+    "sy-build": "npm run sy-pre-build & ng build --prod --aot & npm run sy-post-build & npm run sw"
   },
   "private": true,
   "dependencies": {
@@ -50,14 +56,18 @@
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "json-concat": "0.0.1",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
+    "sw-precache": "^5.2.1",
+    "sw-toolbox": "^3.6.0",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "typescript": "~2.5.3",
+    "webdriver-manager": "^12.0.6"
   }
 }

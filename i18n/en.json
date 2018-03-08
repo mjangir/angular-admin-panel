@@ -1,19 +1,7 @@
 {
   "error.internalServerError": {
-    "title": "Oops! Internal Server Error.",
-    "description": "An Internal Server Error Has Occured. Please Try Again Later.",
-    "backButtonText": "Go Back"
-  }
-,
-  "error.pageNotFound": {
-    "title": "Oops! You're lost.",
-    "description": "The page you are looking for was not found.",
-    "backButtonText": "Go Back"
-  }
-,
-  "error.internalServerError": {
-    "title": "Oops! Internal Server Error.",
-    "description": "An Internal Server Error Has Occured. Please Try Again Later.",
+    "title": "Error",
+    "description": "An Internal Server Error Has Occured",
     "backButtonText": "Go Back"
   }
 ,
