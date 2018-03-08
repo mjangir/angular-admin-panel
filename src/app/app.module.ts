@@ -36,7 +36,6 @@ import { StoreDevtoolsModule }  from '@ngrx/store-devtools';
 import { ToastModule }          from 'ng2-toastr/ng2-toastr';
 import { TranslateService }     from 'ng2-translate';
 
-
 // NGRX Effects
 import { UserEffects }            from './shared/store/admin/user/user.effect';
 import { reducer as userReducer}  from './shared/store/admin/user/user.reducer';

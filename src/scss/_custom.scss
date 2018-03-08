@@ -1,4 +1,6 @@
-// Here you can add other styles
+// Custom CSS
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 
 app-admin-layout {
   display: flex;
@@ -6,3 +8,9 @@ app-admin-layout {
   flex-grow: 1;
 }
 
+.ngx-datatable.bootstrap .datatable-footer {
+  background: #29363d;
+}
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row {
+  padding: 0.50rem;
+}

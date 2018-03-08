@@ -16,7 +16,7 @@ import { getAllUsers }  from '../../../../shared/store/admin/user/user.reducer';
 })
 export class ListUsersComponent implements OnInit {
 
-  title = 'List of Users';
+  title = 'Users List';
   users: Observable<User[]>;
 
   constructor(private store: Store<AppState>) { }
@@ -25,6 +25,10 @@ export class ListUsersComponent implements OnInit {
     console.log('... initializing user list component.');
   
     this.users = this.store.select(getAllUsers);
+  }
+
+  updateFilter(event) {
+
   }
 
   /**
