@@ -77,7 +77,7 @@ export class HttpResponseHandler {
     let unauthorizedEndpoints: Array<string> = this.configService.get('notifications').unauthorizedEndpoints;
 
     unauthorizedEndpoints = unauthorizedEndpoints.filter(endpoint => this.getRelativeUrl(responseBody.url) === endpoint);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
 
     if (unauthorizedEndpoints.length) {
       this.notificationsService.info(this.translateService.instant('ServerError401'), 'Info', this.configService.get('notifications').options);

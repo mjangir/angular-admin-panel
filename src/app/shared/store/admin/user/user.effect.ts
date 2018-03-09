@@ -31,7 +31,7 @@ import {
   DeleteUserError
 }                                 from './user.action';
 import { User }                   from '../../../models/admin/access';
-import { UserApiClient }          from '../../../../admin/access/user/userApiClient.service';
+import { UserApiClient }          from '../../../../admin/access/user/user-api-client.service';
 
 
 @Injectable()

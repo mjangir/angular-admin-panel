@@ -20,6 +20,7 @@ import { ContainersModule }     from './shared/containers/containers.module';
 // Services
 import { ConfigService }        from './app-config.service';
 import { HttpServiceModule }    from './shared/asyncServices/http/http.module';
+import { AuthRequestOptions }   from './shared/requests/auth.request';
 
 // Third party libraries
 import {
@@ -40,7 +41,7 @@ import { TranslateService }     from 'ng2-translate';
 import { UserEffects }            from './shared/store/admin/user/user.effect';
 import { reducer as userReducer}  from './shared/store/admin/user/user.reducer';
 import { UserService }            from './admin/access/user/user.service';
-import { UserApiClient }          from './admin/access/user/userApiClient.service';
+import { UserApiClient }          from './admin/access/user/user-api-client.service';
 
 
 export const reducers: ActionReducerMap<any> = {
@@ -82,6 +83,10 @@ export function configServiceFactory (config: ConfigService) {
       useFactory: configServiceFactory,
       deps: [ConfigService], 
       multi: true
+    },
+    {
+      provide: RequestOptions, 
+      useClass: AuthRequestOptions
     },
     UserService,
     UserApiClient

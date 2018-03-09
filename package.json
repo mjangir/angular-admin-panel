@@ -37,6 +37,7 @@
     "core-js": "^2.4.1",
     "flag-icon-css": "^3.0.0",
     "font-awesome": "^4.7.0",
+    "jwt-decode": "^2.2.0",
     "moment": "^2.21.0",
     "ng2-charts": "^1.6.0",
     "ng2-toastr": "^4.1.2",
