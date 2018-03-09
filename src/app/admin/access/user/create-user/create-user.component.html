@@ -6,39 +6,85 @@
     <div class="row">
       <div class="col-sm-8">
         <form action="" method="post">
-          <div class="form-group">
-            <div class="input-group">
-              <input type="text" id="username2" name="username2" class="form-control" placeholder="Username">
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-              </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">First Name*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input type="text" id="username2" name="username2" class="form-control" placeholder="Enter First Name...">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  </div>
+                </div>
             </div>
           </div>
-          <div class="form-group">
-            <div class="input-group">
-              <input type="email" id="email2" name="email2" class="form-control" placeholder="Email">
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-              </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Last Name*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input type="text" id="username2" name="username2" class="form-control" placeholder="Enter Last Name...">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  </div>
+                </div>
             </div>
           </div>
-          <div class="form-group">
-            <div class="input-group">
-              <input type="password" id="password2" name="password2" class="form-control" placeholder="Password">
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
-              </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Email*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input type="text" id="username2" name="username2" class="form-control" placeholder="Enter Email...">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                  </div>
+                </div>
             </div>
           </div>
-          <div class="form-group form-actions">
-            <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Password*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input type="password" id="username2" name="username2" class="form-control" placeholder="Enter Password...">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                  </div>
+                </div>
+            </div>
           </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Confirm Password*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input type="password" id="username2" name="username2" class="form-control" placeholder="Enter Confirmed Password...">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">User Active</label>
+            <div class="col-md-9">
+                <input type="checkbox">
+            </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">User Confirmed</label>
+              <div class="col-md-9">
+                  <input type="checkbox">
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Send Confirmation</label>
+                <div class="col-md-9">
+                    <input type="checkbox">
+                </div>
+              </div>
         </form>
       </div>
     </div>
   </div>
   <div class="card-footer">
       <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Submit</button>
-      <button type="submit" class="btn btn-outline-danger"><i class="fa fa-arrow-left"></i> Go Back</button>
+      <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> Go Back</button>
   </div>
 </div>
