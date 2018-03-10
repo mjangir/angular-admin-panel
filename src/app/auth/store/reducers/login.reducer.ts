@@ -63,3 +63,9 @@ export function reducer(
 
   return state;
 }
+
+export const getLoginLoading  = (state: LoginState) => state.loading;
+export const getLoginLoaded   = (state: LoginState) => state.loaded;
+export const getLoginToken    = (state: LoginState) => state.token;
+export const getLoginUser     = (state: LoginState) => state.user;
+export const getLoginError    = (state: LoginState) => state.error;

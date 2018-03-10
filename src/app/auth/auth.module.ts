@@ -11,19 +11,23 @@ import { RegisterComponent } from './register/register.component';
 import { reducers } from './store';
 import { StoreModule } from '@ngrx/store';
 
+//Containers
+import { LoginContainer } from './containers/login/login.container';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     AlertModule.forRoot(),
     ReactiveFormsModule,
-    AuthRoutingModule,
-    StoreModule.forFeature('auth', reducers)
+    StoreModule.forFeature('auth', reducers),
+    AuthRoutingModule
   ],
   declarations: [
     ForgotComponent, 
     LoginComponent, 
-    RegisterComponent
+    RegisterComponent,
+    LoginContainer
   ]
 })
 export class AuthModule { }

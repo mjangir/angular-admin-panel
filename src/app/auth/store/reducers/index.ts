@@ -1,4 +1,8 @@
-import { ActionReducerMap } from "@ngrx/store";
+import { 
+  ActionReducerMap,
+  createSelector,
+  createFeatureSelector
+}                           from "@ngrx/store";
 import * as fromLogin       from "./login.reducer";
 import * as fromRegister    from "./register.reducer";
 import * as fromLogout      from "./logout.reducer";
@@ -23,3 +27,14 @@ export const reducers: ActionReducerMap<AuthState> = {
   forgotPassword: fromForgot.reducer,
   logout:         fromLogout.reducer
 }
+
+// Main Auth State
+export const getAuthState = createFeatureSelector<AuthState>('auth');
+
+// All Login States
+export const getLoginState    = createSelector(getAuthState, (state: AuthState) => state.login);
+export const getLoginLoading  = createSelector(getLoginState, fromLogin.getLoginLoading);
+export const getLoginLoaded   = createSelector(getLoginState, fromLogin.getLoginLoaded);
+export const getLoginToken    = createSelector(getLoginState, fromLogin.getLoginToken);
+export const getLoginUser     = createSelector(getLoginState, fromLogin.getLoginUser);
+export const getLoginError    = createSelector(getLoginState, fromLogin.getLoginError);
