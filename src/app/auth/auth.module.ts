@@ -8,13 +8,17 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+import { reducers } from './store';
+import { StoreModule } from '@ngrx/store';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     AlertModule.forRoot(),
     ReactiveFormsModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    StoreModule.forFeature('auth', reducers)
   ],
   declarations: [
     ForgotComponent, 

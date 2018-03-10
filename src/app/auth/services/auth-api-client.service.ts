@@ -4,7 +4,7 @@ import {
   POST,
   Path,
   Adapter
-}                         from '../shared/asyncServices/http';
+}                         from '../../shared/asyncServices/http';
 import { Observable }     from 'rxjs/Observable';
 import { AuthService }    from './auth.service';
 

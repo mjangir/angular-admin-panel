@@ -1,5 +1,5 @@
 import { Headers, Http, BaseRequestOptions } from '@angular/http';
-import { TOKEN_NAME } from '../../auth/auth.service';
+import { TOKEN_NAME } from '../../auth/services/auth.service';
 
 const AUTH_HEADER_KEY = 'Authorization';
 const AUTH_PREFIX = 'Bearer';
