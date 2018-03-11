@@ -85,6 +85,10 @@ export class LoginContainer implements OnInit, OnDestroy {
     this.error    = this.store.select(fromStore.getLoginError);
     this.token    = this.store.select(fromStore.getLoginToken);
     this.user     = this.store.select(fromStore.getLoginUser);
+
+    this.user.subscribe(function(state) {
+      console.log("ssss", state);
+    });
   }
 
   /**
@@ -99,7 +103,8 @@ export class LoginContainer implements OnInit, OnDestroy {
     });
   }
 
-  public submit() {
+  public onSubmit(event: Event, form: any) {
+    
     const email: string     = this.form.get("email").value;
     const password: string  = this.form.get("password").value;
 

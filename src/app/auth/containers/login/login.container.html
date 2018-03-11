@@ -10,7 +10,7 @@
             <div class="card-body">
               <h1>Login</h1>
               <p class="text-muted">Sign In to your account</p>
-              <form (ngSubmit)="submit()" [formGroup]="form" novalidate>
+              <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-envelope"></i></span>

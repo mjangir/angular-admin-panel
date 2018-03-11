@@ -3,10 +3,14 @@ import {
   HttpService,
   POST,
   Path,
-  Adapter
+  Body,
+  Adapter,
+  MediaType,
+  Produces
 }                         from '../../shared/asyncServices/http';
 import { Observable }     from 'rxjs/Observable';
 import { AuthService }    from './auth.service';
+import LoginForm          from '../models/login-form.model';
 
 @Injectable()
 export class AuthApiClient extends HttpService {
@@ -14,22 +18,23 @@ export class AuthApiClient extends HttpService {
   /**
    * Login user
    */
-  @POST("/users.php")
-  @Adapter(AuthService.authAdapter)
-  public login(): Observable<any> { return null; };
+  @POST("auth/login")
+  @Adapter(AuthService.loginAdapter)
+  @Produces(MediaType.FORM_DATA)
+  public login(@Body form: LoginForm): Observable<any> { return null; };
 
   /**
    * Register user
    */
   @POST("/users.php")
-  @Adapter(AuthService.authAdapter)
+  @Adapter(AuthService.registerAdapter)
   public register(): Observable<any> { return null; };
 
   /**
    * Forgot Password
    */
   @POST("/users.php")
-  @Adapter(AuthService.authAdapter)
+  @Adapter(AuthService.forgotAdapter)
   public forgot(): Observable<any> { return null; };
 
   

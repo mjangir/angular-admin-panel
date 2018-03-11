@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import * as jwt_decode from 'jwt-decode';
+import LoginUser from '../models/login-user.model';
 
-export const TOKEN_NAME: string = 'jwt_token';
+export const TOKEN_NAME: string = 'auth_token';
 
 @Injectable()
 export class AuthService {
@@ -34,7 +35,30 @@ export class AuthService {
     return !(date.valueOf() > new Date().valueOf());
   }
 
-  static authAdapter() {
+  static loginAdapter(response: any) {
+    const token   = response.token;
+    const decoded = jwt_decode(token);
+    const userObj = {
+      first_name:   decoded.first_name || '',
+      last_name:    decoded.last_name || '',
+      email:        decoded.email || '',
+      avatar:       decoded.picture || ''
+    }
+
+    // Set the token in local storage
+    localStorage.setItem(TOKEN_NAME, token);
+
+    return {
+      token,
+      user: new LoginUser(userObj)
+    }
+  }
+
+  static registerAdapter() {
+
+  }
+
+  static forgotAdapter() {
 
   }
 

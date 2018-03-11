@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AlertModule } from 'ngx-bootstrap';
 
-import { AuthRoutingModule } from './auth-routing.module';
-import { ForgotComponent } from './forgot/forgot.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+// Containers
+import * as fromContainers from './containers';
 
-import { reducers } from './store';
+import { AuthRoutingModule } from './auth-routing.module';
+
+import { AuthService }            from './services/auth.service';
+import { AuthApiClient }          from './services/auth-api-client.service';
+
+import { reducers, effects } from './store';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 //Containers
 import { LoginContainer } from './containers/login/login.container';
@@ -21,13 +25,12 @@ import { LoginContainer } from './containers/login/login.container';
     AlertModule.forRoot(),
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
+    EffectsModule.forFeature(effects),
     AuthRoutingModule
   ],
   declarations: [
-    ForgotComponent, 
-    LoginComponent, 
-    RegisterComponent,
-    LoginContainer
-  ]
+    ...fromContainers.containers
+  ],
+  providers: [AuthService, AuthApiClient]
 })
 export class AuthModule { }
