@@ -1,11 +1,4 @@
-import * as fromLogin     from './login.action';
-import * as fromLogout    from './logout.action';
-import * as fromRegister  from './register.action';
-import * as fromForgot    from './forgot.action';
-
-export {
-  fromLogin,
-  fromLogout,
-  fromRegister,
-  fromForgot
-};
+export * from './login.action';
+export * from './logout.action';
+export * from './register.action';
+export * from './forgot.action';

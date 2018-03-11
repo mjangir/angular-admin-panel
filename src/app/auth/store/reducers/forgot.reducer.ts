@@ -1,4 +1,4 @@
-import { fromForgot } from '../actions';
+import * as fromForgot from '../actions/forgot.action';
 
 /**
  * Forgot Password State

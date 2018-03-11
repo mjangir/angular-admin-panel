@@ -1,4 +1,4 @@
-import { fromLogout } from '../actions';
+import * as fromLogout from '../actions/logout.action';
 
 export interface LogoutState {
   loading:  boolean,

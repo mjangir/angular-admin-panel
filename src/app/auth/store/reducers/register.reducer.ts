@@ -1,4 +1,4 @@
-import { fromRegister } from "../actions";
+import * as fromRegister from "../actions/register.action";
 
 /**
  * Register State

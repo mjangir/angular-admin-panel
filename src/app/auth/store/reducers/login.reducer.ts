@@ -1,4 +1,4 @@
-import { fromLogin } from '../actions';
+import * as fromLogin from '../actions/login.action';
 import LoginUser from "../../models/login-user.model";
 
 /**

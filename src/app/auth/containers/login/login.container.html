@@ -2,30 +2,50 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <alert type="danger">
-          <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+        <alert type="danger" *ngIf="(error | async)" >
+          <strong>Sorry!</strong> Invalid Email Or Password
         </alert>
         <div class="card-group">
           <div class="card p-4">
             <div class="card-body">
               <h1>Login</h1>
               <p class="text-muted">Sign In to your account</p>
-              <form>
+              <form (ngSubmit)="submit()" [formGroup]="form" novalidate>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-user"></i></span>
+                    <span class="input-group-text"><i class="icon-envelope"></i></span>
                   </div>
-                  <input class="form-control" required placeholder="Email Address" autocorrect="off" autocapitalize="off" spellcheck="off" >
+                  <input 
+                    class="form-control" 
+                    required 
+                    placeholder="Email Address..." 
+                    autocorrect="off" 
+                    autocapitalize="off" 
+                    spellcheck="off" 
+                    formControlName="email">
                 </div>
                 <div class="input-group mb-4">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input class="form-control" required type="password" placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off">
+                  <input 
+                    class="form-control" 
+                    required 
+                    type="password" 
+                    placeholder="Password..." 
+                    autocomplete="off" 
+                    autocorrect="off" 
+                    autocapitalize="off" 
+                    spellcheck="off" 
+                    formControlName="password">
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <button class="btn btn-primary px-4" type="submit">Login</button>
+                    <button class="btn btn-primary px-3" [disabled]="form.invalid" type="submit">
+                      <i [hidden]="loading | async" class='fa fa-lock'></i>
+                      <i [hidden]="!(loading | async)" class='fa fa-circle-o-notch fa-spin'></i>
+                      Login
+                    </button>
                   </div>
                   <div class="col-6 text-right">
                     <button type="button" class="btn btn-link px-0">Forgot password?</button>

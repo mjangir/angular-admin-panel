@@ -2,8 +2,8 @@ export default class LoginForm {
   public email:     string;
   public password:  string;
 
-  constructor(loginForm: any) {
-    this.email    = loginForm.email || '';
-    this.password = loginForm.password || '';
+  constructor(email: string, password: string) {
+    this.email    = email || '';
+    this.password = password || '';
   }
 }
