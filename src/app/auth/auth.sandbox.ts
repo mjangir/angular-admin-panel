@@ -8,11 +8,18 @@ import * as fromStore     from './store';
 import LoginUser          from "./models/login-user.model";
 import LoginForm          from "./models/login-form.model";
 
+/**
+ * Auth sandbox class
+ * 
+ * @export
+ * @class AuthSandbox
+ * @extends {Sandbox}
+ */
 @Injectable()
 export class AuthSandbox extends Sandbox { 
 
   /**
-   * Login Loading
+   * Login loading
    * 
    * @type {Observable<boolean>}
    * @memberof AuthSandbox
@@ -20,7 +27,7 @@ export class AuthSandbox extends Sandbox {
   public loginLoading$: Observable<boolean> = this.store.select(fromStore.getLoginLoading);
 
   /**
-   * Login Loaded
+   * Login loaded
    * 
    * @type {Observable<boolean>}
    * @memberof AuthSandbox
@@ -28,7 +35,7 @@ export class AuthSandbox extends Sandbox {
   public loginLoaded$: Observable<boolean>  = this.store.select(fromStore.getLoginLoaded);
 
   /**
-   * Login Error
+   * Login error
    * 
    * @type {Observable<any>}
    * @memberof AuthSandbox
@@ -36,7 +43,7 @@ export class AuthSandbox extends Sandbox {
   public loginError$: Observable<any>       = this.store.select(fromStore.getLoginError);
 
   /**
-   * Login Token
+   * Login token
    * 
    * @type {Observable<string>}
    * @memberof AuthSandbox
@@ -44,7 +51,7 @@ export class AuthSandbox extends Sandbox {
   public loginToken$: Observable<string>    = this.store.select(fromStore.getLoginToken);
 
   /**
-   * Login User
+   * Login user
    * 
    * @type {Observable<LoginUser>}
    * @memberof AuthSandbox
@@ -52,7 +59,7 @@ export class AuthSandbox extends Sandbox {
   public loginUser$: Observable<LoginUser>  = this.store.select(fromStore.getLoginUser);
 
   /**
-   * Subscriptions For Auth
+   * Subscriptions for Auth
    * 
    * @private
    * @type {Array<Subscription>}
@@ -76,7 +83,7 @@ export class AuthSandbox extends Sandbox {
   }
 
   /**
-   * Un-Register Events
+   * Un-Register events
    * 
    * @memberof AuthSandbox
    */
@@ -85,7 +92,7 @@ export class AuthSandbox extends Sandbox {
   }
 
   /**
-   * Register Auth Events
+   * Register auth events
    * 
    * @private
    * @memberof AuthSandbox
@@ -94,12 +101,18 @@ export class AuthSandbox extends Sandbox {
     this.subscriptions.push(
       this.loginLoaded$.subscribe((loaded: boolean) => {
         if (loaded) {
-          this.router.navigate(['/admin/access/user/list']);
+          this.router.navigate(['/admin/dashboard']);
         }
       })
     );
   }
 
+  /**
+   * Dispatch login action
+   * 
+   * @param {LoginForm} loginForm 
+   * @memberof AuthSandbox
+   */
   public login(loginForm: LoginForm) {
     this.store.dispatch(new fromStore.LoginAction(loginForm));
   }

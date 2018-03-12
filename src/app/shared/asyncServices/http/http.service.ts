@@ -13,6 +13,7 @@ import {
   methodBuilder,
   paramBuilder
 }                               from './utils.service';
+import { AuthService } from "../../../auth/services/auth.service";
 
 /**
  * Supported @Produces media types
@@ -28,6 +29,7 @@ export class HttpService {
   public constructor(
     protected http: Http,
     protected configService: ConfigService,
+    protected authService: AuthService,
     protected responseHandler: HttpResponseHandler) {
   }
 
@@ -36,8 +38,9 @@ export class HttpService {
   }
 
   protected getDefaultHeaders(): Object {
+    const token = this.authService.getToken();
     return {
-      Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE1MjA1MjI5NDMsImV4cCI6MTUyMDUyNjU0MywibmJmIjoxNTIwNTIyOTQzLCJqdGkiOiJGVEhsZ0tnM1FjQ0lyTVhOIiwic3ViIjoxLCJwcnYiOiI5NGRiZDk2MWFhZWYwZTNjZTY2YWQ3ZDUwZTY0NzcxNzYwOWRkYTI0In0.Bl_UIiz-ttBdTfj-iY1f2wykIokSr9wdNsJk1SED6bc'
+      Authorization: `Bearer ${token}`
     };
   }
 

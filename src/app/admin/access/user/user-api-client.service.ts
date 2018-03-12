@@ -17,7 +17,7 @@ export class UserApiClient extends HttpService {
   /**
    * Retrieves all users
    */
-  @GET("/users.php")
+  @GET("users")
   @Adapter(UserService.gridAdapter)
   public all(): Observable<any> { return null; };
 

@@ -1,3 +1,9 @@
+/**
+ * Login user model
+ * 
+ * @export
+ * @class LoginUser
+ */
 export default class LoginUser {
   public firstName: string;
   public lastName:  string;

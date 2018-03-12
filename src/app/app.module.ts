@@ -20,7 +20,6 @@ import { ContainersModule }     from './shared/containers/containers.module';
 // Services
 import { ConfigService }        from './app-config.service';
 import { HttpServiceModule }    from './shared/asyncServices/http/http.module';
-import { AuthRequestOptions }   from './shared/requests/auth.request';
 
 // Third party libraries
 import {
@@ -85,10 +84,6 @@ export function configServiceFactory (config: ConfigService) {
       useFactory: configServiceFactory,
       deps: [ConfigService], 
       multi: true
-    },
-    {
-      provide: RequestOptions, 
-      useClass: AuthRequestOptions
     },
     UserService,
     UserApiClient,

@@ -2,7 +2,7 @@ import * as fromLogin from '../actions/login.action';
 import LoginUser from "../../models/login-user.model";
 
 /**
- * Login State Interface
+ * Login state interface
  * 
  * @export
  * @interface LoginState
@@ -22,7 +22,7 @@ export const initialState: LoginState = {
 }
 
 /**
- * Login Reducer
+ * Login reducer
  * 
  * @export
  * @param {LoginState} [state=initialState] 

@@ -1,21 +1,51 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
-import * as jwt_decode from 'jwt-decode';
-import LoginUser from '../models/login-user.model';
+import { Injectable }   from '@angular/core';
+import { 
+  Http, 
+  Response, 
+  Headers 
+}                       from '@angular/http';
+import * as jwt_decode  from 'jwt-decode';
+import LoginUser        from '../models/login-user.model';
+
 
 export const TOKEN_NAME: string = 'auth_token';
 
+/**
+ * Auth Service
+ * 
+ * @export
+ * @class AuthService
+ */
 @Injectable()
 export class AuthService {
 
+  /**
+   * Get Token String
+   * 
+   * @returns {string} 
+   * @memberof AuthService
+   */
   getToken(): string {
     return localStorage.getItem(TOKEN_NAME);
   }
 
+  /**
+   * Set JWT token in local storage
+   * 
+   * @param {string} token 
+   * @memberof AuthService
+   */
   setToken(token: string): void {
     localStorage.setItem(TOKEN_NAME, token);
   }
 
+  /**
+   * Get token expiration date
+   * 
+   * @param {string} token 
+   * @returns {Date} 
+   * @memberof AuthService
+   */
   getTokenExpirationDate(token: string): Date {
     const decoded = jwt_decode(token);
 
@@ -26,15 +56,35 @@ export class AuthService {
     return date;
   }
 
+  /**
+   * Is token expired
+   * 
+   * @param {string} [token] 
+   * @returns {boolean} 
+   * @memberof AuthService
+   */
   isTokenExpired(token?: string): boolean {
-    if(!token) token = this.getToken();
-    if(!token) return true;
+    if(!token) {
+      token = this.getToken();
+    }
+
+    if(!token) {
+      return true;
+    }
 
     const date = this.getTokenExpirationDate(token);
     if(date === undefined) return false;
     return !(date.valueOf() > new Date().valueOf());
   }
 
+  /**
+   * Login response adapter
+   * 
+   * @static
+   * @param {*} response 
+   * @returns 
+   * @memberof AuthService
+   */
   static loginAdapter(response: any) {
     const token   = response.token;
     const decoded = jwt_decode(token);
@@ -53,13 +103,4 @@ export class AuthService {
       user: new LoginUser(userObj)
     }
   }
-
-  static registerAdapter() {
-
-  }
-
-  static forgotAdapter() {
-
-  }
-
 }
