@@ -2,6 +2,8 @@
   "footer.copyrightText": "Copyright Angular CoreUI Admin 2018",
   "footer.developedBy": "Manish Jangir"
 ,
+  "footer.copyrightText": "Copyright 2018 Manish Jangir"
+,
   "error.internalServerError": {
     "title": "Error",
     "description": "An Internal Server Error Has Occured",
