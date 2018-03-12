@@ -89,7 +89,7 @@ export class HttpResponseHandler {
    */
   private handleForbidden(): void {
     this.notificationsService.error(this.translateService.instant('ServerError403'), 'Error', this.configService.get('notifications').options);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
   /**

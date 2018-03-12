@@ -42,6 +42,8 @@ import { UserEffects }            from './shared/store/admin/user/user.effect';
 import { reducer as userReducer}  from './shared/store/admin/user/user.reducer';
 import { UserService }            from './admin/access/user/user.service';
 import { UserApiClient }          from './admin/access/user/user-api-client.service';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { AuthService } from './auth/services/auth.service';
 
 
 export const reducers: ActionReducerMap<any> = {
@@ -89,7 +91,9 @@ export function configServiceFactory (config: ConfigService) {
       useClass: AuthRequestOptions
     },
     UserService,
-    UserApiClient
+    UserApiClient,
+    AuthGuard,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
