@@ -37,6 +37,7 @@ import {
   ReplaceDirective,
   SIDEBAR_TOGGLE_DIRECTIVES
 } from '../directives';
+import { LayoutSandbox } from './layout.sandbox';
 
 const APP_DIRECTIVES = [
   AsideToggleDirective,
@@ -65,5 +66,6 @@ export const CONTAINERS = [
     ...CONTAINERS
   ],
   exports: [RouterModule, ...CONTAINERS],
+  providers: [LayoutSandbox]
 })
 export class ContainersModule { }

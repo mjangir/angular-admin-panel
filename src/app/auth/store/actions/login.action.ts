@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import LoginUser  from '../../models/login-user.model';
-import LoginForm from '../../models/login-form.model';
+import LoginForm  from '../../models/login-form.model';
 
 export const LOGIN           = '[Auth] Login';
 export const LOGIN_ERROR     = '[Auth] Login Error';
@@ -19,7 +19,7 @@ export class LoginAction implements Action {
 }
 
 /**
- * Login Error
+ * Login error
  * 
  * @class LoginErrorAction
  * @implements {Action}
@@ -31,7 +31,7 @@ export class LoginErrorAction implements Action {
 }
 
 /**
- * Logged In Successfully
+ * Logged in successfully
  * 
  * @class LoginSuccessAction
  * @implements {Action}

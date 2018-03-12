@@ -20,7 +20,6 @@ import { ContainersModule }     from './shared/containers/containers.module';
 // Services
 import { ConfigService }        from './app-config.service';
 import { HttpServiceModule }    from './shared/asyncServices/http/http.module';
-import { AuthRequestOptions }   from './shared/requests/auth.request';
 
 // Third party libraries
 import {
@@ -38,17 +37,11 @@ import { ToastModule }          from 'ng2-toastr/ng2-toastr';
 import { TranslateService }     from 'ng2-translate';
 
 // NGRX Effects
-import { UserEffects }            from './shared/store/admin/user/user.effect';
-import { reducer as userReducer}  from './shared/store/admin/user/user.reducer';
-import { UserService }            from './admin/access/user/user.service';
-import { UserApiClient }          from './admin/access/user/user-api-client.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthService } from './auth/services/auth.service';
 
 
-export const reducers: ActionReducerMap<any> = {
-  users: userReducer
-};
+export const reducers: ActionReducerMap<any> = {};
 
 /**
  * Function for loading application config
@@ -70,7 +63,7 @@ export function configServiceFactory (config: ConfigService) {
     TranslateModule.forRoot(),
     ToastModule.forRoot(),
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([]),
 
     // App custom dependencies
     HttpServiceModule.forRoot(),
@@ -86,12 +79,6 @@ export function configServiceFactory (config: ConfigService) {
       deps: [ConfigService], 
       multi: true
     },
-    {
-      provide: RequestOptions, 
-      useClass: AuthRequestOptions
-    },
-    UserService,
-    UserApiClient,
     AuthGuard,
     AuthService
   ],

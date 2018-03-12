@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as fromStore from '../../../auth/store'
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-admin-layout',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store: Store<fromStore.AuthState>
+  ) { }
 
   ngOnInit() {
+    this.store.select<any>('auth').subscribe(function(user) {
+      console.log(user);
+    })
   }
 
 }

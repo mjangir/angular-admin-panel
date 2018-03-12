@@ -6,16 +6,35 @@ import { of }               from 'rxjs/observable/of';
 import { Observable }       from 'rxjs/Observable';
 import * as loginActions    from '../actions/login.action';
 import { AuthApiClient }    from "../../services/auth-api-client.service";
-import LoginForm from "../../models/login-form.model";
+import LoginForm            from "../../models/login-form.model";
 
+/**
+ * Login effects
+ * 
+ * @export
+ * @class LoginEffects
+ */
 @Injectable()
 export class LoginEffects {
 
+  /**
+   * Creates an instance of LoginEffects.
+   * 
+   * @param {Actions} actions$ 
+   * @param {AuthApiClient} authApiClient 
+   * @memberof LoginEffects
+   */
   constructor(
     private actions$: Actions,
     private authApiClient: AuthApiClient
   ) {}
 
+  /**
+   * Login user effect
+   * 
+   * @type {Observable<Action>}
+   * @memberof LoginEffects
+   */
   @Effect()
   loginUser$: Observable<Action> = this.actions$
   .ofType(loginActions.LOGIN)

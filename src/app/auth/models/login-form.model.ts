@@ -1,3 +1,9 @@
+/**
+ * Login form model
+ * 
+ * @export
+ * @class LoginForm
+ */
 export default class LoginForm {
   public email:     string;
   public password:  string;
