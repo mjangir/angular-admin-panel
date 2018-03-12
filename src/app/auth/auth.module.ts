@@ -17,6 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 //Containers
 import { LoginContainer } from './containers/login/login.container';
+import { AuthSandbox } from './auth.sandbox';
 
 @NgModule({
   imports: [
@@ -31,6 +32,6 @@ import { LoginContainer } from './containers/login/login.container';
   declarations: [
     ...fromContainers.containers
   ],
-  providers: [AuthService, AuthApiClient]
+  providers: [AuthService, AuthApiClient, AuthSandbox]
 })
 export class AuthModule { }

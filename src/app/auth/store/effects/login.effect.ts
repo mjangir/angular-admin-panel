@@ -20,7 +20,9 @@ export class LoginEffects {
   loginUser$: Observable<Action> = this.actions$
   .ofType(loginActions.LOGIN)
   .map((action: loginActions.LoginAction) => action.payload)
-  .switchMap((payload: LoginForm) => this.authApiClient.login(payload))
-  .map(token => new loginActions.LoginSuccessAction(token))
-  .catch((err) => of(new loginActions.LoginErrorAction(err)));
+  .switchMap(state => {
+    return this.authApiClient.login(state)
+      .map(token    => new loginActions.LoginSuccessAction(token))
+      .catch(error => of(new loginActions.LoginErrorAction(error)));
+  });
 }

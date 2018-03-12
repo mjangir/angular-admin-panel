@@ -2,8 +2,11 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <alert type="danger" *ngIf="(error | async)" >
+        <alert type="danger" *ngIf="(authSandbox.loginError$ | async)" >
           <strong>Sorry!</strong> Invalid Email Or Password
+        </alert>
+        <alert type="success" *ngIf="(authSandbox.loginLoaded$ | async)" >
+          <strong>Good!</strong> Login Successfully. Redirecting To Admin
         </alert>
         <div class="card-group">
           <div class="card p-4">
@@ -42,8 +45,8 @@
                 <div class="row">
                   <div class="col-6">
                     <button class="btn btn-primary px-3" [disabled]="form.invalid" type="submit">
-                      <i [hidden]="loading | async" class='fa fa-lock'></i>
-                      <i [hidden]="!(loading | async)" class='fa fa-circle-o-notch fa-spin'></i>
+                      <i [hidden]="authSandbox.loginLoading$ | async" class='fa fa-lock'></i>
+                      <i [hidden]="!(authSandbox.loginLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
                       Login
                     </button>
                   </div>

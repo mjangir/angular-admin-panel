@@ -38,7 +38,9 @@ export function reducer(
     case fromLogin.LOGIN: {
       return {
         ...state,
-        loading: true
+        loaded: false,
+        loading: true,
+        error: null
       };
     }
 
@@ -48,7 +50,8 @@ export function reducer(
         token: action.payload.token,
         user: action.payload.user,
         loading: false,
-        loaded: true
+        loaded: true,
+        error: null
       };
     }
 
@@ -56,7 +59,9 @@ export function reducer(
       return {
         ...state,
         loading: false,
-        loaded: false
+        loaded: false,
+        error: action.payload,
+        user: null
       };
     }
   }

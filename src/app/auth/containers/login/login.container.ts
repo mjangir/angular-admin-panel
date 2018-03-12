@@ -14,6 +14,7 @@ import { Observable } from "rxjs/Observable";
 import * as fromStore from '../../store';
 import LoginUser      from "../../models/login-user.model";
 import LoginForm      from "../../models/login-form.model";
+import { AuthSandbox } from "../../auth.sandbox";
 
 @Component({
   selector: 'app-login',
@@ -21,46 +22,6 @@ import LoginForm      from "../../models/login-form.model";
   styleUrls: ['./login.container.scss']
 })
 export class LoginContainer implements OnInit, OnDestroy {
-
-  /**
-   * Login Loading
-   * 
-   * @type {Observable<boolean>}
-   * @memberof LoginContainer
-   */
-  public loading: Observable<boolean>;
-
-  /**
-   * Login Done
-   * 
-   * @type {Observable<boolean>}
-   * @memberof LoginContainer
-   */
-  public loaded: Observable<boolean>;
-
-  /**
-   * Login Error Occured
-   * 
-   * @type {Observable<any>}
-   * @memberof LoginContainer
-   */
-  public error: Observable<any>;
-
-  /**
-   * JWT Token For Login
-   * 
-   * @type {Observable<string>}
-   * @memberof LoginContainer
-   */
-  public token: Observable<string>;
-
-  /**
-   * Logged In User
-   * 
-   * @type {Observable<LoginUser>}
-   * @memberof LoginContainer
-   */
-  public user: Observable<LoginUser>;
 
   /**
    * Form Group
@@ -77,18 +38,9 @@ export class LoginContainer implements OnInit, OnDestroy {
    * @memberof LoginContainer
    */
   constructor(
-    private store: Store<fromStore.AuthState>,
+    public authSandbox: AuthSandbox,
     private formBuilder: FormBuilder
   ) {
-    this.loading  = this.store.select(fromStore.getLoginLoading);
-    this.loaded   = this.store.select(fromStore.getLoginLoaded);
-    this.error    = this.store.select(fromStore.getLoginError);
-    this.token    = this.store.select(fromStore.getLoginToken);
-    this.user     = this.store.select(fromStore.getLoginUser);
-
-    this.user.subscribe(function(state) {
-      console.log("ssss", state);
-    });
   }
 
   /**
@@ -114,7 +66,7 @@ export class LoginContainer implements OnInit, OnDestroy {
 
     const loginForm = new LoginForm(email, password);
 
-    this.store.dispatch(new fromStore.LoginAction(loginForm));
+    this.authSandbox.login(loginForm);
   }
 
   ngOnDestroy() {
