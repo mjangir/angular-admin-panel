@@ -1,1 +1,50 @@
-View User
+<div class="card">
+  <div class="card-header">
+    <i class="fa fa-user"></i> View User
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>First Name:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            {{ (accessUserSandbox.viewingUser$ | async)?.firstName }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>Last Name:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            {{ (accessUserSandbox.viewingUser$ | async)?.lastName }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>Email:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            {{ (accessUserSandbox.viewingUser$ | async)?.email }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>Role:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            {{ (accessUserSandbox.viewingUser$ | async)?.role }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>Status:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            <span [innerHTML]="(accessUserSandbox.viewingUser$ | async)?.status | activeBadge:'0'"></span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>Confirmed:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+              <span [innerHTML]="(accessUserSandbox.viewingUser$ | async)?.confirmed | activeBadge:'1'"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> Go Back</button>
+  </div>
+</div>

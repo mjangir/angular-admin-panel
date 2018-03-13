@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule }              from 'ng2-translate';
 import { NgxDatatableModule }   from '@swimlane/ngx-datatable';
+import { 
+  FormsModule, 
+  ReactiveFormsModule 
+}                           from "@angular/forms";
 
 // NGRX
 import { 
@@ -23,14 +27,20 @@ import { TooltipModule, BsDropdownModule }      from 'ngx-bootstrap';
 // Containers
 import fromContainers from './containers';
 
+// Pipes
+import { ActiveBadge } from '../../../shared/pipes/active-badge.pipe';
+
 const containers = [
   UserComponent,
-  ...fromContainers
+  ...fromContainers,
+  ActiveBadge
 ]
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule,
     NgxDatatableModule,
     TooltipModule.forRoot(),

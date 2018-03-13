@@ -47,4 +47,52 @@ export class AccessUserEffects {
         .map(users => new loadUsersActions.LoadUsersSuccessAction(users))
         .catch(error => of(new loadUsersActions.LoadUsersErrorAction(error)));
     });
+
+  /**
+   * Get user effect
+   * 
+   * @type {Observable<Action>}
+   * @memberof AccessUserEffects
+   */
+  @Effect()
+  viewUser$: Observable<Action> = this.actions$
+    .ofType(viewUserActions.VIEW_USER)
+    .map((action: viewUserActions.ViewUserAction) => action.payload)
+    .switchMap(id => {
+      return this.userApiClient.get(id)
+        .map(user => new viewUserActions.ViewUserSuccessAction(user))
+        .catch(error => of(new viewUserActions.ViewUserErrorAction(error)));
+    });
+
+  /**
+   * Create user effect
+   * 
+   * @type {Observable<Action>}
+   * @memberof AccessUserEffects
+   */
+  @Effect()
+  createUser$: Observable<Action> = this.actions$
+    .ofType(createUserActions.CREATE_USER)
+    .map((action: createUserActions.CreateUserAction) => action.payload)
+    .switchMap(state => {
+      return this.userApiClient.create(state)
+        .map(user => new createUserActions.CreateUserSuccessAction(user))
+        .catch(error => of(new createUserActions.CreateUserErrorAction(error)));
+    });
+
+  /**
+   * Update user effect
+   * 
+   * @type {Observable<Action>}
+   * @memberof AccessUserEffects
+   */
+  @Effect()
+  updateUser$: Observable<Action> = this.actions$
+    .ofType(updateUserActions.UPDATE_USER)
+    .map((action: updateUserActions.UpdateUserAction) => action.payload)
+    .switchMap(userForm => {
+      return this.userApiClient.update(userForm, userForm.id)
+        .map(user => new updateUserActions.UpdateUserSuccessAction(user))
+        .catch(error => of(new updateUserActions.UpdateUserErrorAction(error)));
+    });
 }

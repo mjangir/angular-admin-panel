@@ -6,10 +6,14 @@ import {
   PUT,
   DELETE,
   Path,
-  Adapter
+  Adapter,
+  Produces,
+  MediaType,
+  Body
 }                         from '../../../../shared/asyncServices/http';
 import { Observable }     from 'rxjs/Observable';
 import { UserService }    from './user.service';
+import UserForm           from '../models/user-form.model';
 
 @Injectable()
 export class UserApiClient extends HttpService {
@@ -22,36 +26,25 @@ export class UserApiClient extends HttpService {
   public all(): Observable<any> { return null; };
 
   /**
-   * Retrieves user details by a given id
-   * 
-   * @param id
+   * Get user by ID
    */
-  @GET("/users/{id}")
+  @GET("users/{id}")
   @Adapter(UserService.userDetailsAdapter)
   public get(@Path("id") id: number): Observable<any> { return null; };
 
   /**
-   * Create New User
+   * Create new user
    */
-  @POST("/users")
-  @Adapter(UserService.userDetailsAdapter)
-  public create(): Observable<any> { return null; };
+  @POST("users")
+  @Adapter(UserService.createUserAdapter)
+  @Produces(MediaType.FORM_DATA)
+  public create(@Body form: UserForm): Observable<any> { return null; };
 
   /**
-   * Update user details by a given id
-   * 
-   * @param id
+   * Update new user
    */
-  @PUT("/users/{id}")
-  @Adapter(UserService.userDetailsAdapter)
-  public update(@Path("id") id: number): Observable<any> { return null; };
-
-  /**
-   * Delete user details by a given id
-   * 
-   * @param id
-   */
-  @DELETE("/users/{id}")
-  @Adapter(UserService.userDetailsAdapter)
-  public delete(@Path("id") id: number): Observable<any> { return null; };
+  @PUT("users/{id}")
+  @Adapter(UserService.createUserAdapter)
+  @Produces(MediaType.FORM_DATA)
+  public update(@Body form: UserForm, @Path("id") id: number): Observable<any> { return null; };
 }

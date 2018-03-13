@@ -5,7 +5,7 @@ export const navigation = [
   },
   {
     name: 'Dashboard',
-    url: '/dashboard',
+    url: '/admin/dashboard',
     icon: 'icon-speedometer'
   },
   {

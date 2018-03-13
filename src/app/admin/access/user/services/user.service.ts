@@ -22,7 +22,11 @@ export class UserService {
    *
    * @param user
    */
-  static userDetailsAdapter(user: any): User {
+  static userDetailsAdapter(response: any): User {
+    return new User(response.data);
+  }
+
+  static createUserAdapter(user: any): User{
     return new User(user);
   }
 }

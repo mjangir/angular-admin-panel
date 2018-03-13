@@ -69,11 +69,11 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Actions" sortable="false" prop="id" [flexGrow]="2">
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              <button type="button" class="btn btn-sm btn-outline-primary" tooltip="View User" placement="top">
+              <button type="button" class="btn btn-sm btn-outline-primary" tooltip="View User" placement="top" [routerLink]="['/admin/access/user/view', row.id]">
                 <i class="fa fa-eye"></i>
               </button>
               &nbsp;
-              <button type="button" class="btn btn-sm btn-outline-success" tooltip="Update User" placement="top">
+              <button type="button" class="btn btn-sm btn-outline-success" tooltip="Update User" placement="top" [routerLink]="['/admin/access/user/update', row.id]">
                 <i class="fa fa-edit"></i>
               </button>
               &nbsp;

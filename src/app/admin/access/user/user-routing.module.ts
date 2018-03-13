@@ -24,11 +24,11 @@ const routes: Routes = [
         component: CreateUserContainer
       },
       {
-        path: 'update',
+        path: 'update/:id',
         component: UpdateUserContainer
       },
       {
-        path: 'view',
+        path: 'view/:id',
         component: ViewUserContainer
       }
     ]

@@ -40,7 +40,7 @@ export class HttpService {
   protected getDefaultHeaders(): Object {
     const token = this.authService.getToken();
     return {
-      Authorization: `Bearer ${token}`
+      'Authorization': `Bearer ${token}`
     };
   }
 

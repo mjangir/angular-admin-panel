@@ -1,1 +1,146 @@
-Update User
+<div class="card">
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
+    <div class="card-header">
+      <i class="fa fa-user-plus"></i> Update User
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">First Name*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input 
+                  type="text" 
+                  id="first_name" 
+                  name="first_name" 
+                  class="form-control" 
+                  placeholder="Enter First Name..." 
+                  formControlName="first_name"
+                  >
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Last Name*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input 
+                  type="text" 
+                  id="last_name" 
+                  name="last_name" 
+                  class="form-control" 
+                  placeholder="Enter Last Name..." 
+                  formControlName="last_name"
+                  >
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">Email*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input 
+                  type="text" 
+                  id="email" 
+                  name="email" 
+                  class="form-control" 
+                  placeholder="Enter Email.." 
+                  formControlName="email"
+                  >
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">User Active</label>
+            <div class="col-md-9 centered-checkbox">
+              <input 
+              type="checkbox" 
+              id="status" 
+              name="status" 
+              formControlName="status"
+              >
+            </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">User Confirmed</label>
+              <div class="col-md-9 centered-checkbox">
+                <input 
+                type="checkbox" 
+                id="confirmed" 
+                name="confirmed" 
+                formControlName="confirmed"
+                >
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Send Confirmation</label>
+                <div class="col-md-9 centered-checkbox">
+                  <input 
+                  type="checkbox" 
+                  id="confirmation_email" 
+                  name="confirmation_email" 
+                  formControlName="confirmation_email"
+                  >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Associated Roles</label>
+                <div class="col-md-9 centered-checkbox">
+                    <label class="form-check-label">
+                      <input 
+                      type="radio" 
+                      class="form-check-input" 
+                      name="assignees_roles" 
+                      id="assignees_roles_administrator" 
+                      value="1"
+                      formControlName="assignees_roles"
+                      >
+                      Administrator
+                    </label>
+                    <label class="form-check-label">
+                      <input 
+                      type="radio" 
+                      class="form-check-input" 
+                      name="assignees_roles" 
+                      id="assignees_roles_executive" 
+                      value="2"
+                      formControlName="assignees_roles"
+                      >
+                      Executive
+                    </label>
+                    <label class="form-check-label">
+                      <input 
+                      type="radio" 
+                      class="form-check-input" 
+                      name="assignees_roles" 
+                      id="assignees_roles_user" 
+                      value="3"
+                      formControlName="assignees_roles"
+                      >
+                      User
+                    </label>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-outline-primary px-3" [disabled]="form.invalid" type="submit">
+        <i [hidden]="accessUserSandbox.updateUserLoading$ | async" class='fa fa-save'></i>
+        <i [hidden]="!(accessUserSandbox.updateUserLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
+        Submit
+      </button>
+        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> Go Back</button>
+    </div>
+  </form>
+</div>

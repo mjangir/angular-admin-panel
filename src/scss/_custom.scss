@@ -12,6 +12,12 @@ app-admin-layout {
 .ngx-datatable.bootstrap .datatable-footer {
   background: #29363d;
 }
+
 .ngx-datatable.bootstrap .datatable-body .datatable-body-row {
   padding: 0.50rem;
+}
+
+.centered-checkbox {
+  display: flex;
+  align-items: center;
 }
