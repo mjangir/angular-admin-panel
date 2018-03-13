@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
     <h5 class="m-0"><i class="fa fa-user"></i>
-    {{title}}
+      {{'accessUser.heading.list' | translate}}
     </h5>
   </div>
   <div class="card-body">
@@ -13,9 +13,10 @@
               <div class="input-group">
                 <span class="input-group-prepend">
                   <button type="button" class="btn btn-primary">
-                    <i class="fa fa-search"></i> Search</button>
+                    <i class="fa fa-search"></i> {{'dtable.search' | translate}}
+                  </button>
                 </span>
-                <input #filterInput type="text" class="form-control" placeholder="Type to filter the table data...." (keyup)='updateFilter($event)'>
+                <input #filterInput type="text" class="form-control" placeholder="{{'dtable.searchPlaceholder' | translate}}...." (keyup)='updateFilter($event)'>
                 <span class="input-group-append">
                   <button type="button" class="btn btn-primary" (click)="clearFilter($event)">
                     <i class="fa fa-remove"></i>
@@ -29,17 +30,31 @@
       <div class="col-md-6">
         <div class="btn-group float-sm-right" dropdown>
           <button type="button" dropdownToggle class="btn btn-danger dropdown-toggle">
-            Action <span class="caret"></span>
+              {{'dtable.action' | translate}} <span class="caret"></span>
           </button>
           <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
             <li role="menuitem">
               <a class="dropdown-item" routerLink="/admin/access/user/create">
-                <i class="fa fa-user-plus"></i>Create User
+                <i class="fa fa-user-plus"></i>{{'accessUser.heading.create' | translate}}
               </a>
             </li>
             <li role="menuitem">
-              <a class="dropdown-item" href="#">
-                <i class="fa fa-trash"></i> Delete Selected
+              <a 
+                *ngIf="selectedIds.length"
+                class="dropdown-item" 
+                href="javascript:void(0);" 
+                (confirm)="handleMultipleDelete($event)"
+                [swal]="deleteMultipleSwal"
+              >
+                <i class="fa fa-trash"></i> {{'dtable.deleteSelectedBtn' | translate}}
+              </a>
+              <a 
+                *ngIf="!selectedIds.length"
+                class="dropdown-item" 
+                href="javascript:void(0);"
+                [swal]="noRecordSelectedSwal"
+              >
+                <i class="fa fa-trash"></i> {{'dtable.deleteSelectedBtn' | translate}}
               </a>
             </li>
           </ul>
@@ -55,33 +70,75 @@
         [footerHeight]="50"
         [rowHeight]="43"
         [limit]="10"
+        (select)='onRowSelect($event)'
         [selectionType]="'multi'">
-        <ngx-datatable-column name="First Name" prop="firstName" [flexGrow]="2"></ngx-datatable-column>
-        <ngx-datatable-column name="Last Name" prop="lastName" [flexGrow]="2"></ngx-datatable-column>
-        <ngx-datatable-column name="Email" prop="email" [flexGrow]="2"></ngx-datatable-column>
-        <ngx-datatable-column name="Role" prop="role" [flexGrow]="2"></ngx-datatable-column>
-        <ngx-datatable-column name="Active" prop="confirmed" [flexGrow]="2">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              <h6>
-                <span class="badge" [class.badge-success]="value" [class.badge-danger]="!value">{{value ? "Active" : "In-Active"}}</span>
-              </h6>
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Actions" sortable="false" prop="id" [flexGrow]="2">
+        <ngx-datatable-column name="{{'accessUser.lbl.firstName' | translate}}" prop="firstName" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column name="{{'accessUser.lbl.lastName' | translate}}" prop="lastName" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column name="{{'accessUser.lbl.email' | translate}}" prop="email" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column name="{{'accessUser.lbl.role' | translate}}" prop="role" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column name="{{'accessUser.lbl.status' | translate}}" prop="confirmed" [flexGrow]="2">
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              <button type="button" class="btn btn-sm btn-outline-primary" tooltip="View User" placement="top" [routerLink]="['/admin/access/user/view', row.id]">
-                <i class="fa fa-eye"></i>
-              </button>
-              &nbsp;
-              <button type="button" class="btn btn-sm btn-outline-success" tooltip="Update User" placement="top" [routerLink]="['/admin/access/user/update', row.id]">
-                <i class="fa fa-edit"></i>
-              </button>
-              &nbsp;
-              <button type="button" class="btn btn-sm btn-outline-danger" tooltip="Delete User" placement="top">
-                <i class="fa fa-trash"></i>
-              </button>
+            <h6>
+              <span class="badge" [class.badge-success]="value" [class.badge-danger]="!value">{{value ? "Active" : "In-Active"}}</span>
+            </h6>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{'dtable.actions' | translate}}" sortable="false" prop="id" [flexGrow]="2">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button 
+              type="button" 
+              class="btn btn-sm btn-outline-primary" 
+              tooltip="{{'dtable.tooltip.view' | translate}}" 
+              placement="top" 
+              [routerLink]="['/admin/access/user/view', row.id]">
+              <i class="fa fa-eye"></i>
+            </button>
+            &nbsp;
+            <button 
+              type="button" 
+              class="btn btn-sm btn-outline-success" 
+              tooltip="{{'dtable.tooltip.update' | translate}}" 
+              placement="top" 
+              [routerLink]="['/admin/access/user/update', row.id]">
+              <i class="fa fa-edit"></i>
+            </button>
+            &nbsp;
+            <button 
+              type="button" 
+              class="btn btn-sm btn-outline-danger" 
+              tooltip="{{'dtable.tooltip.delete' | translate}}" 
+              placement="top" 
+              (confirm)="handleSingleDelete($event, row.id)"
+              [swal]="deleteSingleSwal">
+              <i class="fa fa-trash"></i>
+            </button>
           </ng-template>
       </ngx-datatable-column>
       </ngx-datatable>
   </div>
 </div>
+
+<swal
+  #deleteSingleSwal
+  title="{{'dtable.deleteSingleSwalTitle' | translate}}"
+  text="{{'accessUser.deleteSingleConfirmText' | translate}}"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true">
+</swal>
+
+<swal
+  #deleteMultipleSwal
+  title="{{'dtable.deleteMultiSwalTitle' | translate}}"
+  text="{{'accessUser.deleteMultiConfirmText' | translate}}"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true">
+</swal>
+
+<swal
+  #noRecordSelectedSwal
+  title="{{'dtable.noRecordSelectedTitle' | translate}}"
+  text="{{'dtable.deleteNRecordSelectedDesc' | translate}}"
+  type="warning">
+</swal>

@@ -1,5 +1,5 @@
 {
-  "dtable.search": "Search",
+  "dtable.search": "खोज करो",
   "dtable.searchPlaceholder": "Type to filter the table data",
   "dtable.action": "Action",
   "dtable.actions": "Actions",
@@ -15,11 +15,6 @@
   "btn.lbl.submit": "Submit",
   "btn.lbl.goBack": "Go Back",
   "lbl.enter": "Enter",
-
-  "ErrorNotificationTitle": "Error!",
-  "SuccessNotificationTitle": "Success!",
-  "WarningNotificationTitle": "Warning!",
-  "InfoNotificationTitle": "Info!",
 
   "footer.copyrightText": "Copyright Angular CoreUI Admin 2018",
   "footer.developedBy": "Manish Jangir"
@@ -41,10 +36,7 @@
   "accessUser.lbl.status": "Status",
   "accessUser.lbl.confirmed": "Confirmed",
   "accessUser.deleteMultiConfirmText": "Selected users will be deleted permanently and cannot be undone",
-  "accessUser.deleteSingleConfirmText": "This User will be deleted permanently and cannot be undone",
-  "accessUser.deletedSuccessfully": "User deleted successfully",
-  "accessUser.createdSuccessfully": "User created successfully",
-  "accessUser.updatedSuccessfully": "User updated successfully"
+  "accessUser.deleteSingleConfirmText": "This User will be deleted permanently and cannot be undone"
 ,
   "auth.invalidCredentials": "Invalid Email Or Password",
   "auth.loginSuccessMessage": "Login Successfully. Redirecting To Admin",

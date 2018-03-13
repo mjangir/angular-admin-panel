@@ -131,8 +131,14 @@ export class UpdateUserContainer implements OnInit {
     this.accessUserSandbox.updateUser(userForm);
   }
 
-  ngOnDestroy() {
+  /**
+   * Unsubscribe from all Observables
+   * 
+   * @memberof CreateUserContainer
+   */
+  public onNgDestroy() {
     this.routerSubscription.unsubscribe();
+    this.accessUserSandbox.unregisterEvents();
   }
 
 }

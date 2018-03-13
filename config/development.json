@@ -1,6 +1,6 @@
 {
   "api": {
-    "baseUrl": "http://192.192.7.224:8000/api/v1/"
+    "baseUrl": "http://127.0.0.1:8000/api/v1/"
   },
 
   "paths": {
@@ -10,7 +10,8 @@
 
   "localization": {
     "languages": [
-      {"code": "en", "name": "EN", "culture": "en-EN"}
+      {"code": "en", "name": "EN", "culture": "en-EN"},
+      {"code": "hr", "name": "HR", "culture": "hr-HR"}
     ],
     "defaultLanguage": "en"
   },

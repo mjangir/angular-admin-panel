@@ -1,0 +1,7 @@
+{
+  "error.internalServerError": {
+    "title": "Error",
+    "description": "An Internal Server Error Has Occured",
+    "backButtonText": "Go Back"
+  }
+}

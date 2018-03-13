@@ -16,8 +16,5 @@
   "accessUser.lbl.status": "Status",
   "accessUser.lbl.confirmed": "Confirmed",
   "accessUser.deleteMultiConfirmText": "Selected users will be deleted permanently and cannot be undone",
-  "accessUser.deleteSingleConfirmText": "This User will be deleted permanently and cannot be undone",
-  "accessUser.deletedSuccessfully": "User deleted successfully",
-  "accessUser.createdSuccessfully": "User created successfully",
-  "accessUser.updatedSuccessfully": "User updated successfully"
+  "accessUser.deleteSingleConfirmText": "This User will be deleted permanently and cannot be undone"
 }

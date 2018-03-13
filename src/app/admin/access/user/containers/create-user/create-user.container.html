@@ -1,13 +1,13 @@
 <div class="card">
   <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
     <div class="card-header">
-      <i class="fa fa-user-plus"></i> Create New User
+      <i class="fa fa-user-plus"></i> {{'accessUser.heading.create' | translate}}
     </div>
     <div class="card-body">
       <div class="row">
         <div class="col-sm-8">
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">First Name*</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.firstName' | translate}}*</label>
             <div class="col-md-9">
                 <div class="input-group">
                   <input 
@@ -15,7 +15,7 @@
                   id="first_name" 
                   name="first_name" 
                   class="form-control" 
-                  placeholder="Enter First Name..." 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessUser.lbl.firstName' | translate}}..." 
                   formControlName="first_name"
                   >
                   <div class="input-group-append">
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">Last Name*</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.lastName' | translate}}*</label>
             <div class="col-md-9">
                 <div class="input-group">
                   <input 
@@ -33,7 +33,7 @@
                   id="last_name" 
                   name="last_name" 
                   class="form-control" 
-                  placeholder="Enter Last Name..." 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessUser.lbl.lastName' | translate}}..." 
                   formControlName="last_name"
                   >
                   <div class="input-group-append">
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">Email*</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.email' | translate}}*</label>
             <div class="col-md-9">
                 <div class="input-group">
                   <input 
@@ -51,7 +51,7 @@
                   id="email" 
                   name="email" 
                   class="form-control" 
-                  placeholder="Enter Email.." 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessUser.lbl.email' | translate}}.." 
                   formControlName="email"
                   >
                   <div class="input-group-append">
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">Password*</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.password' | translate}}*</label>
             <div class="col-md-9">
                 <div class="input-group">
                   <input 
@@ -69,7 +69,7 @@
                   id="password" 
                   name="password" 
                   class="form-control" 
-                  placeholder="Enter Password.." 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessUser.lbl.password' | translate}}.." 
                   formControlName="password"
                   >
                   <div class="input-group-append">
@@ -79,7 +79,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">Confirm Password*</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.confirmPassword' | translate}}*</label>
             <div class="col-md-9">
                 <div class="input-group">
                   <input 
@@ -87,7 +87,7 @@
                   id="password_confirmation" 
                   name="password_confirmation" 
                   class="form-control" 
-                  placeholder="Enter Confirm Password.." 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessUser.lbl.confirmPassword' | translate}}.." 
                   formControlName="password_confirmation"
                   >
                   <div class="input-group-append">
@@ -97,7 +97,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">User Active</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.userActive' | translate}}</label>
             <div class="col-md-9 centered-checkbox">
               <input 
               type="checkbox" 
@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="text-input">User Confirmed</label>
+              <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.userConfirmed' | translate}}</label>
               <div class="col-md-9 centered-checkbox">
                 <input 
                 type="checkbox" 
@@ -119,7 +119,7 @@
               </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Send Confirmation</label>
+                <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.sendConfirmation' | translate}}</label>
                 <div class="col-md-9 centered-checkbox">
                   <input 
                   type="checkbox" 
@@ -130,9 +130,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Associated Roles</label>
+                <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.associatedRoles' | translate}}</label>
                 <div class="col-md-9 centered-checkbox">
-                    <label class="form-check-label">
+                    <label class="form-check-label col-md-3">
                       <input 
                       type="radio" 
                       class="form-check-input" 
@@ -143,7 +143,7 @@
                       >
                       Administrator
                     </label>
-                    <label class="form-check-label">
+                    <label class="form-check-label col-md-3">
                       <input 
                       type="radio" 
                       class="form-check-input" 
@@ -174,9 +174,9 @@
       <button class="btn btn-outline-primary px-3" [disabled]="form.invalid" type="submit">
         <i [hidden]="accessUserSandbox.createUserLoading$ | async" class='fa fa-save'></i>
         <i [hidden]="!(accessUserSandbox.createUserLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
-        Submit
+        {{'btn.lbl.submit' | translate}}
       </button>
-        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> Go Back</button>
+        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
     </div>
   </form>
 </div>

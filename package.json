@@ -32,6 +32,7 @@
     "@ngrx/store": "^5.2.0",
     "@ngrx/store-devtools": "^5.2.0",
     "@swimlane/ngx-datatable": "^11.2.0",
+    "@toverux/ngx-sweetalert2": "^3.4.0",
     "bootstrap": "^4.0.0",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
@@ -45,6 +46,7 @@
     "ngx-bootstrap": "^2.0.2",
     "rxjs": "^5.5.6",
     "simple-line-icons": "^2.4.1",
+    "sweetalert2": "^7.15.1",
     "ts-helpers": "^1.1.2",
     "zone.js": "^0.8.19"
   },

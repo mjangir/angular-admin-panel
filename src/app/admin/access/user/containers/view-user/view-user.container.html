@@ -1,42 +1,42 @@
 <div class="card">
   <div class="card-header">
-    <i class="fa fa-user"></i> View User
+    <i class="fa fa-user"></i> {{'accessUser.heading.view' | translate}}
   </div>
   <div class="card-body">
     <div class="row">
       <div class="col-sm-8">
         <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="text-input"><strong>First Name:</strong></label>
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessUser.lbl.firstName' | translate}}:</strong></label>
           <div class="col-md-9 centered-checkbox">
             {{ (accessUserSandbox.viewingUser$ | async)?.firstName }}
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="text-input"><strong>Last Name:</strong></label>
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessUser.lbl.lastName' | translate}}:</strong></label>
           <div class="col-md-9 centered-checkbox">
             {{ (accessUserSandbox.viewingUser$ | async)?.lastName }}
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="text-input"><strong>Email:</strong></label>
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessUser.lbl.email' | translate}}:</strong></label>
           <div class="col-md-9 centered-checkbox">
             {{ (accessUserSandbox.viewingUser$ | async)?.email }}
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="text-input"><strong>Role:</strong></label>
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessUser.lbl.role' | translate}}:</strong></label>
           <div class="col-md-9 centered-checkbox">
             {{ (accessUserSandbox.viewingUser$ | async)?.role }}
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="text-input"><strong>Status:</strong></label>
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessUser.lbl.status' | translate}}:</strong></label>
           <div class="col-md-9 centered-checkbox">
             <span [innerHTML]="(accessUserSandbox.viewingUser$ | async)?.status | activeBadge:'0'"></span>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="text-input"><strong>Confirmed:</strong></label>
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessUser.lbl.confirmed' | translate}}:</strong></label>
           <div class="col-md-9 centered-checkbox">
               <span [innerHTML]="(accessUserSandbox.viewingUser$ | async)?.confirmed | activeBadge:'1'"></span>
           </div>
@@ -45,6 +45,6 @@
     </div>
   </div>
   <div class="card-footer">
-    <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> Go Back</button>
+    <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
   </div>
 </div>

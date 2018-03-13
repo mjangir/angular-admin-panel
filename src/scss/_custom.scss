@@ -21,3 +21,11 @@ app-admin-layout {
   display: flex;
   align-items: center;
 }
+
+.language-switcher {
+  min-width: 5rem;
+  width: 5rem;
+  .dropdown-item {
+    min-width: 0 !important;
+  }
+}

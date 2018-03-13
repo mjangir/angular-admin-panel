@@ -20,9 +20,13 @@ import { UserService }        from './services/user.service';
 import { UserApiClient }      from './services/user-api-client.service';
 import { AccessUserSandbox }  from './user.sandbox';
 
-import { UserRoutingModule } from './user-routing.module';
-import { UserComponent } from './user.component';
-import { TooltipModule, BsDropdownModule }      from 'ngx-bootstrap';
+import { UserRoutingModule }  from './user-routing.module';
+import { UserComponent }      from './user.component';
+import { SweetAlert2Module }  from '@toverux/ngx-sweetalert2';
+import { 
+  TooltipModule, 
+  BsDropdownModule 
+}                             from 'ngx-bootstrap';
 
 // Containers
 import fromContainers from './containers';
@@ -47,6 +51,7 @@ const containers = [
     BsDropdownModule.forRoot(),
     StoreModule.forFeature('accessUser', reducers),
     EffectsModule.forFeature(effects),
+    SweetAlert2Module,
     UserRoutingModule
   ],
   declarations: containers,

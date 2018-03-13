@@ -47,4 +47,11 @@ export class UserApiClient extends HttpService {
   @Adapter(UserService.createUserAdapter)
   @Produces(MediaType.FORM_DATA)
   public update(@Body form: UserForm, @Path("id") id: number): Observable<any> { return null; };
+
+  /**
+   * Delete user by ID
+   */
+  @DELETE("users/{id}")
+  @Adapter(UserService.userDetailsAdapter)
+  public delete(@Path("id") id: number): Observable<any> { return null; };
 }
