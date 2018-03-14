@@ -12,6 +12,8 @@ export default class User {
   public confirmed:   boolean;
   public role:        string;
   public status:      boolean;
+  public createdOn:   string;
+  public updatedOn:   string;
 
   constructor(user: any = null) {
     this.id           = user ? user.id : null;
@@ -21,5 +23,7 @@ export default class User {
     this.confirmed    = user ? user.confirmed : false;
     this.role         = user ? user.role : '';
     this.status       = user ? user.status : false;
+    this.createdOn    = user ? user.registered_at : '';
+    this.updatedOn    = user ? user.last_updated_at : '';
   }
 }

@@ -25,7 +25,7 @@ export const navigation = [
       },
       {
         name: 'Manage Permissions',
-        url: '/admin/access/permissions',
+        url: '/admin/access/permission',
         icon: 'icon-lock'
       }
     ]

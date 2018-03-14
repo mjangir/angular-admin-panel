@@ -35,7 +35,7 @@
           <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
             <li role="menuitem">
               <a class="dropdown-item" routerLink="/admin/access/role/create">
-                <i class="fa fa-role-plus"></i>{{'accessRole.heading.create' | translate}}
+                <i class="fa fa-plus"></i>{{'accessRole.heading.create' | translate}}
               </a>
             </li>
             <li role="menuitem">
@@ -79,6 +79,16 @@
             <h6>
               <span class="badge" [class.badge-success]="value" [class.badge-danger]="!value">{{value ? "Active" : "In-Active"}}</span>
             </h6>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{'lbl.createdOn' | translate }}" prop="createdOn" [flexGrow]="2">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{ value | date: 'medium'}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{'lbl.updatedOn' | translate }}" prop="updatedOn" [flexGrow]="2">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{ value | date: 'medium'}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="{{'dtable.actions' | translate}}" sortable="false" prop="id" [flexGrow]="2">

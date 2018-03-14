@@ -41,6 +41,18 @@
               <span [innerHTML]="(accessUserSandbox.viewingUser$ | async)?.confirmed | activeBadge:'1'"></span>
           </div>
         </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'lbl.createdOn' | translate}}:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            {{ (accessUserSandbox.viewingUser$ | async)?.createdOn | date:'medium' }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'lbl.updatedOn' | translate}}:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            {{ (accessUserSandbox.viewingUser$ | async)?.updatedOn | date:'medium' }}
+          </div>
+        </div>
       </div>
     </div>
   </div>

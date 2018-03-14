@@ -22,6 +22,8 @@
   "lbl.inactive": "In-Active",
   "lbl.on": "On",
   "lbl.off": "Off",
+  "lbl.createdOn": "Created On",
+  "lbl.updatedOn": "Updated On",
 
   "ErrorNotificationTitle": "Error!",
   "SuccessNotificationTitle": "Success!",

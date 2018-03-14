@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
-    <h5 class="m-0"><i class="fa fa-user"></i>
-      {{'accessUser.heading.list' | translate}}
+    <h5 class="m-0"><i class="fa fa-tag"></i>
+      {{'accessPermission.heading.list' | translate}}
     </h5>
   </div>
   <div class="card-body">
@@ -32,13 +32,13 @@
           <button type="button" dropdownToggle class="btn btn-danger dropdown-toggle">
               {{'dtable.action' | translate}} <span class="caret"></span>
           </button>
-          <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-            <li role="menuitem">
-              <a class="dropdown-item" routerLink="/admin/access/user/create">
-                <i class="fa fa-user-plus"></i>{{'accessUser.heading.create' | translate}}
+          <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" permission="menu">
+            <li permission="menuitem">
+              <a class="dropdown-item" routerLink="/admin/access/permission/create">
+                <i class="fa fa-plus"></i>{{'accessPermission.heading.create' | translate}}
               </a>
             </li>
-            <li role="menuitem">
+            <li permission="menuitem">
               <a 
                 *ngIf="selectedIds.length"
                 class="dropdown-item" 
@@ -64,7 +64,7 @@
       <ngx-datatable
         #table
         class="bootstrap striped expandable"
-        [rows]="accessUserSandbox.users$ | async"
+        [rows]="accessPermissionSandbox.permissions$ | async"
         [columnMode]="'flex'"
         [headerHeight]="50"
         [footerHeight]="50"
@@ -72,18 +72,15 @@
         [limit]="10"
         (select)='onRowSelect($event)'
         [selectionType]="'multi'">
-        <ngx-datatable-column name="{{'accessUser.lbl.firstName' | translate}}" prop="firstName" [flexGrow]="2"></ngx-datatable-column>
-        <ngx-datatable-column name="{{'accessUser.lbl.lastName' | translate}}" prop="lastName" [flexGrow]="2"></ngx-datatable-column>
-        <ngx-datatable-column name="{{'accessUser.lbl.email' | translate}}" prop="email" [flexGrow]="2"></ngx-datatable-column>
-        <ngx-datatable-column name="{{'accessUser.lbl.role' | translate}}" prop="role" [flexGrow]="2"></ngx-datatable-column>
-        <ngx-datatable-column name="{{'accessUser.lbl.status' | translate}}" prop="confirmed" [flexGrow]="1">
+        <ngx-datatable-column name="{{'accessPermission.lbl.permissionDisplayName' | translate}}" prop="displayName" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column name="{{'accessPermission.lbl.permissionName' | translate}}" prop="name" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column name="{{'accessPermission.lbl.sort' | translate}}" prop="sort" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column name="{{'lbl.createdOn' | translate }}" prop="createdOn" [flexGrow]="2">
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <h6>
-              <span class="badge" [class.badge-success]="value" [class.badge-danger]="!value">{{value ? "Active" : "In-Active"}}</span>
-            </h6>
+            {{ value | date: 'medium'}}
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="{{'lbl.createdOn' | translate }}" prop="createdOn" [flexGrow]="3">
+        <ngx-datatable-column name="{{'lbl.updatedOn' | translate }}" prop="updatedOn" [flexGrow]="2">
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
             {{ value | date: 'medium'}}
           </ng-template>
@@ -95,7 +92,7 @@
               class="btn btn-sm btn-outline-primary" 
               tooltip="{{'dtable.tooltip.view' | translate}}" 
               placement="top" 
-              [routerLink]="['/admin/access/user/view', row.id]">
+              [routerLink]="['/admin/access/permission/view', row.id]">
               <i class="fa fa-eye"></i>
             </button>
             &nbsp;
@@ -104,7 +101,7 @@
               class="btn btn-sm btn-outline-success" 
               tooltip="{{'dtable.tooltip.update' | translate}}" 
               placement="top" 
-              [routerLink]="['/admin/access/user/update', row.id]">
+              [routerLink]="['/admin/access/permission/update', row.id]">
               <i class="fa fa-edit"></i>
             </button>
             &nbsp;
@@ -126,7 +123,7 @@
 <swal
   #deleteSingleSwal
   title="{{'dtable.deleteSingleSwalTitle' | translate}}"
-  text="{{'accessUser.deleteSingleConfirmText' | translate}}"
+  text="{{'accessPermission.deleteSingleConfirmText' | translate}}"
   type="question"
   [showCancelButton]="true"
   [focusCancel]="true">
@@ -135,7 +132,7 @@
 <swal
   #deleteMultipleSwal
   title="{{'dtable.deleteMultiSwalTitle' | translate}}"
-  text="{{'accessUser.deleteMultiConfirmText' | translate}}"
+  text="{{'accessPermission.deleteMultiConfirmText' | translate}}"
   type="question"
   [showCancelButton]="true"
   [focusCancel]="true">

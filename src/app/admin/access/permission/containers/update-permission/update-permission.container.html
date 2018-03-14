@@ -1,0 +1,75 @@
+<div class="card">
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
+    <div class="card-header">
+      <i class="fa fa-tag"></i> {{'accessPermission.heading.update' | translate}}
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessPermission.lbl.permissionDisplayName' | translate}}*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input 
+                  type="text" 
+                  id="display_name" 
+                  name="display_name" 
+                  class="form-control" 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessPermission.lbl.permissionDisplayName' | translate}}..." 
+                  formControlName="display_name"
+                  >
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessPermission.lbl.permissionName' | translate}}*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  class="form-control" 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessPermission.lbl.permissionName' | translate}}..." 
+                  formControlName="name"
+                  >
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessPermission.lbl.sort' | translate}}*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input 
+                  type="number" 
+                  id="sort" 
+                  name="sort" 
+                  class="form-control" 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessPermission.lbl.sort' | translate}}..." 
+                  formControlName="sort"
+                  >
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-sort-numeric-desc"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-outline-primary px-3" [disabled]="form.invalid" type="submit">
+        <i [hidden]="accessPermissionSandbox.updatePermissionLoading$ | async" class='fa fa-save'></i>
+        <i [hidden]="!(accessPermissionSandbox.updatePermissionLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
+        {{'btn.lbl.submit' | translate}}
+      </button>
+        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/permission/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
+    </div>
+  </form>
+</div>

@@ -5,7 +5,7 @@ import { Subscription }   from "rxjs";
 import { Observable }     from "rxjs/Observable";
 import { Sandbox } 			  from '../../shared/sandbox/base.sandbox';
 import * as fromAuthStore     from '../../auth/store';
-import LoginUser from '../models/auth/LoginUser.model';
+import LoginUser        from '../../auth/models/login-user.model';
 
 
 @Injectable()

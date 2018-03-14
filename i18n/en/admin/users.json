@@ -34,5 +34,21 @@
   "accessRole.deleteSingleConfirmText": "This Role will be deleted permanently and cannot be undone",
   "accessRole.deletedSuccessfully": "Role deleted successfully",
   "accessRole.createdSuccessfully": "Role created successfully",
-  "accessRole.updatedSuccessfully": "Role updated successfully"
+  "accessRole.updatedSuccessfully": "Role updated successfully",
+
+  "accessPermission.heading.list": "Permissions List",
+  "accessPermission.heading.view": "View Permission",
+  "accessPermission.heading.create": "Create Permission",
+  "accessPermission.heading.update": "Update Permission",
+  "accessPermission.lbl.permissionName": "Permission Alias",
+  "accessPermission.lbl.permissionDisplayName": "Display Name",
+  "accessPermission.lbl.associatedPermissions": "Associated Permissions",
+  "accessPermission.lbl.sort": "Sort",
+  "accessPermission.lbl.active": "Active",
+  "accessPermission.lbl.status": "Status",
+  "accessPermission.deleteMultiConfirmText": "Selected permissions will be deleted permanently and cannot be undone",
+  "accessPermission.deleteSingleConfirmText": "This Permission will be deleted permanently and cannot be undone",
+  "accessPermission.deletedSuccessfully": "Permission deleted successfully",
+  "accessPermission.createdSuccessfully": "Permission created successfully",
+  "accessPermission.updatedSuccessfully": "Permission updated successfully"
 }

@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'access/role',
     loadChildren: './access/role/role.module#RoleModule'
+  },
+  {
+    path: 'access/permission',
+    loadChildren: './access/permission/permission.module#PermissionModule'
   }
 ];
 
