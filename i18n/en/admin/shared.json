@@ -1,4 +1,33 @@
 {
+  "dtable.search": "Search",
+  "dtable.searchPlaceholder": "Type to filter the table data",
+  "dtable.action": "Action",
+  "dtable.actions": "Actions",
+  "dtable.deleteSelectedBtn": "Delete Selected",
+  "dtable.deleteMultiSwalTitle": "Delete Selected?",
+  "dtable.deleteSingleSwalTitle": "Want To Delete?",
+  "dtable.noRecordSelectedTitle": "No Record Selected",
+  "dtable.deleteNRecordSelectedDesc": "Please select a record to delete",
+  "dtable.tooltip.view": "View",
+  "dtable.tooltip.update": "Update",
+  "dtable.tooltip.delete": "Delete",
+
+  "btn.lbl.submit": "Submit",
+  "btn.lbl.goBack": "Go Back",
+  "lbl.enter": "Enter",
+
+  "lbl.yes": "Yes",
+  "lbl.no": "No",
+  "lbl.active": "Active",
+  "lbl.inactive": "In-Active",
+  "lbl.on": "On",
+  "lbl.off": "Off",
+
+  "ErrorNotificationTitle": "Error!",
+  "SuccessNotificationTitle": "Success!",
+  "WarningNotificationTitle": "Warning!",
+  "InfoNotificationTitle": "Info!",
+
   "footer.copyrightText": "Copyright Angular CoreUI Admin 2018",
   "footer.developedBy": "Manish Jangir"
 }

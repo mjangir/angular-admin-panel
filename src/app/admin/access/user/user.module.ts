@@ -7,6 +7,9 @@ import {
   ReactiveFormsModule 
 }                           from "@angular/forms";
 
+// Pipes
+import { CommonPipesModule } from '../../../shared/pipes/common-pipes.module';
+
 // NGRX
 import { 
   reducers, 
@@ -20,20 +23,20 @@ import { UserService }        from './services/user.service';
 import { UserApiClient }      from './services/user-api-client.service';
 import { AccessUserSandbox }  from './user.sandbox';
 
-import { UserRoutingModule } from './user-routing.module';
-import { UserComponent } from './user.component';
-import { TooltipModule, BsDropdownModule }      from 'ngx-bootstrap';
+import { UserRoutingModule }  from './user-routing.module';
+import { UserComponent }      from './user.component';
+import { SweetAlert2Module }  from '@toverux/ngx-sweetalert2';
+import { 
+  TooltipModule, 
+  BsDropdownModule 
+}                             from 'ngx-bootstrap';
 
 // Containers
 import fromContainers from './containers';
 
-// Pipes
-import { ActiveBadge } from '../../../shared/pipes/active-badge.pipe';
-
 const containers = [
   UserComponent,
-  ...fromContainers,
-  ActiveBadge
+  ...fromContainers
 ]
 
 @NgModule({
@@ -43,10 +46,12 @@ const containers = [
     ReactiveFormsModule,
     TranslateModule,
     NgxDatatableModule,
+    CommonPipesModule,
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
     StoreModule.forFeature('accessUser', reducers),
     EffectsModule.forFeature(effects),
+    SweetAlert2Module,
     UserRoutingModule
   ],
   declarations: containers,

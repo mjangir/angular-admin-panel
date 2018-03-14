@@ -1,13 +1,13 @@
 <div class="card">
   <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
     <div class="card-header">
-      <i class="fa fa-user-plus"></i> Update User
+      <i class="fa fa-user-plus"></i> {{'accessUser.heading.update' | translate}}
     </div>
     <div class="card-body">
       <div class="row">
         <div class="col-sm-8">
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">First Name*</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.firstName' | translate}}*</label>
             <div class="col-md-9">
                 <div class="input-group">
                   <input 
@@ -15,7 +15,7 @@
                   id="first_name" 
                   name="first_name" 
                   class="form-control" 
-                  placeholder="Enter First Name..." 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessUser.lbl.firstName' | translate}}..." 
                   formControlName="first_name"
                   >
                   <div class="input-group-append">
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">Last Name*</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.lastName' | translate}}*</label>
             <div class="col-md-9">
                 <div class="input-group">
                   <input 
@@ -33,7 +33,7 @@
                   id="last_name" 
                   name="last_name" 
                   class="form-control" 
-                  placeholder="Enter Last Name..." 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessUser.lbl.lastName' | translate}}..." 
                   formControlName="last_name"
                   >
                   <div class="input-group-append">
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">Email*</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.email' | translate}}*</label>
             <div class="col-md-9">
                 <div class="input-group">
                   <input 
@@ -51,7 +51,7 @@
                   id="email" 
                   name="email" 
                   class="form-control" 
-                  placeholder="Enter Email.." 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessUser.lbl.email' | translate}}.." 
                   formControlName="email"
                   >
                   <div class="input-group-append">
@@ -61,42 +61,29 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">User Active</label>
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.userActive' | translate}}</label>
             <div class="col-md-9 centered-checkbox">
-              <input 
-              type="checkbox" 
-              id="status" 
-              name="status" 
-              formControlName="status"
-              >
+              <label class="switch switch-text switch-primary-outline-alt">
+                <input type="checkbox" class="switch-input" formControlName="status">
+                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                <span class="switch-handle"></span>
+              </label>
             </div>
           </div>
           <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="text-input">User Confirmed</label>
+              <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.userConfirmed' | translate}}</label>
               <div class="col-md-9 centered-checkbox">
-                <input 
-                type="checkbox" 
-                id="confirmed" 
-                name="confirmed" 
-                formControlName="confirmed"
-                >
+                <label class="switch switch-text switch-primary-outline-alt">
+                  <input type="checkbox" class="switch-input" formControlName="confirmed">
+                  <span class="switch-label" data-on="Yes" data-off="No"></span>
+                  <span class="switch-handle"></span>
+                </label>
               </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Send Confirmation</label>
+                <label class="col-md-3 col-form-label" for="text-input">{{'accessUser.lbl.associatedRoles' | translate}}</label>
                 <div class="col-md-9 centered-checkbox">
-                  <input 
-                  type="checkbox" 
-                  id="confirmation_email" 
-                  name="confirmation_email" 
-                  formControlName="confirmation_email"
-                  >
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Associated Roles</label>
-                <div class="col-md-9 centered-checkbox">
-                    <label class="form-check-label">
+                    <label class="form-check-label col-md-3">
                       <input 
                       type="radio" 
                       class="form-check-input" 
@@ -107,7 +94,7 @@
                       >
                       Administrator
                     </label>
-                    <label class="form-check-label">
+                    <label class="form-check-label col-md-3">
                       <input 
                       type="radio" 
                       class="form-check-input" 
@@ -138,9 +125,9 @@
       <button class="btn btn-outline-primary px-3" [disabled]="form.invalid" type="submit">
         <i [hidden]="accessUserSandbox.updateUserLoading$ | async" class='fa fa-save'></i>
         <i [hidden]="!(accessUserSandbox.updateUserLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
-        Submit
+        {{'btn.lbl.submit' | translate}}
       </button>
-        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> Go Back</button>
+        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/user/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
     </div>
   </form>
 </div>

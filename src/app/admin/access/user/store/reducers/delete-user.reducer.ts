@@ -43,6 +43,15 @@ export function reducer(
       }
     }
 
+    case fromDeleteUser.DELETE_MULTIPLE_USER: {
+      return {
+        ...state,
+        loading: true,
+        loaded: false,
+        failed: false
+      }
+    }
+
     case fromDeleteUser.DELETE_USER_ERROR: {
       return {
         ...state,

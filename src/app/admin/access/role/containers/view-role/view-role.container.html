@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    <i class="fa fa-tag"></i> {{'accessRole.heading.view' | translate}}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessRole.lbl.roleName' | translate}}:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            {{ (accessRoleSandbox.viewingRole$ | async)?.name }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessRole.lbl.sort' | translate}}:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            {{ (accessRoleSandbox.viewingRole$ | async)?.sort }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input"><strong>{{'accessRole.lbl.active' | translate}}:</strong></label>
+          <div class="col-md-9 centered-checkbox">
+            <span [innerHTML]="(accessRoleSandbox.viewingRole$ | async)?.status | activeBadge:'0'"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/role/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
+  </div>
+</div>

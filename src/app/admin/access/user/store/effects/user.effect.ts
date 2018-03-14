@@ -11,6 +11,7 @@ import * as createUserActions from '../actions/create-user.action';
 import * as updateUserActions from '../actions/update-user.action';
 import * as viewUserActions   from '../actions/view-user.action';
 import * as deleteUserActions from '../actions/delete-user.action';
+import User from "../../models/user.model";
 
 /**
  * Access user effects
@@ -94,5 +95,47 @@ export class AccessUserEffects {
       return this.userApiClient.update(userForm, userForm.id)
         .map(user => new updateUserActions.UpdateUserSuccessAction(user))
         .catch(error => of(new updateUserActions.UpdateUserErrorAction(error)));
+    });
+
+  /**
+   * Delete user effect
+   * 
+   * @type {Observable<Action>}
+   * @memberof AccessUserEffects
+   */
+  @Effect()
+  deleteUser$: Observable<Action> = this.actions$
+    .ofType(deleteUserActions.DELETE_USER)
+    .map((action: deleteUserActions.DeleteUserAction) => action.payload)
+    .switchMap(id => {
+      return this.userApiClient.deleteRecord(id)
+        .mergeMap((user: User) => {
+          return [
+              new deleteUserActions.DeleteUserSuccessAction(user),
+              new loadUsersActions.LoadUsersAction()
+          ];
+        })
+        .catch(error => of(new deleteUserActions.DeleteUserErrorAction(error)));
+    });
+
+  /**
+   * Delete multiple user effect
+   * 
+   * @type {Observable<Action>}
+   * @memberof AccessUserEffects
+   */
+  @Effect()
+  deleteMultipleUsers$: Observable<Action> = this.actions$
+    .ofType(deleteUserActions.DELETE_MULTIPLE_USER)
+    .map((action: deleteUserActions.DeleteMultipleUserAction) => action.payload)
+    .switchMap(ids => {
+      return this.userApiClient.deleteMultipleRecords(ids)
+        .mergeMap((user: User) => {
+          return [
+              new deleteUserActions.DeleteUserSuccessAction(user),
+              new loadUsersActions.LoadUsersAction()
+          ];
+        })
+        .catch(error => of(new deleteUserActions.DeleteUserErrorAction(error)));
     });
 }

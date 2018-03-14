@@ -70,7 +70,15 @@ export class CreateUserContainer implements OnInit {
   public onSubmit(event: Event, form: any) {
     const userForm = new UserForm(form);
 
-    //this.accessUserSandbox.createUser(userForm);
+    this.accessUserSandbox.createUser(userForm);
   }
 
+  /**
+   * Unsubscribe from all Observables
+   * 
+   * @memberof CreateUserContainer
+   */
+  public onNgDestroy() {
+    this.accessUserSandbox.unregisterEvents();
+  }
 }

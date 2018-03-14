@@ -1,0 +1,20 @@
+{
+  "accessUser.heading.list": "Users List",
+  "accessUser.heading.view": "View User",
+  "accessUser.heading.create": "Create User",
+  "accessUser.heading.update": "Update User",
+  "accessUser.lbl.firstName": "First Name",
+  "accessUser.lbl.lastName": "Last Name",
+  "accessUser.lbl.email": "Email",
+  "accessUser.lbl.role": "Role",
+  "accessUser.lbl.password": "Password",
+  "accessUser.lbl.confirmPassword": "Confirm Password",
+  "accessUser.lbl.userActive": "User Active",
+  "accessUser.lbl.userConfirmed": "User Confirmed",
+  "accessUser.lbl.sendConfirmation": "Send Confirmation",
+  "accessUser.lbl.associatedRoles": "Associated Roles",
+  "accessUser.lbl.status": "Status",
+  "accessUser.lbl.confirmed": "Confirmed",
+  "accessUser.deleteMultiConfirmText": "Selected users will be deleted permanently and cannot be undone",
+  "accessUser.deleteSingleConfirmText": "This User will be deleted permanently and cannot be undone"
+}

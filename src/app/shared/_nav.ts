@@ -15,12 +15,12 @@ export const navigation = [
     children: [
       {
         name: 'Manage Users',
-        url: '/admin/access/user/list',
+        url: '/admin/access/user',
         icon: 'icon-user'
       },
       {
         name: 'Manage Roles',
-        url: '/admin/access/roles',
+        url: '/admin/access/role',
         icon: 'icon-tag'
       },
       {

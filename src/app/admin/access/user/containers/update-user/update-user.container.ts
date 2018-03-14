@@ -91,7 +91,6 @@ export class UpdateUserContainer implements OnInit {
       email:                  ["", Validators.required],
       confirmed:              [true],
       status:                 [true],
-      confirmation_email:     [false],
       assignees_roles:        ["3"],
       permissions:            [1]
     });
@@ -109,8 +108,7 @@ export class UpdateUserContainer implements OnInit {
         last_name:          user.lastName,
         email:              user.email,
         confirmed:          user.confirmed,
-        status:             0,
-        confirmation_email: 0,
+        status:             user.status,
         assignees_roles:    "3",
         permissions:        1
       });
@@ -131,8 +129,14 @@ export class UpdateUserContainer implements OnInit {
     this.accessUserSandbox.updateUser(userForm);
   }
 
-  ngOnDestroy() {
+  /**
+   * Unsubscribe from all Observables
+   * 
+   * @memberof CreateUserContainer
+   */
+  public onNgDestroy() {
     this.routerSubscription.unsubscribe();
+    this.accessUserSandbox.unregisterEvents();
   }
 
 }

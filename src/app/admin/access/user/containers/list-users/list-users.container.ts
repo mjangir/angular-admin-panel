@@ -7,6 +7,7 @@ import {
 }                             from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { AccessUserSandbox } from '../../user.sandbox';
+import { SwalComponent } from '@toverux/ngx-sweetalert2';
 
 @Component({
   selector: 'app-list-users',
@@ -22,7 +23,18 @@ export class ListUsersContainer implements OnInit {
   table: DatatableComponent;
 
   @ViewChild('filterInput') 
-	private filterInput : ElementRef;
+  private filterInput : ElementRef;
+
+  @ViewChild('deleteSingleSwal') 
+  private deleteSingleSwal: SwalComponent;
+
+  @ViewChild('deleteMultipleSwal') 
+  private deleteMultipleSwal: SwalComponent;
+
+  @ViewChild('noRecordSelectedSwal') 
+  private noRecordSelectedSwal: SwalComponent;
+  
+  private selectedIds: Array<number> = [];
 
   constructor(
     public accessUserSandbox: AccessUserSandbox
@@ -57,14 +69,42 @@ export class ListUsersContainer implements OnInit {
   }
 
   /**
-   * Delete the selected hero
+   * Handle single record delete
    * 
-   * @param {number} id the hero id
+   * @param {any} event 
+   * @param {number} id 
+   * @memberof ListUsersContainer
    */
-  delete(id: number) {
-    if (confirm('Are you sure do you want to delete this Game?')) {
-      console.log("hello");
-    }
+  handleSingleDelete(event, id: number) {
+    this.accessUserSandbox.deleteUser(id);
   }
 
+  /**
+   * Handle multiple records delete
+   * 
+   * @memberof ListUsersContainer
+   */
+  handleMultipleDelete() {
+    console.log(this.selectedIds);
+    this.accessUserSandbox.deleteMultipleUsers(this.selectedIds);
+  }
+
+  /**
+   * On table row select
+   * 
+   * @param {any} {selected} 
+   * @memberof ListUsersContainer
+   */
+  onRowSelect({selected}) {
+    this.selectedIds = selected.map(user => user.id);
+  }
+
+  /**
+   * Unsubscribe from all Observables
+   * 
+   * @memberof CreateUserContainer
+   */
+  public onNgDestroy() {
+    this.accessUserSandbox.unregisterEvents();
+  }
 }

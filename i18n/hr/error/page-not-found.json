@@ -1,0 +1,7 @@
+{
+  "error.pageNotFound": {
+    "title": "Oops! You're lost.",
+    "description": "The page you are looking for was not found.",
+    "backButtonText": "Go Back"
+  }
+}

@@ -8,16 +8,53 @@ app-admin-layout {
   flex-flow: column;
   flex-grow: 1;
 }
-
 .ngx-datatable.bootstrap .datatable-footer {
   background: #29363d;
 }
-
 .ngx-datatable.bootstrap .datatable-body .datatable-body-row {
   padding: 0.50rem;
 }
-
 .centered-checkbox {
   display: flex;
   align-items: center;
+}
+.language-switcher {
+  min-width: 5rem;
+  width: 5rem;
+  .dropdown-item {
+    min-width: 0 !important;
+  }
+}
+.cuppa-dropdown {
+  .selected-list {
+    .c-btn {
+      box-shadow: none !important;
+      width: 100% !important;
+      padding: 6px !important;
+      border-radius: 0 !important;
+      border: 1px solid #c2cfd6 !important;
+    }
+  }
+}
+angular2-multiselect {
+  width: 100%;
+}
+.pure-checkbox input[type="checkbox"] + label:before {
+  color: #20a8d8 !important;
+  border: 2px solid #20a8d8 !important;
+}
+.custom-multiselect-checkbox-dp {
+    color: #ccc;
+}
+.custom-multiselect-checkbox-dp .c-token{
+    background: #20a8d8 !important;
+}
+.custom-multiselect-checkbox-dp 
+.pure-checkbox label::before {
+    border-color: #20a8d8 !important;
+}
+.custom-multiselect-checkbox-dp 
+.pure-checkbox 
+input[type="checkbox"]:checked + label[_ngcontent-c3]:before {
+    background: #20a8d8 !important;
 }

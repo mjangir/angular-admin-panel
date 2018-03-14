@@ -1,0 +1,79 @@
+<div class="card">
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
+    <div class="card-header">
+      <i class="fa fa-tag"></i> {{'accessRole.heading.create' | translate}}
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessRole.lbl.roleName' | translate}}*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  class="form-control" 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessRole.lbl.roleName' | translate}}..." 
+                  formControlName="name"
+                  >
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessRole.lbl.sort' | translate}}*</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                  <input 
+                  type="text" 
+                  id="sort" 
+                  name="sort" 
+                  class="form-control" 
+                  placeholder="{{'lbl.enter' | translate}} {{'accessRole.lbl.sort' | translate}}..." 
+                  formControlName="sort"
+                  >
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-sort-numeric-desc"></i></span>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessRole.lbl.active' | translate}}</label>
+            <div class="col-md-9 centered-checkbox">
+              <label class="switch switch-text switch-primary-outline-alt">
+                <input type="checkbox" class="switch-input" formControlName="status">
+                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">{{'accessRole.lbl.associatedPermissions' | translate}}</label>
+              <div class="col-md-9 centered-checkbox">
+                  <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" 
+                    [settings]="settings" 
+                    (onSelect)="onItemSelect($event)"
+                    (onDeSelect)="OnItemDeSelect($event)" 
+                    (onSelectAll)="onSelectAll($event)" 
+                    (onDeSelectAll)="onDeSelectAll($event)" formControlName="permissions">
+                  </angular2-multiselect>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-outline-primary px-3" [disabled]="form.invalid" type="submit">
+        <i [hidden]="accessRoleSandbox.createRoleLoading$ | async" class='fa fa-save'></i>
+        <i [hidden]="!(accessRoleSandbox.createRoleLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
+        {{'btn.lbl.submit' | translate}}
+      </button>
+        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/role/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
+    </div>
+  </form>
+</div>

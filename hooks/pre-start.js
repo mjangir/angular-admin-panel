@@ -32,6 +32,8 @@ setEnvironment('./config/env.json', 'development');
 
 // Get all localization files list in array
 var localizationSourceFilesEN = getDirectoryFiles('./i18n/en');
+var localizationSourceFilesHR = getDirectoryFiles('./i18n/hr');
 
 // Merge all localization files into one
 mergeAndSaveJsonFiles(localizationSourceFilesEN, "./i18n/en.json");
+mergeAndSaveJsonFiles(localizationSourceFilesHR, "./i18n/hr.json");

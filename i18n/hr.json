@@ -1,0 +1,65 @@
+{
+  "dtable.search": "खोज करो",
+  "dtable.searchPlaceholder": "Type to filter the table data",
+  "dtable.action": "Action",
+  "dtable.actions": "Actions",
+  "dtable.deleteSelectedBtn": "Delete Selected",
+  "dtable.deleteMultiSwalTitle": "Delete Selected?",
+  "dtable.deleteSingleSwalTitle": "Want To Delete?",
+  "dtable.noRecordSelectedTitle": "No Record Selected",
+  "dtable.deleteNRecordSelectedDesc": "Please select a record to delete",
+  "dtable.tooltip.view": "View",
+  "dtable.tooltip.update": "Update",
+  "dtable.tooltip.delete": "Delete",
+
+  "btn.lbl.submit": "Submit",
+  "btn.lbl.goBack": "Go Back",
+  "lbl.enter": "Enter",
+
+  "footer.copyrightText": "Copyright Angular CoreUI Admin 2018",
+  "footer.developedBy": "Manish Jangir"
+,
+  "accessUser.heading.list": "Users List",
+  "accessUser.heading.view": "View User",
+  "accessUser.heading.create": "Create User",
+  "accessUser.heading.update": "Update User",
+  "accessUser.lbl.firstName": "First Name",
+  "accessUser.lbl.lastName": "Last Name",
+  "accessUser.lbl.email": "Email",
+  "accessUser.lbl.role": "Role",
+  "accessUser.lbl.password": "Password",
+  "accessUser.lbl.confirmPassword": "Confirm Password",
+  "accessUser.lbl.userActive": "User Active",
+  "accessUser.lbl.userConfirmed": "User Confirmed",
+  "accessUser.lbl.sendConfirmation": "Send Confirmation",
+  "accessUser.lbl.associatedRoles": "Associated Roles",
+  "accessUser.lbl.status": "Status",
+  "accessUser.lbl.confirmed": "Confirmed",
+  "accessUser.deleteMultiConfirmText": "Selected users will be deleted permanently and cannot be undone",
+  "accessUser.deleteSingleConfirmText": "This User will be deleted permanently and cannot be undone"
+,
+  "auth.invalidCredentials": "Invalid Email Or Password",
+  "auth.loginSuccessMessage": "Login Successfully. Redirecting To Admin",
+  "auth.sorry": "Sorry",
+  "auth.good": "Good",
+  "auth.login": "Login",
+  "auth.signInYourAcc": "Sign In to your account",
+  "auth.emailAddress": "Email Address",
+  "auth.password": "Password",
+  "auth.forgotPasswordLink": "Forgot password",
+  "auth.signUp": "Sign Up",
+  "auth.registerText": "Smart Angular is an open source angular project with basic admin features. It uses Laravel famous PHP framework for backend API purpose.",
+  "auth.registerNow": "Register Now"
+,
+  "error.internalServerError": {
+    "title": "Error",
+    "description": "An Internal Server Error Has Occured",
+    "backButtonText": "Go Back"
+  }
+,
+  "error.pageNotFound": {
+    "title": "Oops! You're lost.",
+    "description": "The page you are looking for was not found.",
+    "backButtonText": "Go Back"
+  }
+}
