@@ -41,9 +41,10 @@ import { SweetAlert2Module }    from '@toverux/ngx-sweetalert2';
 // NGRX Effects
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AuthService } from './auth/services/auth.service';
+import { AppState } from './app.state';
 
 
-export const reducers: ActionReducerMap<any> = {};
+export const reducers: ActionReducerMap<AppState> = {};
 
 /**
  * Function for loading application config
