@@ -2,9 +2,10 @@ import { Action } from '@ngrx/store';
 import LoginUser  from '../../models/login-user.model';
 import LoginForm  from '../../models/login-form.model';
 
-export const LOGIN           = '[Auth] Login';
-export const LOGIN_ERROR     = '[Auth] Login Error';
-export const LOGIN_SUCCESS   = '[Auth] Login Success';
+export const LOGIN            = '[Auth] Login';
+export const LOGIN_ERROR      = '[Auth] Login Error';
+export const LOGIN_SUCCESS    = '[Auth] Login Success';
+export const RESET_LOGIN      = '[Auth] Reset Login';
 
 /**
  * Login
@@ -43,7 +44,19 @@ export class LoginSuccessAction implements Action {
 }
 
 /**
+ * Login reset
+ * 
+ * @class ResetLoginAction
+ * @implements {Action}
+ */
+export class ResetLoginAction implements Action {
+  readonly type: string = RESET_LOGIN;
+
+  constructor(public payload?: any) {}
+}
+
+/**
  * Actions type.
  * @type {LoginActions}
  */
-export type LoginActions = LoginAction | LoginErrorAction | LoginSuccessAction;
+export type LoginActions = LoginAction | LoginErrorAction | LoginSuccessAction | ResetLoginAction;

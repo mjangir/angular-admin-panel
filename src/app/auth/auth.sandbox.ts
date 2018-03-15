@@ -169,6 +169,15 @@ export class AuthSandbox extends Sandbox {
   }
 
   /**
+   * Dispatch login reset action
+   * 
+   * @memberof AuthSandbox
+   */
+  public resetLogin() {
+    this.store.dispatch(new fromStore.ResetLoginAction());
+  }
+
+  /**
    * Dispatch logout action
    * 
    * @memberof AuthSandbox

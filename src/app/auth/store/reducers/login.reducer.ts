@@ -64,6 +64,16 @@ export function reducer(
         user: null
       };
     }
+
+    case fromLogin.RESET_LOGIN: {
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: null,
+        user: null
+      };
+    }
   }
 
   return state;

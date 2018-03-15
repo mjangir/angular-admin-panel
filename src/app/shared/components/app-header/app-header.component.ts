@@ -7,4 +7,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class AppHeaderComponent { 
   @Output()
   logout: EventEmitter<any> = new EventEmitter();
+
+  logoutUser() {
+    this.logout.emit();
+  }
 }
