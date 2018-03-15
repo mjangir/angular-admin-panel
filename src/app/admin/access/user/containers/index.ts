@@ -10,4 +10,6 @@ const containers: Array<any> = [
   ViewUserContainer
 ];
 
-export default containers;
+export const fromContainers = {
+  containers
+};

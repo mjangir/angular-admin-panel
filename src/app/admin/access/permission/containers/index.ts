@@ -10,4 +10,6 @@ const containers: Array<any> = [
   ViewPermissionContainer
 ];
 
-export default containers;
+export const fromContainers = {
+  containers
+};

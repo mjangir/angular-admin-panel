@@ -32,11 +32,11 @@ import {
 }                             from 'ngx-bootstrap';
 
 // Containers
-import fromContainers from './containers';
+import {fromContainers} from './containers';
 
 const containers = [
   UserComponent,
-  ...fromContainers
+  ...fromContainers.containers
 ]
 
 @NgModule({

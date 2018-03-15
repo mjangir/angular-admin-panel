@@ -10,4 +10,6 @@ const containers: Array<any> = [
   ViewRoleContainer
 ];
 
-export default containers;
+export const fromContainers = {
+  containers
+};

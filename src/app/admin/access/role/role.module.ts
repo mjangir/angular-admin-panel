@@ -35,11 +35,11 @@ import {
 }                             from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
 // Containers
-import fromContainers from './containers';
+import {fromContainers} from './containers';
 
 const containers = [
   RoleComponent,
-  ...fromContainers
+  ...fromContainers.containers
 ]
 
 @NgModule({
