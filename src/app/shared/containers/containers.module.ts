@@ -38,6 +38,7 @@ import {
   SIDEBAR_TOGGLE_DIRECTIVES
 } from '../directives';
 import { LayoutSandbox } from './layout.sandbox';
+import { AuthSandbox } from '../../auth/auth.sandbox';
 
 const APP_DIRECTIVES = [
   AsideToggleDirective,
@@ -66,6 +67,6 @@ export const CONTAINERS = [
     ...CONTAINERS
   ],
   exports: [RouterModule, ...CONTAINERS],
-  providers: [LayoutSandbox]
+  providers: [LayoutSandbox, AuthSandbox]
 })
 export class ContainersModule { }

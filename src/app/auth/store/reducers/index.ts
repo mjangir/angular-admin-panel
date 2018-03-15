@@ -38,3 +38,15 @@ export const getLoginLoaded   = createSelector(getLoginState, fromLogin.getLogin
 export const getLoginToken    = createSelector(getLoginState, fromLogin.getLoginToken);
 export const getLoginUser     = createSelector(getLoginState, fromLogin.getLoginUser);
 export const getLoginError    = createSelector(getLoginState, fromLogin.getLoginError);
+
+// All Register States
+export const getRegisterState    = createSelector(getAuthState, (state: AuthState) => state.register);
+export const getRegisterLoading  = createSelector(getRegisterState, fromRegister.getRegisterLoading);
+export const getRegisterLoaded   = createSelector(getRegisterState, fromRegister.getRegisterLoaded);
+export const getRegisterError    = createSelector(getRegisterState, fromRegister.getRegisterError);
+
+// All Logout States
+export const getLogoutState    = createSelector(getAuthState, (state: AuthState) => state.logout);
+export const getLogoutLoading  = createSelector(getLogoutState, fromLogout.getLogoutLoading);
+export const getLogoutLoaded   = createSelector(getLogoutState, fromLogout.getLogoutLoaded);
+export const getLogoutError    = createSelector(getLogoutState, fromLogout.getLogoutError);

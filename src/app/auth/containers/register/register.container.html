@@ -4,43 +4,104 @@
       <div class="col-md-6">
         <div class="card mx-4">
           <div class="card-body p-4">
-            <h1>Register</h1>
-            <p class="text-muted">Create your account</p>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="icon-user"></i></span>
+            <alert type="danger" *ngIf="(authSandbox.registerError$ | async)" >
+              <strong>{{'auth.sorry' | translate}}!</strong> {{ (authSandbox.registerError$ | async)?.error?.message }}
+            </alert>
+            <alert type="success" *ngIf="(authSandbox.registerLoaded$ | async)" >
+              <strong>{{'auth.good' | translate}}!</strong> {{'auth.registerSuccessMessage' | translate}}
+            </alert>
+            <h1>{{'auth.register' | translate}}</h1>
+            <p class="text-muted">{{'auth.createYourAccount' | translate}}</p>
+            <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-user"></i></span>
+                </div>
+                <input 
+                  class="form-control" 
+                  required 
+                  placeholder="{{'accessUser.lbl.firstName' | translate}}..." 
+                  autocorrect="off" 
+                  autocapitalize="off" 
+                  spellcheck="off" 
+                  formControlName="first_name">
               </div>
-              <input type="text" class="form-control" placeholder="Username">
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="icon-user"></i></span>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-user"></i></span>
+                </div>
+                <input 
+                  class="form-control" 
+                  required 
+                  placeholder="{{'accessUser.lbl.lastName' | translate}}..." 
+                  autocorrect="off" 
+                  autocapitalize="off" 
+                  spellcheck="off" 
+                  formControlName="last_name">
               </div>
-              <input type="text" class="form-control" placeholder="Username">
-            </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">@</span>
+  
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input 
+                  class="form-control" 
+                  required 
+                  placeholder="{{'accessUser.lbl.email' | translate}}..." 
+                  autocorrect="off" 
+                  autocapitalize="off" 
+                  spellcheck="off" 
+                  formControlName="email">
               </div>
-              <input type="text" class="form-control" placeholder="Email">
-            </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="icon-lock"></i></span>
+  
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-lock"></i></span>
+                </div>
+                <input 
+                  type="password"
+                  class="form-control" 
+                  required 
+                  placeholder="{{'accessUser.lbl.password' | translate}}..." 
+                  autocorrect="off" 
+                  autocapitalize="off" 
+                  spellcheck="off" 
+                  formControlName="password">
               </div>
-              <input type="password" class="form-control" placeholder="Password">
-            </div>
-
-            <div class="input-group mb-4">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="icon-lock"></i></span>
+  
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-lock"></i></span>
+                </div>
+                <input 
+                  type="password"
+                  class="form-control" 
+                  required 
+                  placeholder="{{'accessUser.lbl.confirmPassword' | translate}}..." 
+                  autocorrect="off" 
+                  autocapitalize="off" 
+                  spellcheck="off" 
+                  formControlName="password_confirmation">
               </div>
-              <input type="password" class="form-control" placeholder="Repeat password">
-            </div>
-
-            <button type="button" class="btn btn-block btn-success">Create Account</button>
+              <div class="input-group mb-4">
+                <div class="pull-left">
+                  <label class="switch switch-text switch-primary-outline-alt">
+                    <input type="checkbox" class="switch-input" formControlName="is_term_accept">
+                    <span class="switch-label" data-on="Yes" data-off="No"></span>
+                    <span class="switch-handle"></span>
+                  </label>
+                </div>
+                <div class="pull-left ml-2">
+                    Do you agree with the terms &amp; conditions?
+                </div>
+              </div>
+              <button class="btn btn-primary px-3" [disabled]="form.invalid" type="submit">
+                <i [hidden]="authSandbox.registerLoading$ | async" class='fa fa-user-plus'></i>
+                <i [hidden]="!(authSandbox.registerLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
+                {{'auth.createAccount' | translate}}
+              </button>
+              <button type="button" class="btn btn-success" (click)="logoutUser($event)">Logout</button>
+            </form>
           </div>
         </div>
       </div>

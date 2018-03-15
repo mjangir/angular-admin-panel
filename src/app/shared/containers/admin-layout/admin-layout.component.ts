@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as fromStore from '../../../auth/store'
 import { Store } from '@ngrx/store';
+import { AuthSandbox } from '../../../auth/auth.sandbox';
 
 @Component({
   selector: 'app-admin-layout',
@@ -10,13 +11,15 @@ import { Store } from '@ngrx/store';
 export class AdminLayoutComponent implements OnInit {
 
   constructor(
-    private store: Store<fromStore.AuthState>
+    private store: Store<fromStore.AuthState>,
+    private authSandbox: AuthSandbox
   ) { }
 
   ngOnInit() {
-    this.store.select<any>('auth').subscribe(function(user) {
-      console.log(user);
-    })
+  }
+
+  logout() {
+    this.authSandbox.logout();
   }
 
 }

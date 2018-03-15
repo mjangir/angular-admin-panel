@@ -44,7 +44,8 @@ export function reducer(
       return {
         ...state,
         loading: false,
-        loaded: true
+        loaded: true,
+        error: null
       };
     }
 
@@ -53,10 +54,23 @@ export function reducer(
         ...state,
         loading: false,
         loaded: false,
-        error: action.payload.error
+        error: action.payload.json()
+      };
+    }
+
+    case fromRegister.RESET_REGISTER: {
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: null
       };
     }
   }
 
   return state;
 }
+
+export const getRegisterLoading  = (state: RegisterState) => state.loading;
+export const getRegisterLoaded   = (state: RegisterState) => state.loaded;
+export const getRegisterError    = (state: RegisterState) => state.error;

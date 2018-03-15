@@ -30,6 +30,19 @@ export class AuthService {
   }
 
   /**
+   * Remove Token String
+   * 
+   * @returns {string} 
+   * @memberof AuthService
+   */
+  removeToken(): boolean {
+    if(this.getToken()) {
+      localStorage.removeItem(TOKEN_NAME);
+    }
+    return true;
+  }
+
+  /**
    * Set JWT token in local storage
    * 
    * @param {string} token 

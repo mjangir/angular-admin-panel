@@ -10,5 +10,10 @@
   "auth.forgotPasswordLink": "Forgot password",
   "auth.signUp": "Sign Up",
   "auth.registerText": "Smart Angular is an open source angular project with basic admin features. It uses Laravel famous PHP framework for backend API purpose.",
-  "auth.registerNow": "Register Now"
+  "auth.registerNow": "Register Now",
+
+  "auth.register": "Register",
+  "auth.createYourAccount": "Create Your Account",
+  "auth.createAccount": "Create Account",
+  "auth.registerSuccessMessage": "Your Registration Was Successful. Redirecting To Login"
 }

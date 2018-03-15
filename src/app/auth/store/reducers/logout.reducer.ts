@@ -30,7 +30,8 @@ export function reducer(
       return {
         ...state,
         loading: true,
-        loaded: false
+        loaded: false,
+        error: null
       };
     }
 
@@ -38,7 +39,8 @@ export function reducer(
       return {
         ...state,
         loading: false,
-        loaded: true
+        loaded: true,
+        error: null
       };
     }
 
@@ -47,9 +49,13 @@ export function reducer(
         ...state,
         loading: false,
         loaded: false,
-        error: action.payload.error
+        error: action.payload
       };
     }
   }
   return state;
 }
+
+export const getLogoutLoading  = (state: LogoutState) => state.loading;
+export const getLogoutLoaded   = (state: LogoutState) => state.loaded;
+export const getLogoutError    = (state: LogoutState) => state.error;

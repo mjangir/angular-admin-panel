@@ -11,6 +11,7 @@ import {
 import { Observable }     from 'rxjs/Observable';
 import { AuthService }    from './auth.service';
 import LoginForm          from '../models/login-form.model';
+import { RegisterForm } from '../models/register-form.model';
 
 /**
  * Auth API client service
@@ -33,5 +34,16 @@ export class AuthApiClient extends HttpService {
   @Adapter(AuthService.loginAdapter)
   @Produces(MediaType.FORM_DATA)
   public login(@Body form: LoginForm): Observable<any> { return null; };
+
+  /**
+   * Register user route
+   * 
+   * @param {RegisterForm} form 
+   * @returns {Observable<any>} 
+   * @memberof AuthApiClient
+   */
+  @POST("auth/register")
+  @Produces(MediaType.FORM_DATA)
+  public register(@Body form: RegisterForm): Observable<any> { return null; };
   
 }
