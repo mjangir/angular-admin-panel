@@ -36,6 +36,7 @@ import {
 
 // Containers
 import {fromContainers} from './containers';
+import { AccessPermissionSandbox } from '../permission/permission.sandbox';
 
 const containers = [
   RoleComponent,
@@ -62,7 +63,8 @@ const containers = [
   providers: [
     RoleService,
     RoleApiClient,
-    AccessRoleSandbox
+    AccessRoleSandbox,
+    AccessPermissionSandbox
   ]
 })
 export class RoleModule { }

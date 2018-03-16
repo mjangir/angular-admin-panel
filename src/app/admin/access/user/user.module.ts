@@ -49,8 +49,6 @@ const containers = [
     CommonPipesModule,
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
-    StoreModule.forFeature('accessUser', reducers),
-    EffectsModule.forFeature(effects),
     SweetAlert2Module,
     UserRoutingModule
   ],

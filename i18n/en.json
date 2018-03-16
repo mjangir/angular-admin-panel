@@ -24,6 +24,8 @@
   "lbl.off": "Off",
   "lbl.createdOn": "Created On",
   "lbl.updatedOn": "Updated On",
+  "lbl.selectAll": "Select All",
+  "lbl.unselectAll": "UnSelect All",
 
   "ErrorNotificationTitle": "Error!",
   "SuccessNotificationTitle": "Success!",
@@ -84,7 +86,9 @@
   "accessPermission.deleteSingleConfirmText": "This Permission will be deleted permanently and cannot be undone",
   "accessPermission.deletedSuccessfully": "Permission deleted successfully",
   "accessPermission.createdSuccessfully": "Permission created successfully",
-  "accessPermission.updatedSuccessfully": "Permission updated successfully"
+  "accessPermission.updatedSuccessfully": "Permission updated successfully",
+  "accessPermission.selectPermissions": "Select Permissions",
+  "accessPermission.searchPermissions": "Search Permissions"
 ,
   "auth.invalidCredentials": "Invalid Email Or Password",
   "auth.loginSuccessMessage": "Login Successfully. Redirecting To Admin",

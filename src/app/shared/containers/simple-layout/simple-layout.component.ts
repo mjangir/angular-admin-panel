@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../../app.store';
 
 @Component({
   selector: 'app-simple-layout',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimpleLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store: Store<fromStore.State>
+  ) { }
 
   ngOnInit() {
+    this.store.subscribe(function(s) {
+      console.log("s", s);
+    })
   }
 
 }

@@ -24,6 +24,8 @@
   "lbl.off": "Off",
   "lbl.createdOn": "Created On",
   "lbl.updatedOn": "Updated On",
+  "lbl.selectAll": "Select All",
+  "lbl.unselectAll": "UnSelect All",
 
   "ErrorNotificationTitle": "Error!",
   "SuccessNotificationTitle": "Success!",

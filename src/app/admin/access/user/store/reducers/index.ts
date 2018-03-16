@@ -1,13 +1,15 @@
 import { 
   ActionReducerMap,
   createSelector,
-  createFeatureSelector
+  createFeatureSelector,
+  combineReducers
 }                           from "@ngrx/store";
 import * as fromLoadUsers   from '../reducers/load-users.reducer';
 import * as fromCreateUser  from '../reducers/create-user.reducer';
 import * as fromUpdateUser  from '../reducers/update-user.reducer';
 import * as fromDeleteUser  from '../reducers/delete-user.reducer';
 import * as fromViewUser    from '../reducers/view-user.reducer';
+import { compose }          from "@ngrx/core/compose";
 
 /**
  * Access user state
@@ -30,6 +32,8 @@ export const reducers: ActionReducerMap<AccessUserState> = {
   view:   fromViewUser.reducer,
   delete: fromDeleteUser.reducer
 }
+
+export const combinedReducers = compose(combineReducers)(reducers);
 
 // Main Access User State
 export const getAccessUserState = createFeatureSelector<AccessUserState>('accessUser');

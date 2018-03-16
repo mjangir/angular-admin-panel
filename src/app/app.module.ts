@@ -20,7 +20,7 @@ import { ContainersModule }     from './shared/containers/containers.module';
 // Services
 import { ConfigService }        from './app-config.service';
 import { HttpServiceModule }    from './shared/asyncServices/http/http.module';
-import { UtilityModule }        from './shared/utils';
+import { UtilityModule, UtilService }        from './shared/utils';
 
 // Third party libraries
 import {
@@ -39,12 +39,16 @@ import { TranslateService }     from 'ng2-translate';
 import { SweetAlert2Module }    from '@toverux/ngx-sweetalert2';
 
 // NGRX Effects
-import { AuthGuard } from './shared/guards/auth.guard';
-import { AuthService } from './auth/services/auth.service';
-import { AppState } from './app.state';
+import { AuthGuard }      from './shared/guards/auth.guard';
+import { AuthService }    from './auth/services/auth.service';
+import { AuthApiClient }  from './auth/services/auth-api-client.service';
+import { UserApiClient }  from './admin/access/user/services/user-api-client.service';
 
-
-export const reducers: ActionReducerMap<AppState> = {};
+// For App Store
+import { reducers } from './store/app.reducer';
+import { effects } from './store/app.effect';
+import { RoleApiClient } from './admin/access/role/services/role-api-client.service';
+import { PermissionApiClient } from './admin/access/permission/services/permission-api-client.service';
 
 /**
  * Function for loading application config
@@ -66,7 +70,7 @@ export function configServiceFactory (config: ConfigService) {
     TranslateModule.forRoot(),
     ToastModule.forRoot(),
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(effects),
     SweetAlert2Module.forRoot({
       buttonsStyling: false,
       customClass: 'modal-content',
@@ -90,7 +94,12 @@ export function configServiceFactory (config: ConfigService) {
       multi: true
     },
     AuthGuard,
-    AuthService
+    AuthService,
+    AuthApiClient,
+    UserApiClient,
+    RoleApiClient,
+    PermissionApiClient,
+    UtilService
   ],
   bootstrap: [AppComponent]
 })

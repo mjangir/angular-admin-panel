@@ -1,13 +1,15 @@
 import { 
   ActionReducerMap,
   createSelector,
-  createFeatureSelector
+  createFeatureSelector,
+  combineReducers
 }                           from "@ngrx/store";
 import * as fromLoadRoles   from '../reducers/load-roles.reducer';
 import * as fromCreateRole  from '../reducers/create-role.reducer';
 import * as fromUpdateRole  from '../reducers/update-role.reducer';
 import * as fromDeleteRole  from '../reducers/delete-role.reducer';
 import * as fromViewRole    from '../reducers/view-role.reducer';
+import { compose }          from "@ngrx/core/compose";
 
 /**
  * Access role state
@@ -30,6 +32,8 @@ export const reducers: ActionReducerMap<AccessRoleState> = {
   view:   fromViewRole.reducer,
   delete: fromDeleteRole.reducer
 }
+
+export const combinedReducers = compose(combineReducers)(reducers);
 
 // Main Access Role State
 export const getAccessRoleState = createFeatureSelector<AccessRoleState>('accessRole');

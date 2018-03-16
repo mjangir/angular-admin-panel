@@ -1,5 +1,6 @@
 import * as fromLogin from '../actions/login.action';
 import LoginUser from "../../models/login-user.model";
+import { TOKEN_NAME } from '../../services/auth.service';
 
 /**
  * Login state interface
@@ -18,7 +19,8 @@ export interface LoginState {
 export const initialState: LoginState = {
   loading:  false,
   loaded:   false,
-  error:    null
+  error:    null,
+  token:    localStorage.getItem(TOKEN_NAME) || ""
 }
 
 /**

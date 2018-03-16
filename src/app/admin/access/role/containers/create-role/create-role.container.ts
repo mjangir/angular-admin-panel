@@ -2,14 +2,10 @@ import {
   Component, 
   OnDestroy, 
   OnInit, 
+  Injector,
   ChangeDetectionStrategy 
 }                             from '@angular/core';
-import { 
-  FormBuilder, 
-  FormGroup, 
-  Validators 
-}                             from "@angular/forms";
-import { AccessRoleSandbox }  from '../../role.sandbox';
+import { RoleFormContainer }  from '../form/role.form';
 import RoleForm               from '../../models/role-form.model';
 
 @Component({
@@ -18,31 +14,19 @@ import RoleForm               from '../../models/role-form.model';
   styleUrls: ['./create-role.container.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateRoleContainer implements OnInit {
-
+export class CreateRoleContainer extends RoleFormContainer implements OnInit {
+  
   /**
-   * Form Group
+   * Creates an instance of UpdateRoleContainer.
    * 
-   * @type {FormGroup}
-   * @memberof CreateRoleContainer
-   */
-  public form: FormGroup;
-
-  itemList = [];
-  selectedItems = [];
-  settings = {};
-
-  /**
-   * Creates an instance of CreateRoleContainer.
-   * 
-   * @param {AccessRoleSandbox} accessRoleSandbox 
-   * @param {FormBuilder} formBuilder 
-   * @memberof CreateRoleContainer
+   * @param {Injector} injector 
+   * @memberof UpdateRoleContainer
    */
   constructor(
-    public accessRoleSandbox: AccessRoleSandbox,
-    private formBuilder: FormBuilder
-  ) { }
+    injector: Injector
+  ) {
+    super(injector);
+  }
 
   /**
    * On Init container
@@ -50,37 +34,8 @@ export class CreateRoleContainer implements OnInit {
    * @memberof CreateRoleContainer
    */
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      name:         ["", Validators.required],
-      sort:         ["", Validators.required],
-      status:       ["", Validators.required],
-      permissions:  [[], Validators.required]
-    });
-
-    this.itemList = [
-      { "id": 1, "itemName": "Angular" },
-      { "id": 2, "itemName": "JavaScript" },
-      { "id": 3, "itemName": "HTML" },
-      { "id": 4, "itemName": "CSS" },
-      { "id": 5, "itemName": "ReactJS" },
-      { "id": 6, "itemName": "HTML5" },
-      { "id": 1, "itemName": "Angular" },
-      { "id": 2, "itemName": "JavaScript" },
-      { "id": 3, "itemName": "HTML" },
-      { "id": 4, "itemName": "CSS" },
-      { "id": 5, "itemName": "ReactJS" },
-      { "id": 6, "itemName": "HTML5" }
-  ];
-  this.selectedItems = [{ "id": 2, "itemName": "JavaScript" }];
-  this.settings = {
-      text: "Select Permissions",
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      classes: "custom-multiselect-checkbox-dp",
-      enableSearchFilter: true,
-      searchPlaceholderText: 'Search Permissions...',
-      badgeShowLimit: 5
-  };
+    this.registerSubscriptions();
+    this.accessPermissionSandbox.getPermissions();
   }
 
   /**
@@ -91,9 +46,15 @@ export class CreateRoleContainer implements OnInit {
    * @memberof CreateRoleContainer
    */
   public onSubmit(event: Event, form: any) {
-    const roleForm = new RoleForm(form);
-
-    this.accessRoleSandbox.createRole(roleForm);
+    const formData = {
+      name:                     form.name,
+      sort:                     form.sort,
+      status:                   form.status,
+      permissions:              this.getFormPermissions(),
+      associated_permissions:   this.getFormPermissions()
+    }
+    
+    this.accessRoleSandbox.createRole(new RoleForm(formData));
   }
 
   /**
@@ -102,24 +63,8 @@ export class CreateRoleContainer implements OnInit {
    * @memberof CreateRoleContainer
    */
   public onNgDestroy() {
+    this.routerSubscription.unsubscribe();
     this.accessRoleSandbox.unregisterEvents();
-  }
-
-  public onItemSelect(item: any) {
-    console.log(item);
-    console.log(this.selectedItems);
-  }
-
-  public OnItemDeSelect(item: any) {
-    console.log(item);
-    console.log(this.selectedItems);
-  }
-
-  public onSelectAll(items: any) {
-    console.log(items);
-  }
-
-  public onDeSelectAll(items: any) {
-    console.log(items);
+    this.accessPermissionSandbox.unregisterEvents();
   }
 }

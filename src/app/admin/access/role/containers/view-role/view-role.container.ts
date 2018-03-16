@@ -53,12 +53,8 @@ export class ViewRoleContainer implements OnInit {
    * @memberof ViewRoleContainer
    */
   ngOnInit() {
-    this.role = {
-      firstName: null
-    }
-
     this.routerSubscription = this.route.params.subscribe(params => {
-      this.roleId = +params['id'];
+      this.roleId = params['id'];
       this.accessRoleSandbox.viewRole(this.roleId);
     });
   }

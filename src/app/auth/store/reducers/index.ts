@@ -1,12 +1,14 @@
 import { 
   ActionReducerMap,
   createSelector,
-  createFeatureSelector
+  createFeatureSelector,
+  combineReducers
 }                           from "@ngrx/store";
 import * as fromLogin       from "./login.reducer";
 import * as fromRegister    from "./register.reducer";
 import * as fromLogout      from "./logout.reducer";
 import * as fromForgot      from "./forgot.reducer";
+import { compose }          from "@ngrx/core/compose";
 
 /**
  * Auth State
@@ -27,6 +29,8 @@ export const reducers: ActionReducerMap<AuthState> = {
   forgotPassword: fromForgot.reducer,
   logout:         fromLogout.reducer
 }
+
+export const combinedReducers = compose(combineReducers)(reducers);
 
 // Main Auth State
 export const getAuthState = createFeatureSelector<AuthState>('auth');

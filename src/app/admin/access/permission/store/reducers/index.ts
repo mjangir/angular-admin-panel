@@ -1,13 +1,15 @@
 import { 
   ActionReducerMap,
   createSelector,
-  createFeatureSelector
-}                           from "@ngrx/store";
+  createFeatureSelector,
+  combineReducers
+}                                 from "@ngrx/store";
 import * as fromLoadPermissions   from '../reducers/load-permissions.reducer';
 import * as fromCreatePermission  from '../reducers/create-permission.reducer';
 import * as fromUpdatePermission  from '../reducers/update-permission.reducer';
 import * as fromDeletePermission  from '../reducers/delete-permission.reducer';
 import * as fromViewPermission    from '../reducers/view-permission.reducer';
+import { compose }                from "@ngrx/core/compose";
 
 /**
  * Access permission state
@@ -30,6 +32,8 @@ export const reducers: ActionReducerMap<AccessPermissionState> = {
   view:   fromViewPermission.reducer,
   delete: fromDeletePermission.reducer
 }
+
+export const combinedReducers = compose(combineReducers)(reducers);
 
 // Main Access Permission State
 export const getAccessPermissionState = createFeatureSelector<AccessPermissionState>('accessPermission');

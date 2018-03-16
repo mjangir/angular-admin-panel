@@ -21,21 +21,21 @@ export class PermissionApiClient extends HttpService {
   /**
    * Retrieves all permissions
    */
-  @GET("permission")
+  @GET("permissions")
   @Adapter(PermissionService.gridAdapter)
   public all(): Observable<any> { return null; };
 
   /**
    * Get permission by ID
    */
-  @GET("permission/{id}")
+  @GET("permissions/{id}")
   @Adapter(PermissionService.permissionDetailsAdapter)
   public get(@Path("id") id: number): Observable<any> { return null; };
 
   /**
    * Create new permission
    */
-  @POST("permission")
+  @POST("permissions")
   @Adapter(PermissionService.createPermissionAdapter)
   @Produces(MediaType.FORM_DATA)
   public create(@Body form: PermissionForm): Observable<any> { return null; };
@@ -43,7 +43,7 @@ export class PermissionApiClient extends HttpService {
   /**
    * Update new permission
    */
-  @PUT("permission/{id}")
+  @PUT("permissions/{id}")
   @Adapter(PermissionService.createPermissionAdapter)
   @Produces(MediaType.FORM_DATA)
   public update(@Body form: PermissionForm, @Path("id") id: number): Observable<any> { return null; };
@@ -51,14 +51,14 @@ export class PermissionApiClient extends HttpService {
   /**
    * Delete permission by ID
    */
-  @DELETE("permission/{id}")
+  @DELETE("permissions/{id}")
   @Adapter(PermissionService.permissionDetailsAdapter)
   public deleteRecord(@Path("id") id: number): Observable<any> { return null; };
 
   /**
    * Delete permission by ID
    */
-  @POST("permission/delete-all")
+  @POST("permissions/delete-all")
   @Produces(MediaType.FORM_DATA)
   @Adapter(PermissionService.permissionDetailsAdapter)
   public deleteMultipleRecords(@Body ids: {ids: Array<number>}): Observable<any> { return null; };

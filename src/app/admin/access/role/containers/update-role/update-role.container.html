@@ -1,5 +1,5 @@
 <div class="card">
-  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
+  <form [formGroup]="roleForm" novalidate (ngSubmit)="onSubmit($event, roleForm.value)">
     <div class="card-header">
       <i class="fa fa-tag"></i> {{'accessRole.heading.update' | translate}}
     </div>
@@ -52,11 +52,20 @@
               </label>
             </div>
           </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">{{'accessRole.lbl.associatedPermissions' | translate}}</label>
+            <div class="col-md-9 centered-checkbox">
+                <angular2-multiselect [data]="allPermissions" [(ngModel)]="selectedPermissions" 
+                  [settings]="multiselectSettings"
+                  formControlName="permissions">
+                </angular2-multiselect>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="card-footer">
-      <button class="btn btn-outline-primary px-3" [disabled]="form.invalid" type="submit">
+      <button class="btn btn-outline-primary px-3" [disabled]="roleForm.invalid" type="submit">
         <i [hidden]="accessRoleSandbox.updateRoleLoading$ | async" class='fa fa-save'></i>
         <i [hidden]="!(accessRoleSandbox.updateRoleLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
         {{'btn.lbl.submit' | translate}}
