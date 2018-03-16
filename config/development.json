@@ -1,6 +1,6 @@
 {
   "api": {
-    "baseUrl": "http://192.192.7.224:8000/api/v1/"
+    "baseUrl": "http://localhost:8000/api/v1/"
   },
 
   "paths": {

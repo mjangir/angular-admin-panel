@@ -42,7 +42,9 @@ export function reducer(
         ...state,
         loading: true,
         loaded: false,
-        failed: false
+        failed: false,
+        error: null,
+        permission: null
       }
     }
 

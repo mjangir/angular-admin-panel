@@ -1,12 +1,10 @@
 import { 
-  Component, 
-  OnDestroy, 
-  OnInit, 
+  Component,
   Injector,
   ChangeDetectionStrategy 
 }                             from '@angular/core';
 import { RoleFormContainer }  from '../form/role.form';
-import RoleForm from '../../models/role-form.model';
+import RoleForm               from '../../models/role-form.model';
 
 @Component({
   selector: 'app-update-role',
@@ -14,7 +12,7 @@ import RoleForm from '../../models/role-form.model';
   styleUrls: ['./update-role.container.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UpdateRoleContainer extends RoleFormContainer implements OnInit {
+export class UpdateRoleContainer extends RoleFormContainer {
   
   /**
    * Creates an instance of UpdateRoleContainer.
@@ -26,16 +24,8 @@ export class UpdateRoleContainer extends RoleFormContainer implements OnInit {
     injector: Injector
   ) {
     super(injector);
-  }
-
-  /**
-   * On Init container
-   * 
-   * @memberof UpdateRoleContainer
-   */
-  ngOnInit() {
-    this.registerSubscriptions();
-    this.accessPermissionSandbox.getPermissions();
+    this.formTitle          = this.translateService.instant('accessRole.heading.update');
+    this.loadingObservable$ = this.accessRoleSandbox.updateRoleLoading$;
   }
 
   /**
@@ -46,20 +36,15 @@ export class UpdateRoleContainer extends RoleFormContainer implements OnInit {
    * @memberof UpdateRoleContainer
    */
   public onSubmit(event: Event, form: any) {
-    form.id = this.roleId;
-    const roleForm = new RoleForm(form);
+    const formData = {
+      id:                       this.roleId,
+      name:                     form.name,
+      sort:                     form.sort,
+      status:                   form.status,
+      permissions:              this.getFormPermissions(),
+      associated_permissions:   this.getFormPermissions()
+    }
 
-    this.accessRoleSandbox.updateRole(roleForm);
-  }
-
-  /**
-   * Unsubscribe from all Observables
-   * 
-   * @memberof CreateRoleContainer
-   */
-  public onNgDestroy() {
-    this.routerSubscription.unsubscribe();
-    this.accessRoleSandbox.unregisterEvents();
-    this.accessPermissionSandbox.unregisterEvents();
+    this.accessRoleSandbox.updateRole(new RoleForm(formData));
   }
 }

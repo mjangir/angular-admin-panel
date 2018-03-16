@@ -1,7 +1,7 @@
 <div class="card">
-  <form [formGroup]="roleForm" novalidate (ngSubmit)="onSubmit($event, roleForm.value)">
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit($event, form.value)">
     <div class="card-header">
-      <i class="fa fa-tag"></i> {{'accessRole.heading.create' | translate}}
+      <i class="fa fa-tag"></i> {{ formTitle }}
     </div>
     <div class="card-body">
       <div class="row">
@@ -65,12 +65,12 @@
       </div>
     </div>
     <div class="card-footer">
-      <button class="btn btn-outline-primary px-3" [disabled]="roleForm.invalid" type="submit">
-        <i [hidden]="accessRoleSandbox.createRoleLoading$ | async" class='fa fa-save'></i>
-        <i [hidden]="!(accessRoleSandbox.createRoleLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
+      <button class="btn btn-outline-primary px-3" [disabled]="form.invalid" type="submit">
+        <i [hidden]="loadingObservable$ | async" class='fa fa-save'></i>
+        <i [hidden]="!(loadingObservable$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
         {{'btn.lbl.submit' | translate}}
       </button>
-        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/role/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
+        <button type="button" class="btn btn-outline-danger" routerLink="/admin/access/role/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
     </div>
   </form>
 </div>

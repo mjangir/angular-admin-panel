@@ -52,8 +52,6 @@ const containers = [
     CommonPipesModule,
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
-    StoreModule.forFeature('accessPermission', reducers),
-    EffectsModule.forFeature(effects),
     SweetAlert2Module,
     AngularMultiSelectModule,
     PermissionRoutingModule

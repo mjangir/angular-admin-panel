@@ -20,6 +20,6 @@ export default class Role {
     this.status       = role ? role.status : 0;
     this.createdOn    = role ? role.registered_at : '';
     this.updatedOn    = role ? role.last_updated_at : '';
-    this.permissions  = role ? role.permissions : [];
+    this.permissions  = role ? role.permission : [];
   }
 }

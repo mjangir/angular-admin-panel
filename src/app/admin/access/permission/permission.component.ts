@@ -14,7 +14,6 @@ export class PermissionComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log('... Initializing Permissions component');
   }
   
 }

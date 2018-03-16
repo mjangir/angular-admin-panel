@@ -121,6 +121,7 @@ export class AccessPermissionSandbox extends Sandbox {
   ) {
     super();
     this.registerAuthEvents();
+    console.log("calling permission sandbox constructor");
   }
 
   /**

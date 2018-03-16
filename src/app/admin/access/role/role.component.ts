@@ -14,7 +14,6 @@ export class RoleComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log('... Initializing Roles component');
   }
   
 }

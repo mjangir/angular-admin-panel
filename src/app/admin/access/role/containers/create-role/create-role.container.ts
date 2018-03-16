@@ -1,7 +1,5 @@
 import { 
-  Component, 
-  OnDestroy, 
-  OnInit, 
+  Component,
   Injector,
   ChangeDetectionStrategy 
 }                             from '@angular/core';
@@ -14,7 +12,7 @@ import RoleForm               from '../../models/role-form.model';
   styleUrls: ['./create-role.container.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateRoleContainer extends RoleFormContainer implements OnInit {
+export class CreateRoleContainer extends RoleFormContainer {
   
   /**
    * Creates an instance of UpdateRoleContainer.
@@ -26,16 +24,8 @@ export class CreateRoleContainer extends RoleFormContainer implements OnInit {
     injector: Injector
   ) {
     super(injector);
-  }
-
-  /**
-   * On Init container
-   * 
-   * @memberof CreateRoleContainer
-   */
-  ngOnInit() {
-    this.registerSubscriptions();
-    this.accessPermissionSandbox.getPermissions();
+    this.formTitle          = this.translateService.instant('accessRole.heading.create');
+    this.loadingObservable$ = this.accessRoleSandbox.createRoleLoading$;
   }
 
   /**
@@ -55,16 +45,5 @@ export class CreateRoleContainer extends RoleFormContainer implements OnInit {
     }
     
     this.accessRoleSandbox.createRole(new RoleForm(formData));
-  }
-
-  /**
-   * Unsubscribe from all Observables
-   * 
-   * @memberof CreateRoleContainer
-   */
-  public onNgDestroy() {
-    this.routerSubscription.unsubscribe();
-    this.accessRoleSandbox.unregisterEvents();
-    this.accessPermissionSandbox.unregisterEvents();
   }
 }

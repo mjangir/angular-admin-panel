@@ -1,15 +1,28 @@
 import { 
+  OnInit, 
+  OnDestroy, 
+  Injector 
+}                                   from "@angular/core";
+import { 
   FormBuilder, 
   FormGroup, 
   Validators 
 }                                   from "@angular/forms";
-import { AccessRoleSandbox }        from '../../role.sandbox';
-import RoleForm                     from '../../models/role-form.model';
+import { 
+  Observable, 
+  Subscription 
+}                                   from "rxjs";
+import { inject }                   from "@angular/core/testing";
+
 import { ActivatedRoute }           from '@angular/router';
-import { AccessPermissionSandbox }  from '../../../permission/permission.sandbox';
 import { TranslateService }         from 'ng2-translate';
-import { Injector } from "@angular/core/src/di/injector";
-import { inject } from "@angular/core/testing";
+
+
+import { AccessRoleSandbox }        from '../../role.sandbox';
+import { AccessPermissionSandbox }  from '../../../permission/permission.sandbox';
+import RoleForm                     from '../../models/role-form.model';
+import Role                         from "../../models/role.model";
+import Permission                   from "../../../permission/models/permission.model";
 
 /**
  * Role form container class
@@ -17,25 +30,7 @@ import { inject } from "@angular/core/testing";
  * @export
  * @class RoleFormContainer
  */
-export class RoleFormContainer {
-
-  /**
-   * Access role sandbox
-   * 
-   * @protected
-   * @type {AccessRoleSandbox}
-   * @memberof RoleFormContainer
-   */
-  protected accessRoleSandbox: AccessRoleSandbox;
-
-  /**
-   * Access permission sandbox
-   * 
-   * @protected
-   * @type {AccessPermissionSandbox}
-   * @memberof RoleFormContainer
-   */
-  protected accessPermissionSandbox: AccessPermissionSandbox;
+export class RoleFormContainer implements OnInit, OnDestroy{
 
   /**
    * Translate service
@@ -70,16 +65,25 @@ export class RoleFormContainer {
    * @type {FormGroup}
    * @memberof UpdateRoleContainer
    */
-  public roleForm: FormGroup;
-  
+  public form: FormGroup;
+
   /**
-   * Router Subscription
+   * Access role sandbox
    * 
-   * @private
-   * @type {*}
-   * @memberof UpdateRoleContainer
+   * @protected
+   * @type {AccessRoleSandbox}
+   * @memberof RoleFormContainer
    */
-  protected routerSubscription: any;
+  protected accessRoleSandbox: AccessRoleSandbox;
+
+  /**
+   * Access permission sandbox
+   * 
+   * @protected
+   * @type {AccessPermissionSandbox}
+   * @memberof RoleFormContainer
+   */
+  protected accessPermissionSandbox: AccessPermissionSandbox;
 
   /**
    * Role ID
@@ -115,6 +119,30 @@ export class RoleFormContainer {
   public multiselectSettings: any;
 
   /**
+   * Subscriptions
+   * 
+   * @type {Array<Subscription>}
+   * @memberof RoleFormContainer
+   */
+  public subscriptions: Array<Subscription>;
+
+  /**
+   * Form title
+   * 
+   * @type {string}
+   * @memberof RoleFormContainer
+   */
+  public formTitle: string;
+
+  /**
+   * Loading icon on submit button decider
+   * 
+   * @type {Observable<any>}
+   * @memberof RoleFormContainer
+   */
+  public loadingObservable$: Observable<any>;
+
+  /**
    * Creates an instance of RoleFormContainer.
    * 
    * @param {Injector} injector 
@@ -123,14 +151,35 @@ export class RoleFormContainer {
   constructor(
     injector: Injector
   ) {
-      this.accessRoleSandbox        = injector.get(AccessRoleSandbox),
-      this.accessPermissionSandbox  = injector.get(AccessPermissionSandbox),
-      this.translateService         = injector.get(TranslateService),
-      this.formBuilder              = injector.get(FormBuilder),
-      this.route                    = injector.get(ActivatedRoute)
+      this.accessRoleSandbox        = injector.get(AccessRoleSandbox);
+      this.accessPermissionSandbox  = injector.get(AccessPermissionSandbox);
+      this.translateService         = injector.get(TranslateService);
+      this.formBuilder              = injector.get(FormBuilder);
+      this.route                    = injector.get(ActivatedRoute);
 
       this.createForm();
       this.setMultiselectSettings();
+  }
+
+  /**
+   * On Init container
+   * 
+   * @memberof CreateRoleContainer
+   */
+  ngOnInit() {
+    this.registerSubscriptions();
+    this.accessPermissionSandbox.getPermissions();
+  }
+
+  /**
+   * Unsubscribe from all Observables
+   * 
+   * @memberof CreateRoleContainer
+   */
+  public ngOnDestroy() {
+    this.unregisterSubscriptions();
+    // this.accessRoleSandbox.unregisterEvents();
+    // this.accessPermissionSandbox.unregisterEvents();
   }
 
   /**
@@ -139,16 +188,34 @@ export class RoleFormContainer {
    * @memberof CreateRoleContainer
    */
   public registerSubscriptions() {
-    this.accessPermissionSandbox.permissions$.subscribe(data => {
-      this.allPermissions = this.normalizePermissions(data);
-    });
+    const allPermissions$ = this.accessPermissionSandbox.permissions$;
+    const viewingRole$    = this.accessRoleSandbox.viewingRole$;
 
-    this.routerSubscription = this.route.params.subscribe(params => {
+    const routerSubscription = this.route.params.subscribe(params => {
       if(params && params.hasOwnProperty('id')) {
         this.roleId = params['id'];
         this.accessRoleSandbox.viewRole(this.roleId);
       }
     });
+
+    const viewRoleSubscription = viewingRole$.switchMap(
+      () => allPermissions$,
+      (role: Role, perms: Array<Permission>) => {
+        this.allPermissions = this.normalizePermissions(perms);
+        return role;
+      }
+    ).subscribe(role => this.updateFormValues(role));
+
+    this.subscriptions = [routerSubscription, viewRoleSubscription];
+  }
+
+  /**
+   * Un-register subscriptions
+   * 
+   * @memberof RoleFormContainer
+   */
+  public unregisterSubscriptions() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   /**
@@ -156,13 +223,52 @@ export class RoleFormContainer {
    * 
    * @memberof RoleFormContainer
    */
-  createForm() {
-    this.roleForm = this.formBuilder.group({
+  private createForm() {
+    this.form = this.getForm();
+  }
+
+  /**
+   * Get form
+   * 
+   * @private
+   * @returns {FormGroup} 
+   * @memberof RoleFormContainer
+   */
+  private getForm(): FormGroup {
+    return this.formBuilder.group({
       name:         ["", Validators.required],
       sort:         ["", Validators.required],
       status:       ["", Validators.required],
       permissions:  []
     });
+  }
+
+  /**
+   * Update form values
+   * 
+   * @param {Role} role 
+   * @memberof RoleFormContainer
+   */
+  private updateFormValues(role: Role) {
+    if(role) {
+      this.form.setValue({
+        name:           role.name,
+        sort:           role.sort,
+        status:         role.status,
+        permissions:    this.getMultiselectPermissionObjects(role.permissions)
+      });
+    }
+  }
+
+  /**
+   * Get multiselected permission objects by display names
+   * 
+   * @param {any} selected 
+   * @returns 
+   * @memberof RoleFormContainer
+   */
+  getMultiselectPermissionObjects(selected) {
+    return this.allPermissions.filter(p => selected.indexOf(p.itemName) > -1);
   }
 
   /**
@@ -203,6 +309,6 @@ export class RoleFormContainer {
    * @memberof RoleFormContainer
    */
   public getFormPermissions() {
-    return this.roleForm.get('permissions').value.map(permission => permission.id);
+    return this.selectedPermissions.map(permission => permission.id);
   }
 }

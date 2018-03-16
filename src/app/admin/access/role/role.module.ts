@@ -53,8 +53,6 @@ const containers = [
     CommonPipesModule,
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
-    StoreModule.forFeature('accessRole', reducers),
-    EffectsModule.forFeature(effects),
     SweetAlert2Module,
     AngularMultiSelectModule,
     RoleRoutingModule
