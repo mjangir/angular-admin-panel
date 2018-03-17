@@ -71,6 +71,10 @@ export function reducer(
         error: null
       }
     }
+
+    case fromDeleteRole.RESET_DELETE_ROLE: {
+      return Object.assign({}, initialState);
+    }
   }
 
   return state;

@@ -67,6 +67,10 @@ export function reducer(
         role: action.payload
       }
     }
+
+    case fromViewRole.RESET_VIEW_ROLE: {
+      return Object.assign({}, initialState);
+    }
   }
 
   return state;

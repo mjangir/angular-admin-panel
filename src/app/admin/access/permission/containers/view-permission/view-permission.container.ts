@@ -70,7 +70,6 @@ export class ViewPermissionContainer implements OnInit {
    */
   public onNgDestroy() {
     this.routerSubscription.unsubscribe();
-    this.accessPermissionSandbox.unregisterEvents();
   }
 
 }

@@ -65,11 +65,11 @@
     </div>
     <div class="card-footer">
       <button class="btn btn-outline-primary px-3" [disabled]="form.invalid" type="submit">
-        <i [hidden]="accessPermissionSandbox.updatePermissionLoading$ | async" class='fa fa-save'></i>
-        <i [hidden]="!(accessPermissionSandbox.updatePermissionLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
+        <i [hidden]="accessPermissionSandbox.savePermissionPending$ | async" class='fa fa-save'></i>
+        <i [hidden]="!(accessPermissionSandbox.savePermissionPending$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
         {{'btn.lbl.submit' | translate}}
       </button>
-        <button type="submit" class="btn btn-outline-danger" routerLink="/admin/access/permission/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
+        <button type="button" class="btn btn-outline-danger" routerLink="/admin/access/permission/list"><i class="fa fa-arrow-left"></i> {{'btn.lbl.goBack' | translate}}</button>
     </div>
   </form>
 </div>

@@ -4,6 +4,7 @@ export const DELETE_PERMISSION          = '[Permission] Delete Permission';
 export const DELETE_MULTIPLE_PERMISSION = '[Permission] Delete Multiple Permission';
 export const DELETE_PERMISSION_SUCCESS  = '[Permission] Delete Permission Success';
 export const DELETE_PERMISSION_ERROR    = '[Permission] Delete Permission Error';
+export const RESET_DELETE_PERMISSION    = '[Permission] Reset Delete Permission';
 
 /**
  * Delete permission action
@@ -57,8 +58,22 @@ export class DeletePermissionSuccessAction implements Action {
   constructor(public payload?: any){}
 }
 
+/**
+ * Reset to initial state
+ * 
+ * @export
+ * @class ResetDeletePermissionAction
+ * @implements {Action}
+ */
+export class ResetDeletePermissionAction implements Action {
+  readonly type: string = RESET_DELETE_PERMISSION;
+
+  constructor(public payload?: any) {}
+}
+
 // Export action types
 export type DeletePermissionActions = DeletePermissionAction 
                                 | DeletePermissionErrorAction 
                                 | DeletePermissionSuccessAction
-                                | DeleteMultiplePermissionAction;
+                                | DeleteMultiplePermissionAction
+                                | ResetDeletePermissionAction;

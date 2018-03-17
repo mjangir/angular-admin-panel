@@ -5,6 +5,7 @@ export const LOAD_PERMISSIONS         = '[Permission] Load Permissions';
 export const LOAD_PERMISSIONS_SUCCESS = '[Permission] Load Permissions Success';
 export const LOAD_PERMISSIONS_ERROR   = '[Permission] Load Permissions Error';
 export const ADD_PERMISSION_TO_LIST   = '[Permission] Add Permission To List';
+export const RESET_LOAD_PERMISSION    = '[Permission] Reset Load Permission';
 
 /**
  * Load permissions action
@@ -45,5 +46,21 @@ export class LoadPermissionsSuccessAction implements Action {
   constructor(public payload: Array<Permission[]>) {}
 }
 
+/**
+ * Reset to initial state
+ * 
+ * @export
+ * @class ResetLoadPermissionAction
+ * @implements {Action}
+ */
+export class ResetLoadPermissionAction implements Action {
+  readonly type: string = RESET_LOAD_PERMISSION;
+
+  constructor(public payload?: any) {}
+}
+
 // Export action types
-export type LoadPermissionsActions = LoadPermissionsAction | LoadPermissionsErrorAction | LoadPermissionsSuccessAction;
+export type LoadPermissionsActions = LoadPermissionsAction 
+                                    | LoadPermissionsErrorAction 
+                                    | LoadPermissionsSuccessAction
+                                    | ResetLoadPermissionAction;

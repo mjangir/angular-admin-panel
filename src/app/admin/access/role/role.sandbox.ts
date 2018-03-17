@@ -120,25 +120,24 @@ export class AccessRoleSandbox extends Sandbox {
     private utilService: UtilService
   ) {
     super();
-    this.registerAuthEvents();
   }
 
   /**
-   * Un-Register events
+   * Un-Register subscribers
    * 
    * @memberof AccessRoleSandbox
    */
-  public unregisterEvents() {
+  public unregisterSubscribers() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   /**
-   * Register auth events
+   * Register subscribers
    * 
-   * @private
+   * @public
    * @memberof AccessRoleSandbox
    */
-  private registerAuthEvents(): void {
+  public registerSubscribers(): void {
     const createSub = this.createRoleLoaded$.subscribe(loaded => {
       if(loaded) {
         this.utilService.displayNotification('accessRole.createdSuccessfully', 'success');
@@ -231,5 +230,63 @@ export class AccessRoleSandbox extends Sandbox {
    */
   public deleteMultipleRoles(ids: Array<number>) {
     this.store.dispatch(new fromStore.DeleteMultipleRoleAction({ids}));
+  }
+
+  /**
+   * Reset all states
+   * 
+   * @memberof AccessRoleSandbox
+   */
+  public resetAllStates() {
+    this.store.dispatch(new fromStore.ResetLoadRoleAction());
+    this.store.dispatch(new fromStore.ResetCreateRoleAction());
+    this.store.dispatch(new fromStore.ResetUpdateRoleAction());
+    this.store.dispatch(new fromStore.ResetDeleteRoleAction());
+    this.store.dispatch(new fromStore.ResetViewRoleAction());
+  }
+
+  /**
+   * Reset load state
+   * 
+   * @memberof AccessRoleSandbox
+   */
+  public resetLoadState() {
+    this.store.dispatch(new fromStore.ResetLoadRoleAction());
+  }
+
+  /**
+   * Reset create state
+   * 
+   * @memberof AccessRoleSandbox
+   */
+  public resetCreateState() {
+    this.store.dispatch(new fromStore.ResetCreateRoleAction());
+  }
+
+  /**
+   * Reset update state
+   * 
+   * @memberof AccessRoleSandbox
+   */
+  public resetUpdateState() {
+    this.store.dispatch(new fromStore.ResetUpdateRoleAction());
+  }
+
+  /**
+   * Reset delete state
+   * 
+   * @memberof AccessRoleSandbox
+   */
+  public resetDeleteState() {
+    this.store.dispatch(new fromStore.ResetDeleteRoleAction());
+  }
+
+  /**
+   * Reset view state
+   * 
+   * @memberof AccessRoleSandbox
+   */
+  public resetViewState() {
+    this.store.dispatch(new fromStore.ResetViewRoleAction());
   }
 }

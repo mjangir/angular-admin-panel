@@ -97,13 +97,4 @@ export class ListPermissionsContainer implements OnInit {
   onRowSelect({selected}) {
     this.selectedIds = selected.map(permission => permission.id);
   }
-
-  /**
-   * Unsubscribe from all Observables
-   * 
-   * @memberof CreatePermissionContainer
-   */
-  public onNgDestroy() {
-    this.accessPermissionSandbox.unregisterEvents();
-  }
 }

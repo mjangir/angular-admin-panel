@@ -69,6 +69,10 @@ export function reducer(
         role: action.payload
       }
     }
+
+    case fromUpdateRole.RESET_UPDATE_ROLE: {
+      return Object.assign({}, initialState);
+    }
   }
 
   return state;

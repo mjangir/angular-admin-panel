@@ -67,6 +67,10 @@ export function reducer(
         permission: action.payload
       }
     }
+
+    case fromViewPermission.RESET_VIEW_PERMISSION: {
+      return Object.assign({}, initialState);
+    }
   }
 
   return state;

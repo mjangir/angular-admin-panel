@@ -62,4 +62,19 @@ export class PermissionApiClient extends HttpService {
   @Produces(MediaType.FORM_DATA)
   @Adapter(PermissionService.permissionDetailsAdapter)
   public deleteMultipleRecords(@Body ids: {ids: Array<number>}): Observable<any> { return null; };
+
+  /**
+   * Save permission
+   * 
+   * @param {any} form 
+   * @returns 
+   * @memberof PermissionApiClient
+   */
+  public savePermission(form) {
+    if(!form.id) {
+      return this.create(form);
+    } else {
+      return this.update(form, form.id)
+    }
+  }
 }

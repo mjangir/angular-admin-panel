@@ -1,9 +1,10 @@
 import { Action } from '@ngrx/store';
 import Role       from '../../models/role.model';
 
-export const VIEW_ROLE         = '[Role] View Role';
-export const VIEW_ROLE_SUCCESS = '[Role] View Role Success';
-export const VIEW_ROLE_ERROR   = '[Role] View Role Error';
+export const VIEW_ROLE          = '[Role] View Role';
+export const VIEW_ROLE_SUCCESS  = '[Role] View Role Success';
+export const VIEW_ROLE_ERROR    = '[Role] View Role Error';
+export const RESET_VIEW_ROLE    = '[Role] Reset View Role';
 
 /**
  * View role action
@@ -44,5 +45,21 @@ export class ViewRoleSuccessAction implements Action {
   constructor(public payload: Role){}
 }
 
+/**
+ * Reset to initial state
+ * 
+ * @export
+ * @class ResetViewRoleAction
+ * @implements {Action}
+ */
+export class ResetViewRoleAction implements Action {
+  readonly type: string = RESET_VIEW_ROLE;
+
+  constructor(public payload?: any) {}
+}
+
 // Export action types
-export type ViewRoleActions = ViewRoleAction | ViewRoleErrorAction | ViewRoleSuccessAction;
+export type ViewRoleActions = ViewRoleAction 
+                              | ViewRoleErrorAction 
+                              | ViewRoleSuccessAction
+                              | ResetViewRoleAction;

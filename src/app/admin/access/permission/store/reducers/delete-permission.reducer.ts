@@ -71,6 +71,10 @@ export function reducer(
         error: null
       }
     }
+
+    case fromDeletePermission.RESET_DELETE_PERMISSION: {
+      return Object.assign({}, initialState);
+    }
   }
 
   return state;

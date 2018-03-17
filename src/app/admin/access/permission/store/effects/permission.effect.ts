@@ -7,10 +7,9 @@ import { Observable }         from 'rxjs/Observable';
 import { PermissionApiClient }      from "../../services/permission-api-client.service";
 import PermissionForm               from "../../models/permission-form.model";
 import * as loadPermissionsActions  from '../actions/load-permissions.action';
-import * as createPermissionActions from '../actions/create-permission.action';
-import * as updatePermissionActions from '../actions/update-permission.action';
 import * as viewPermissionActions   from '../actions/view-permission.action';
 import * as deletePermissionActions from '../actions/delete-permission.action';
+import * as savePermissionActions   from '../actions/save-permission.action';
 import Permission from "../../models/permission.model";
 
 /**
@@ -66,38 +65,6 @@ export class AccessPermissionEffects {
     });
 
   /**
-   * Create permission effect
-   * 
-   * @type {Observable<Action>}
-   * @memberof AccessPermissionEffects
-   */
-  @Effect()
-  createPermission$: Observable<Action> = this.actions$
-    .ofType(createPermissionActions.CREATE_PERMISSION)
-    .map((action: createPermissionActions.CreatePermissionAction) => action.payload)
-    .switchMap(state => {
-      return this.permissionApiClient.create(state)
-        .map(permission => new createPermissionActions.CreatePermissionSuccessAction(permission))
-        .catch(error => of(new createPermissionActions.CreatePermissionErrorAction(error)));
-    });
-
-  /**
-   * Update permission effect
-   * 
-   * @type {Observable<Action>}
-   * @memberof AccessPermissionEffects
-   */
-  @Effect()
-  updatePermission$: Observable<Action> = this.actions$
-    .ofType(updatePermissionActions.UPDATE_PERMISSION)
-    .map((action: updatePermissionActions.UpdatePermissionAction) => action.payload)
-    .switchMap(permissionForm => {
-      return this.permissionApiClient.update(permissionForm, permissionForm.id)
-        .map(permission => new updatePermissionActions.UpdatePermissionSuccessAction(permission))
-        .catch(error => of(new updatePermissionActions.UpdatePermissionErrorAction(error)));
-    });
-
-  /**
    * Delete permission effect
    * 
    * @type {Observable<Action>}
@@ -137,5 +104,21 @@ export class AccessPermissionEffects {
           ];
         })
         .catch(error => of(new deletePermissionActions.DeletePermissionErrorAction(error)));
+    });
+
+  /**
+   * Save permission effect
+   * 
+   * @type {Observable<Action>}
+   * @memberof AccessPermissionEffects
+   */
+  @Effect()
+  savePermission$: Observable<Action> = this.actions$
+    .ofType(savePermissionActions.SAVE_PERMISSION)
+    .map((action: savePermissionActions.SavePermissionAction) => action.payload)
+    .switchMap(form => {
+      return this.permissionApiClient.savePermission(form)
+        .map(permission => new savePermissionActions.SavePermissionSuccessAction(permission))
+        .catch(error => of(new savePermissionActions.SavePermissionErrorAction(error)));
     });
 }

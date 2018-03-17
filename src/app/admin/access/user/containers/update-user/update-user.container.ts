@@ -136,7 +136,6 @@ export class UpdateUserContainer implements OnInit {
    */
   public onNgDestroy() {
     this.routerSubscription.unsubscribe();
-    this.accessUserSandbox.unregisterEvents();
   }
 
 }

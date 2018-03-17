@@ -51,6 +51,7 @@
   "accessPermission.deletedSuccessfully": "Permission deleted successfully",
   "accessPermission.createdSuccessfully": "Permission created successfully",
   "accessPermission.updatedSuccessfully": "Permission updated successfully",
+  "accessPermission.savedSuccessfully": "Permission saved successfully",
   "accessPermission.selectPermissions": "Select Permissions",
   "accessPermission.searchPermissions": "Search Permissions"
 }

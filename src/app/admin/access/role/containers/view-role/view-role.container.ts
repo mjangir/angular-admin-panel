@@ -66,7 +66,6 @@ export class ViewRoleContainer implements OnInit {
    */
   public onNgDestroy() {
     this.routerSubscription.unsubscribe();
-    this.accessRoleSandbox.unregisterEvents();
   }
 
 }

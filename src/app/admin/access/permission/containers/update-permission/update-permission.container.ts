@@ -128,7 +128,6 @@ export class UpdatePermissionContainer implements OnInit {
    */
   public onNgDestroy() {
     this.routerSubscription.unsubscribe();
-    this.accessPermissionSandbox.unregisterEvents();
   }
 
 }

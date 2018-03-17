@@ -24,52 +24,28 @@ export class AccessPermissionSandbox extends Sandbox {
   public permissions$: Observable<Permission[]> = this.store.select(fromStore.getLoadPermissionsData);
 
   /**
-   * Create permission loading
+   * Save permission pending
    * 
    * @type {Observable<boolean>}
    * @memberof AccessPermissionSandbox
    */
-  public createPermissionLoading$: Observable<boolean> = this.store.select(fromStore.getCreatePermissionLoading);
+  public savePermissionPending$: Observable<boolean> = this.store.select(fromStore.getSavePermissionPending);
 
   /**
-   * Create permission loaded
+   * Save permission completed
    * 
    * @type {Observable<boolean>}
    * @memberof AccessPermissionSandbox
    */
-  public createPermissionLoaded$: Observable<boolean> = this.store.select(fromStore.getCreatePermissionLoaded);
+  public savePermissionCompleted$: Observable<boolean> = this.store.select(fromStore.getSavePermissionCompleted);
 
   /**
-   * Create permission error
+   * Save permission error
    * 
    * @type {Observable<any>}
    * @memberof AccessPermissionSandbox
    */
-  public createPermissionError$: Observable<any> = this.store.select(fromStore.getCreatePermissionError);
-
-  /**
-   * Update permission loading
-   * 
-   * @type {Observable<boolean>}
-   * @memberof AccessPermissionSandbox
-   */
-  public updatePermissionLoading$: Observable<boolean> = this.store.select(fromStore.getUpdatePermissionLoading);
-
-  /**
-   * Update permission loaded
-   * 
-   * @type {Observable<boolean>}
-   * @memberof AccessPermissionSandbox
-   */
-  public updatePermissionLoaded$: Observable<boolean> = this.store.select(fromStore.getUpdatePermissionLoaded);
-
-  /**
-   * Update permission error
-   * 
-   * @type {Observable<any>}
-   * @memberof AccessPermissionSandbox
-   */
-  public updatePermissionError$: Observable<any> = this.store.select(fromStore.getUpdatePermissionError);
+  public savePermissionError$: Observable<any> = this.store.select(fromStore.getSavePermissionError);
 
   /**
    * Viewing permission
@@ -120,37 +96,34 @@ export class AccessPermissionSandbox extends Sandbox {
     private utilService: UtilService
   ) {
     super();
-    this.registerAuthEvents();
-    console.log("calling permission sandbox constructor");
   }
 
   /**
-   * Un-Register events
+   * Un-Register subscribers
    * 
    * @memberof AccessPermissionSandbox
    */
-  public unregisterEvents() {
+  public unregisterSubscribers() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   /**
-   * Register auth events
+   * Register subscribers
    * 
    * @private
    * @memberof AccessPermissionSandbox
    */
-  private registerAuthEvents(): void {
-    const createSub = this.createPermissionLoaded$.subscribe(loaded => {
-      if(loaded) {
-        this.utilService.displayNotification('accessPermission.createdSuccessfully', 'success');
+  public registerSubscribers(): void {
+    const saveCompleted = this.savePermissionCompleted$.subscribe(completed => {
+      if(completed) {
+        this.utilService.displayNotification('accessPermission.savedSuccessfully', 'success');
         this.utilService.navigateAfter(['/admin/access/permission/list']);
       }
     });
 
-    const updateSub = this.updatePermissionLoaded$.subscribe(loaded => {
-      if(loaded) {
-        this.utilService.displayNotification('accessPermission.updatedSuccessfully', 'success');
-        this.utilService.navigateAfter(['/admin/access/permission/list']);
+    const saveError = this.savePermissionError$.subscribe(err => {
+      if(err) {
+        this.utilService.displayNotification(err.json().error.message, 'error');
       }
     });
 
@@ -160,19 +133,7 @@ export class AccessPermissionSandbox extends Sandbox {
       }
     });
 
-    const createErrSub = this.createPermissionError$.subscribe(data => {
-      if(data) {
-        this.utilService.displayNotification(data.json().error.message, 'error');
-      }
-    });
-    
-    const updateErrSub = this.updatePermissionError$.subscribe(data => {
-      if(data) {
-        this.utilService.displayNotification(data.json().error.message, 'error');
-      }
-    });
-
-    this.subscriptions = [createSub, updateSub, deleteSub, createErrSub, updateErrSub];
+    this.subscriptions = [deleteSub, saveCompleted, saveError];
   }
 
   /**
@@ -191,7 +152,7 @@ export class AccessPermissionSandbox extends Sandbox {
    * @memberof AccessPermissionSandbox
    */
   public createPermission(form: PermissionForm) {
-    this.store.dispatch(new fromStore.CreatePermissionAction(form));
+    this.store.dispatch(new fromStore.SavePermissionAction(form));
   }
 
   /**
@@ -201,7 +162,7 @@ export class AccessPermissionSandbox extends Sandbox {
    * @memberof AccessPermissionSandbox
    */
   public updatePermission(form: PermissionForm) {
-    this.store.dispatch(new fromStore.UpdatePermissionAction(form));
+    this.store.dispatch(new fromStore.SavePermissionAction(form));
   }
 
   /**
@@ -232,5 +193,53 @@ export class AccessPermissionSandbox extends Sandbox {
    */
   public deleteMultiplePermissions(ids: Array<number>) {
     this.store.dispatch(new fromStore.DeleteMultiplePermissionAction({ids}));
+  }
+
+  /**
+   * Reset all states
+   * 
+   * @memberof AccessPermissionSandbox
+   */
+  public resetAllStates() {
+    this.store.dispatch(new fromStore.ResetLoadPermissionAction());
+    this.store.dispatch(new fromStore.ResetDeletePermissionAction());
+    this.store.dispatch(new fromStore.ResetViewPermissionAction());
+    this.store.dispatch(new fromStore.ResetSavePermissionAction());
+  }
+
+  /**
+   * Reset load state
+   * 
+   * @memberof AccessPermissionSandbox
+   */
+  public resetLoadState() {
+    this.store.dispatch(new fromStore.ResetLoadPermissionAction());
+  }
+
+  /**
+   * Reset delete state
+   * 
+   * @memberof AccessPermissionSandbox
+   */
+  public resetDeleteState() {
+    this.store.dispatch(new fromStore.ResetDeletePermissionAction());
+  }
+
+  /**
+   * Reset view state
+   * 
+   * @memberof AccessPermissionSandbox
+   */
+  public resetViewState() {
+    this.store.dispatch(new fromStore.ResetViewPermissionAction());
+  }
+
+  /**
+   * Reset save state
+   * 
+   * @memberof AccessPermissionSandbox
+   */
+  public resetSaveState() {
+    this.store.dispatch(new fromStore.ResetSavePermissionAction());
   }
 }

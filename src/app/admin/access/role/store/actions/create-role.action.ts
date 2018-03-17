@@ -2,9 +2,10 @@ import { Action } from '@ngrx/store';
 import Role       from '../../models/role.model';
 import RoleForm   from '../../models/role-form.model';
 
-export const CREATE_ROLE         = '[Role] Create Role';
-export const CREATE_ROLE_SUCCESS = '[Role] Create Role Success';
-export const CREATE_ROLE_ERROR   = '[Role] Create Role Error';
+export const CREATE_ROLE          = '[Role] Create Role';
+export const CREATE_ROLE_SUCCESS  = '[Role] Create Role Success';
+export const CREATE_ROLE_ERROR    = '[Role] Create Role Error';
+export const RESET_CREATE_ROLE    = '[Role] Reset Create Role';
 
 /**
  * Create role action
@@ -45,5 +46,21 @@ export class CreateRoleSuccessAction implements Action {
   constructor(public payload: Role){}
 }
 
+/**
+ * Reset to initial state
+ * 
+ * @export
+ * @class ResetCreateRoleAction
+ * @implements {Action}
+ */
+export class ResetCreateRoleAction implements Action {
+  readonly type: string = RESET_CREATE_ROLE;
+
+  constructor(public payload?: any) {}
+}
+
 // Export action types
-export type CreateRoleActions = CreateRoleAction | CreateRoleErrorAction | CreateRoleSuccessAction;
+export type CreateRoleActions = CreateRoleAction 
+                                | CreateRoleErrorAction 
+                                | CreateRoleSuccessAction
+                                | ResetCreateRoleAction;

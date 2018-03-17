@@ -108,7 +108,7 @@ export class RoleFormContainer implements OnInit, OnDestroy{
    * @type {Array<any>}
    * @memberof RoleFormContainer
    */
-  public selectedPermissions: Array<any>;
+  public selectedPermissions: Array<any> = [];
   
   /**
    * Multiselect dropdown settings
@@ -178,8 +178,8 @@ export class RoleFormContainer implements OnInit, OnDestroy{
    */
   public ngOnDestroy() {
     this.unregisterSubscriptions();
-    // this.accessRoleSandbox.unregisterEvents();
-    // this.accessPermissionSandbox.unregisterEvents();
+    this.accessPermissionSandbox.resetLoadState();
+    this.accessRoleSandbox.resetViewState();
   }
 
   /**

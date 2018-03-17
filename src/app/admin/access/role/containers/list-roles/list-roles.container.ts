@@ -83,7 +83,6 @@ export class ListRolesContainer implements OnInit {
    * @memberof ListRolesContainer
    */
   handleMultipleDelete() {
-    console.log(this.selectedIds);
     this.accessRoleSandbox.deleteMultipleRoles(this.selectedIds);
   }
 
@@ -95,14 +94,5 @@ export class ListRolesContainer implements OnInit {
    */
   onRowSelect({selected}) {
     this.selectedIds = selected.map(role => role.id);
-  }
-
-  /**
-   * Unsubscribe from all Observables
-   * 
-   * @memberof CreateRoleContainer
-   */
-  public onNgDestroy() {
-    this.accessRoleSandbox.unregisterEvents();
   }
 }

@@ -65,6 +65,10 @@ export function reducer(
         data: action.payload
       }
     }
+
+    case fromLoadPermissions.RESET_LOAD_PERMISSION: {
+      return Object.assign({}, initialState);
+    }
   }
 
   return state;

@@ -5,9 +5,8 @@ import {
   combineReducers
 }                                 from "@ngrx/store";
 import * as fromLoadPermissions   from '../reducers/load-permissions.reducer';
-import * as fromCreatePermission  from '../reducers/create-permission.reducer';
-import * as fromUpdatePermission  from '../reducers/update-permission.reducer';
 import * as fromDeletePermission  from '../reducers/delete-permission.reducer';
+import * as fromSavePermission    from '../reducers/save-permission.reducer';
 import * as fromViewPermission    from '../reducers/view-permission.reducer';
 import { compose }                from "@ngrx/core/compose";
 
@@ -19,18 +18,16 @@ import { compose }                from "@ngrx/core/compose";
  */
 export interface AccessPermissionState {
   load:   fromLoadPermissions.LoadPermissionsState;
-  create: fromCreatePermission.CreatePermissionState;
-  update: fromUpdatePermission.UpdatePermissionState;
   view:   fromViewPermission.ViewPermissionState;
-  delete: fromDeletePermission.DeletePermissionState
+  delete: fromDeletePermission.DeletePermissionState;
+  save:   fromSavePermission.SavePermissionState
 }
 
 export const reducers: ActionReducerMap<AccessPermissionState> = {
   load:   fromLoadPermissions.reducer,
-  create: fromCreatePermission.reducer,
-  update: fromUpdatePermission.reducer,
   view:   fromViewPermission.reducer,
-  delete: fromDeletePermission.reducer
+  delete: fromDeletePermission.reducer,
+  save:   fromSavePermission.reducer
 }
 
 export const combinedReducers = compose(combineReducers)(reducers);
@@ -46,22 +43,6 @@ export const getLoadPermissionsFailed   = createSelector(getLoadPermissionsState
 export const getLoadPermissionsError    = createSelector(getLoadPermissionsState, fromLoadPermissions.getLoadPermissionsError);
 export const getLoadPermissionsData     = createSelector(getLoadPermissionsState, fromLoadPermissions.getLoadPermissionsData);
 
-// Create Permission States
-export const getCreatePermissionState   = createSelector(getAccessPermissionState, (state: AccessPermissionState) => state.create);
-export const getCreatePermissionLoading = createSelector(getCreatePermissionState, fromCreatePermission.getCreatePermissionLoading);
-export const getCreatePermissionLoaded  = createSelector(getCreatePermissionState, fromCreatePermission.getCreatePermissionLoaded);
-export const getCreatePermissionFailed  = createSelector(getCreatePermissionState, fromCreatePermission.getCreatePermissionFailed);
-export const getCreatePermissionError   = createSelector(getCreatePermissionState, fromCreatePermission.getCreatePermissionError);
-export const getCreatedPermission       = createSelector(getCreatePermissionState, fromCreatePermission.getCreatedPermission);
-
-// Update Permission States
-export const getUpdatePermissionState   = createSelector(getAccessPermissionState, (state: AccessPermissionState) => state.update);
-export const getUpdatePermissionLoading = createSelector(getUpdatePermissionState, fromUpdatePermission.getUpdatePermissionLoading);
-export const getUpdatePermissionLoaded  = createSelector(getUpdatePermissionState, fromUpdatePermission.getUpdatePermissionLoaded);
-export const getUpdatePermissionFailed  = createSelector(getUpdatePermissionState, fromUpdatePermission.getUpdatePermissionFailed);
-export const getUpdatePermissionError   = createSelector(getUpdatePermissionState, fromUpdatePermission.getUpdatePermissionError);
-export const getUpdatedPermission       = createSelector(getUpdatePermissionState, fromUpdatePermission.getUpdatedPermission);
-
 // View Permission States
 export const getViewPermissionState     = createSelector(getAccessPermissionState, (state: AccessPermissionState) => state.view);
 export const getViewPermissionLoading   = createSelector(getViewPermissionState, fromViewPermission.getViewPermissionLoading);
@@ -76,4 +57,10 @@ export const getDeletePermissionLoading = createSelector(getDeletePermissionStat
 export const getDeletePermissionLoaded  = createSelector(getDeletePermissionState, fromDeletePermission.getDeletePermissionLoaded);
 export const getDeletePermissionFailed  = createSelector(getDeletePermissionState, fromDeletePermission.getDeletePermissionFailed);
 export const getDeletePermissionError   = createSelector(getDeletePermissionState, fromDeletePermission.getDeletePermissionError);
+
+// Save Permission States
+export const getSavePermissionState     = createSelector(getAccessPermissionState, (state: AccessPermissionState) => state.save);
+export const getSavePermissionPending   = createSelector(getSavePermissionState, fromSavePermission.getSavePermissionPending);
+export const getSavePermissionCompleted = createSelector(getSavePermissionState, fromSavePermission.getSavePermissionCompleted);
+export const getSavePermissionError     = createSelector(getSavePermissionState, fromSavePermission.getSavePermissionError);
 

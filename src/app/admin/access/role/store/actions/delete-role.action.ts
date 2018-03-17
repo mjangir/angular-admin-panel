@@ -4,6 +4,7 @@ export const DELETE_ROLE          = '[Role] Delete Role';
 export const DELETE_MULTIPLE_ROLE = '[Role] Delete Multiple Role';
 export const DELETE_ROLE_SUCCESS  = '[Role] Delete Role Success';
 export const DELETE_ROLE_ERROR    = '[Role] Delete Role Error';
+export const RESET_DELETE_ROLE    = '[Role] Reset Delete Role';
 
 /**
  * Delete role action
@@ -57,8 +58,22 @@ export class DeleteRoleSuccessAction implements Action {
   constructor(public payload?: any){}
 }
 
+/**
+ * Reset to initial state
+ * 
+ * @export
+ * @class ResetDeleteRoleAction
+ * @implements {Action}
+ */
+export class ResetDeleteRoleAction implements Action {
+  readonly type: string = RESET_DELETE_ROLE;
+
+  constructor(public payload?: any) {}
+}
+
 // Export action types
 export type DeleteRoleActions = DeleteRoleAction 
                                 | DeleteRoleErrorAction 
                                 | DeleteRoleSuccessAction
-                                | DeleteMultipleRoleAction;
+                                | DeleteMultipleRoleAction
+                                | ResetDeleteRoleAction;

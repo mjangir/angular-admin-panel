@@ -2,9 +2,10 @@ import { Action } from '@ngrx/store';
 import Role       from '../../models/role.model';
 import RoleForm   from '../../models/role-form.model';
 
-export const UPDATE_ROLE         = '[Role] Update Role';
-export const UPDATE_ROLE_SUCCESS = '[Role] Update Role Success';
-export const UPDATE_ROLE_ERROR   = '[Role] Update Role Error';
+export const UPDATE_ROLE          = '[Role] Update Role';
+export const UPDATE_ROLE_SUCCESS  = '[Role] Update Role Success';
+export const UPDATE_ROLE_ERROR    = '[Role] Update Role Error';
+export const RESET_UPDATE_ROLE    = '[Role] Reset Update Error'
 
 /**
  * Update role action
@@ -45,5 +46,21 @@ export class UpdateRoleSuccessAction implements Action {
   constructor(public payload: Role){}
 }
 
+/**
+ * Reset to initial state
+ * 
+ * @export
+ * @class ResetUpdateRoleAction
+ * @implements {Action}
+ */
+export class ResetUpdateRoleAction implements Action {
+  readonly type: string = RESET_UPDATE_ROLE;
+
+  constructor(public payload?: any) {}
+}
+
 // Export action types
-export type UpdateRoleActions = UpdateRoleAction | UpdateRoleErrorAction | UpdateRoleSuccessAction;
+export type UpdateRoleActions = UpdateRoleAction 
+                                | UpdateRoleErrorAction 
+                                | UpdateRoleSuccessAction
+                                | ResetUpdateRoleAction;

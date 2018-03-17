@@ -65,13 +65,4 @@ export class CreatePermissionContainer implements OnInit {
 
     this.accessPermissionSandbox.createPermission(permissionForm);
   }
-
-  /**
-   * Unsubscribe from all Observables
-   * 
-   * @memberof CreatePermissionContainer
-   */
-  public onNgDestroy() {
-    this.accessPermissionSandbox.unregisterEvents();
-  }
 }

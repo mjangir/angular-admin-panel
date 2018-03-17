@@ -5,6 +5,7 @@ export const LOAD_ROLES         = '[Role] Load Roles';
 export const LOAD_ROLES_SUCCESS = '[Role] Load Roles Success';
 export const LOAD_ROLES_ERROR   = '[Role] Load Roles Error';
 export const ADD_ROLE_TO_LIST   = '[Role] Add Role To List';
+export const RESET_LOAD_ROLE    = '[Role] Reset Load Role';
 
 /**
  * Load roles action
@@ -45,5 +46,21 @@ export class LoadRolesSuccessAction implements Action {
   constructor(public payload: Array<Role[]>) {}
 }
 
+/**
+ * Loading roles succeed
+ * 
+ * @export
+ * @class ResetLoadRoleAction
+ * @implements {Action}
+ */
+export class ResetLoadRoleAction implements Action {
+  readonly type: string = RESET_LOAD_ROLE;
+
+  constructor(public payload?: any) {}
+}
+
 // Export action types
-export type LoadRolesActions = LoadRolesAction | LoadRolesErrorAction | LoadRolesSuccessAction;
+export type LoadRolesActions = LoadRolesAction 
+                              | LoadRolesErrorAction 
+                              | LoadRolesSuccessAction
+                              | ResetLoadRoleAction;
