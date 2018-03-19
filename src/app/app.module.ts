@@ -45,7 +45,7 @@ import { AuthApiClient }  from './auth/services/auth-api-client.service';
 import { UserApiClient }  from './admin/access/user/services/user-api-client.service';
 
 // For App Store
-import { reducers } from './store/app.reducer';
+import { reducers, reducerProvider, reducerToken } from './store/app.reducer';
 import { effects } from './store/app.effect';
 import { RoleApiClient } from './admin/access/role/services/role-api-client.service';
 import { PermissionApiClient } from './admin/access/permission/services/permission-api-client.service';
@@ -69,7 +69,7 @@ export function configServiceFactory (config: ConfigService) {
     HttpModule,
     TranslateModule.forRoot(),
     ToastModule.forRoot(),
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducerToken),
     EffectsModule.forRoot(effects),
     SweetAlert2Module.forRoot({
       buttonsStyling: false,
@@ -99,7 +99,8 @@ export function configServiceFactory (config: ConfigService) {
     UserApiClient,
     RoleApiClient,
     PermissionApiClient,
-    UtilService
+    UtilService,
+    reducerProvider
   ],
   bootstrap: [AppComponent]
 })

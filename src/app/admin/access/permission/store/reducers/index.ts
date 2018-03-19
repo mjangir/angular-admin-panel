@@ -30,7 +30,7 @@ export const reducers: ActionReducerMap<AccessPermissionState> = {
   save:   fromSavePermission.reducer
 }
 
-export const combinedReducers = compose(combineReducers)(reducers);
+export const combinedReducers = combineReducers(reducers);
 
 // Main Access Permission State
 export const getAccessPermissionState = createFeatureSelector<AccessPermissionState>('accessPermission');

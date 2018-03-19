@@ -30,7 +30,7 @@ export const reducers: ActionReducerMap<AuthState> = {
   logout:         fromLogout.reducer
 }
 
-export const combinedReducers = compose(combineReducers)(reducers);
+export const combinedReducers = combineReducers(reducers);
 
 // Main Auth State
 export const getAuthState = createFeatureSelector<AuthState>('auth');

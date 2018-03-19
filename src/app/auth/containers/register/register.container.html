@@ -100,7 +100,9 @@
                 <i [hidden]="!(authSandbox.registerLoading$ | async)" class='fa fa-circle-o-notch fa-spin'></i>
                 {{'auth.createAccount' | translate}}
               </button>
-              <button type="button" class="btn btn-success" (click)="logoutUser($event)">Logout</button>
+              <button type="button" class="btn btn-success" routerLink="/auth/login">
+                <i class="fa fa-lock"></i> Login
+              </button>
             </form>
           </div>
         </div>

@@ -20,7 +20,7 @@ export class AdminLayoutComponent implements OnInit {
     
   }
 
-  logout() {
+  logout(event) {
     this.authSandbox.logout();
   }
 

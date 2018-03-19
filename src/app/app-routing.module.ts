@@ -6,6 +6,11 @@ import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full'
+  },
+  {
     path: 'auth',
     component: SimpleLayoutComponent,
     loadChildren: './auth/auth.module#AuthModule'

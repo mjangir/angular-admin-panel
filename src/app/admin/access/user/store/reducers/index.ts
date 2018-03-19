@@ -33,7 +33,7 @@ export const reducers: ActionReducerMap<AccessUserState> = {
   delete: fromDeleteUser.reducer
 }
 
-export const combinedReducers = compose(combineReducers)(reducers);
+export const combinedReducers = combineReducers(reducers);
 
 // Main Access User State
 export const getAccessUserState = createFeatureSelector<AccessUserState>('accessUser');

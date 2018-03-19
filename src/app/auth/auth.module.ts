@@ -39,8 +39,6 @@ import { AuthSandbox }      from './auth.sandbox';
     ReactiveFormsModule,
     TranslateModule,
     AlertModule.forRoot(),
-    StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature(effects),
     AuthRoutingModule
   ],
   declarations: [
