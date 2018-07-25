@@ -11,7 +11,7 @@ import {
   MediaType,
   Body
 }                         from '../../../../shared/asyncServices/http';
-import { Observable }     from 'rxjs/Observable';
+import { Observable }     from 'rxjs';
 import { RoleService }    from './role.service';
 import RoleForm           from '../models/role-form.model';
 

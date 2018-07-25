@@ -1,16 +1,18 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable }           from '@angular/core';
 import { TranslateService }     from 'ng2-translate';
-import { ToastsManager }        from 'ng2-toastr/ng2-toastr';
+import { ToastrService } from 'ngx-toastr';
+
 import { ConfigService }        from '../../../app-config.service';
 import { Router }               from '@angular/router';
-import { Observable }           from 'rxjs/Observable';
 
 @Injectable()
 export class HttpResponseHandler {
 	constructor(
 		private router: Router,
     private translateService: TranslateService,
-    private notificationsService: ToastsManager,
+    private notificationsService: ToastrService,
     private configService: ConfigService
   ) { }
 
@@ -47,7 +49,7 @@ export class HttpResponseHandler {
         break;
     }
 
-    return Observable.throw(response);
+    return observableThrowError(response);
   }
 
   /**

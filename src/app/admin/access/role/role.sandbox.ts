@@ -1,13 +1,12 @@
 import { Injectable } 	    from '@angular/core';
 import { Router }           from '@angular/router';
 import { Store }      	    from '@ngrx/store';
-import { Subscription }     from "rxjs";
-import { Observable }       from "rxjs/Observable";
+import { Subscription ,  Observable }     from "rxjs";
 import { Sandbox } 			    from '../../../shared/sandbox/base.sandbox';
 import * as fromStore       from './store';
 import Role                 from './models/role.model';
 import RoleForm             from './models/role-form.model';
-import { ToastsManager }    from 'ng2-toastr/src/toast-manager';
+import { ToastrService } from 'ngx-toastr';
 import { ConfigService }    from '../../../app-config.service';
 import { TranslateService } from 'ng2-translate';
 import { UtilService } from '../../../shared/utils';
@@ -114,7 +113,7 @@ export class AccessRoleSandbox extends Sandbox {
   constructor(
     private router: Router,
     private store: Store<fromStore.AccessRoleState>,
-    private notificationsService: ToastsManager,
+    private notificationsService: ToastrService,
     private configService: ConfigService,
     private translateService: TranslateService,
     private utilService: UtilService

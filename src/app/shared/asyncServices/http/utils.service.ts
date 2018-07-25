@@ -5,7 +5,7 @@ import {
   Request,
   Response
 }                     from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { HttpService } from "./http.service";
 
 export function methodBuilder(method: number) {

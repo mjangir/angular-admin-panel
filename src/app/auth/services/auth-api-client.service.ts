@@ -8,7 +8,7 @@ import {
   MediaType,
   Produces
 }                         from '../../shared/asyncServices/http';
-import { Observable }     from 'rxjs/Observable';
+import { Observable }     from 'rxjs';
 import { AuthService }    from './auth.service';
 import LoginForm          from '../models/login-form.model';
 import { RegisterForm } from '../models/register-form.model';

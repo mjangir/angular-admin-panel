@@ -1,8 +1,7 @@
 import { Injectable } 	  from '@angular/core';
 import { Router }         from '@angular/router';
 import { Store }      	  from '@ngrx/store';
-import { Subscription }   from "rxjs";
-import { Observable }     from "rxjs/Observable";
+import { Subscription ,  Observable }   from "rxjs";
 import { Sandbox } 			  from '../shared/sandbox/base.sandbox';
 import * as fromStore     from './store';
 import LoginUser          from "./models/login-user.model";

@@ -8,7 +8,7 @@ import {
   NavigationEnd 
 }                         from '@angular/router';
 import { AppSandbox }     from './app.sandbox';
-import { ToastsManager }  from 'ng2-toastr/ng2-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -22,10 +22,10 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router, 
     public appSandbox: AppSandbox,
-    public toastr: ToastsManager,
+    public toastr: ToastrService,
     vRef: ViewContainerRef
   ) {
-    this.toastr.setRootViewContainerRef(vRef);
+    // this.toastr.setRootViewContainerRef(vRef);
   }
 
   ngOnInit() {

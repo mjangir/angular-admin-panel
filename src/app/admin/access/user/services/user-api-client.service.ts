@@ -11,7 +11,7 @@ import {
   MediaType,
   Body
 }                         from '../../../../shared/asyncServices/http';
-import { Observable }     from 'rxjs/Observable';
+import { Observable }     from 'rxjs';
 import { UserService }    from './user.service';
 import UserForm           from '../models/user-form.model';
 

@@ -198,15 +198,15 @@ export class RoleFormContainer implements OnInit, OnDestroy{
       }
     });
 
-    const viewRoleSubscription = viewingRole$.switchMap(
-      () => allPermissions$,
-      (role: Role, perms: Array<Permission>) => {
-        this.allPermissions = this.normalizePermissions(perms);
-        return role;
-      }
-    ).subscribe(role => this.updateFormValues(role));
+    // const viewRoleSubscription = viewingRole$.switchMap(
+    //   () => allPermissions$,
+    //   (role: Role, perms: Array<Permission>) => {
+    //     this.allPermissions = this.normalizePermissions(perms);
+    //     return role;
+    //   }
+    // ).subscribe(role => this.updateFormValues(role));
 
-    this.subscriptions = [routerSubscription, viewRoleSubscription];
+    // this.subscriptions = [routerSubscription, viewRoleSubscription];
   }
 
   /**
