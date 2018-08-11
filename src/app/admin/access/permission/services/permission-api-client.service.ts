@@ -11,7 +11,7 @@ import {
   MediaType,
   Body
 }                         from '../../../../shared/asyncServices/http';
-import { Observable }     from 'rxjs/Observable';
+import { Observable }     from 'rxjs';
 import { PermissionService }    from './permission.service';
 import PermissionForm           from '../models/permission-form.model';
 

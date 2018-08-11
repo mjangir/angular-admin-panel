@@ -34,7 +34,7 @@ import {
 }                               from '@ngrx/store';
 import { EffectsModule }        from '@ngrx/effects';
 import { StoreDevtoolsModule }  from '@ngrx/store-devtools';
-import { ToastModule }          from 'ng2-toastr/ng2-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { TranslateService }     from 'ng2-translate';
 import { SweetAlert2Module }    from '@toverux/ngx-sweetalert2';
 
@@ -68,7 +68,7 @@ export function configServiceFactory (config: ConfigService) {
     BrowserAnimationsModule,
     HttpModule,
     TranslateModule.forRoot(),
-    ToastModule.forRoot(),
+    ToastrModule.forRoot(),
     StoreModule.forRoot(reducerToken),
     EffectsModule.forRoot(effects),
     SweetAlert2Module.forRoot({

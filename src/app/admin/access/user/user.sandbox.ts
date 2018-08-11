@@ -1,13 +1,12 @@
 import { Injectable } 	    from '@angular/core';
 import { Router }           from '@angular/router';
 import { Store }      	    from '@ngrx/store';
-import { Subscription }     from "rxjs";
-import { Observable }       from "rxjs/Observable";
+import { Subscription ,  Observable }     from "rxjs";
 import { Sandbox } 			    from '../../../shared/sandbox/base.sandbox';
 import * as fromStore       from './store';
 import User                 from './models/user.model';
 import UserForm             from './models/user-form.model';
-import { ToastsManager }    from 'ng2-toastr/src/toast-manager';
+import { ToastrService } from 'ngx-toastr';
 import { ConfigService }    from '../../../app-config.service';
 import { TranslateService } from 'ng2-translate';
 import { UtilService } from '../../../shared/utils';
@@ -114,7 +113,7 @@ export class AccessUserSandbox extends Sandbox {
   constructor(
     private router: Router,
     private store: Store<fromStore.AccessUserState>,
-    private notificationsService: ToastsManager,
+    private notificationsService: ToastrService,
     private configService: ConfigService,
     private translateService: TranslateService,
     private utilService: UtilService

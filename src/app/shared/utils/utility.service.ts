@@ -1,6 +1,6 @@
 import { Injectable }           from '@angular/core';
 import { TranslateService }     from 'ng2-translate';
-import { ToastsManager }        from 'ng2-toastr/src/toast-manager';
+import { ToastrService } from 'ngx-toastr';
 import { ConfigService }        from '../../app-config.service';
 import { Observable }           from 'rxjs/Rx';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ export class UtilService {
 
   constructor(
     private translateService: TranslateService,
-    private notificationService: ToastsManager,
+    private notificationService: ToastrService,
     private configService: ConfigService,
     private router: Router
   ) {}
