@@ -1,4 +1,4 @@
-# Angular Core UI Admin Panel
+# Angular(version-6) Core UI Admin Panel
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
 
