@@ -1,4 +1,6 @@
-# Angular(version-6) Core UI Admin Panel
+# Angular8 Core UI Admin Panel
+
+### [Demo Link](https://angular-admin-panel.vrkansagara.in)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
 
