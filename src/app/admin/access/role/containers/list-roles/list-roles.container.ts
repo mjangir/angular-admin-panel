@@ -22,16 +22,16 @@ export class ListRolesContainer implements OnInit {
   @ViewChild(DatatableComponent,{static:false})
   table: DatatableComponent;
 
-  @ViewChild('filterInput'),{static:false}
+  @ViewChild('filterInput',{static:false})
   private filterInput : ElementRef;
 
-  @ViewChild('deleteSingleSwal'),{static:false}
+  @ViewChild('deleteSingleSwal',{static:false})
   private deleteSingleSwal: SwalComponent;
 
-  @ViewChild('deleteMultipleSwal'),{static:false}
+  @ViewChild('deleteMultipleSwal',{static:false})
   private deleteMultipleSwal: SwalComponent;
 
-  @ViewChild('noRecordSelectedSwal'),{static:false}
+  @ViewChild('noRecordSelectedSwal',{static:false})
   private noRecordSelectedSwal: SwalComponent;
 
   private selectedIds: Array<number> = [];

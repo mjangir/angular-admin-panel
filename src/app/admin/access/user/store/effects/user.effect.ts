@@ -1,5 +1,5 @@
 import { Injectable }         from "@angular/core";
-import { Effect, Actions }    from '@ngrx/effects';
+import { Effect, Actions, ofType }    from '@ngrx/effects';
 import { Action }             from '@ngrx/store';
 import { switchMap, map }     from 'rxjs/operators';
 import { of ,  Observable }                 from 'rxjs';
@@ -14,7 +14,7 @@ import User from "../../models/user.model";
 
 /**
  * Access user effects
- * 
+ *
  * @export
  * @class AccessUserEffects
  */
@@ -23,9 +23,9 @@ export class AccessUserEffects {
 
   /**
    * Creates an instance of AccessUserEffects.
-   * 
-   * @param {Actions} actions$ 
-   * @param {UserApiClient} userApiClient 
+   *
+   * @param {Actions} actions$
+   * @param {UserApiClient} userApiClient
    * @memberof AccessUserEffects
    */
   constructor(
@@ -35,78 +35,83 @@ export class AccessUserEffects {
 
   /**
    * Load users effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessUserEffects
    */
   @Effect()
-  loadUsers$: Observable<Action> = this.actions$
-    .ofType(loadUsersActions.LOAD_USERS)
-    .switchMap(state => {
+  loadUsers$: Observable<Action> = this.actions$.pipe(
+    ofType(loadUsersActions.LOAD_USERS),
+    switchMap(state => {
       return this.userApiClient.all()
         .map(users => new loadUsersActions.LoadUsersSuccessAction(users))
         .catch(error => of(new loadUsersActions.LoadUsersErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Get user effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessUserEffects
    */
   @Effect()
-  viewUser$: Observable<Action> = this.actions$
-    .ofType(viewUserActions.VIEW_USER)
-    .map((action: viewUserActions.ViewUserAction) => action.payload)
-    .switchMap(id => {
+  viewUser$: Observable<Action> = this.actions$.pipe(
+    ofType(viewUserActions.VIEW_USER),
+    map((action: viewUserActions.ViewUserAction) => action.payload),
+    switchMap(id => {
       return this.userApiClient.get(id)
         .map(user => new viewUserActions.ViewUserSuccessAction(user))
         .catch(error => of(new viewUserActions.ViewUserErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Create user effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessUserEffects
    */
   @Effect()
-  createUser$: Observable<Action> = this.actions$
-    .ofType(createUserActions.CREATE_USER)
-    .map((action: createUserActions.CreateUserAction) => action.payload)
-    .switchMap(state => {
+  createUser$: Observable<Action> = this.actions$.pipe(
+    ofType(createUserActions.CREATE_USER),
+    map((action: createUserActions.CreateUserAction) => action.payload),
+    switchMap(state => {
       return this.userApiClient.create(state)
         .map(user => new createUserActions.CreateUserSuccessAction(user))
         .catch(error => of(new createUserActions.CreateUserErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Update user effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessUserEffects
    */
   @Effect()
   updateUser$: Observable<Action> = this.actions$
-    .ofType(updateUserActions.UPDATE_USER)
-    .map((action: updateUserActions.UpdateUserAction) => action.payload)
-    .switchMap(userForm => {
+    .pipe(
+      ofType(updateUserActions.UPDATE_USER),
+    map((action: updateUserActions.UpdateUserAction) => action.payload),
+    switchMap(userForm => {
       return this.userApiClient.update(userForm, userForm.id)
         .map(user => new updateUserActions.UpdateUserSuccessAction(user))
         .catch(error => of(new updateUserActions.UpdateUserErrorAction(error)));
-    });
+    })
+    );
 
   /**
    * Delete user effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessUserEffects
    */
   @Effect()
-  deleteUser$: Observable<Action> = this.actions$
-    .ofType(deleteUserActions.DELETE_USER)
-    .map((action: deleteUserActions.DeleteUserAction) => action.payload)
-    .switchMap(id => {
+  deleteUser$: Observable<Action> = this.actions$.pipe(
+    ofType(deleteUserActions.DELETE_USER),
+    map((action: deleteUserActions.DeleteUserAction) => action.payload),
+    switchMap(id => {
       return this.userApiClient.deleteRecord(id)
         .mergeMap((user: User) => {
           return [
@@ -115,19 +120,20 @@ export class AccessUserEffects {
           ];
         })
         .catch(error => of(new deleteUserActions.DeleteUserErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Delete multiple user effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessUserEffects
    */
   @Effect()
-  deleteMultipleUsers$: Observable<Action> = this.actions$
-    .ofType(deleteUserActions.DELETE_MULTIPLE_USER)
-    .map((action: deleteUserActions.DeleteMultipleUserAction) => action.payload)
-    .switchMap(ids => {
+  deleteMultipleUsers$: Observable<Action> = this.actions$.pipe(
+    ofType(deleteUserActions.DELETE_MULTIPLE_USER),
+    map((action: deleteUserActions.DeleteMultipleUserAction) => action.payload),
+    switchMap(ids => {
       return this.userApiClient.deleteMultipleRecords(ids)
         .mergeMap((user: User) => {
           return [
@@ -136,5 +142,6 @@ export class AccessUserEffects {
           ];
         })
         .catch(error => of(new deleteUserActions.DeleteUserErrorAction(error)));
-    });
+    })
+  );
 }
