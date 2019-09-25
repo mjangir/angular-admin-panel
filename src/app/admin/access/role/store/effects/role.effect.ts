@@ -1,5 +1,5 @@
 import { Injectable }         from "@angular/core";
-import { Effect, Actions }    from '@ngrx/effects';
+import { Effect, Actions, ofType }    from '@ngrx/effects';
 import { Action }             from '@ngrx/store';
 import { switchMap, map }     from 'rxjs/operators';
 import { of ,  Observable }                 from 'rxjs';
@@ -14,7 +14,7 @@ import Role from "../../models/role.model";
 
 /**
  * Access role effects
- * 
+ *
  * @export
  * @class AccessRoleEffects
  */
@@ -23,9 +23,9 @@ export class AccessRoleEffects {
 
   /**
    * Creates an instance of AccessRoleEffects.
-   * 
-   * @param {Actions} actions$ 
-   * @param {RoleApiClient} roleApiClient 
+   *
+   * @param {Actions} actions$
+   * @param {RoleApiClient} roleApiClient
    * @memberof AccessRoleEffects
    */
   constructor(
@@ -35,78 +35,83 @@ export class AccessRoleEffects {
 
   /**
    * Load roles effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessRoleEffects
    */
   @Effect()
-  loadRoles$: Observable<Action> = this.actions$
-    .ofType(loadRolesActions.LOAD_ROLES)
-    .switchMap(state => {
+  loadRoles$: Observable<Action> = this.actions$.pipe(
+    ofType(loadRolesActions.LOAD_ROLES),
+    switchMap(state => {
       return this.roleApiClient.all()
         .map(roles => new loadRolesActions.LoadRolesSuccessAction(roles))
         .catch(error => of(new loadRolesActions.LoadRolesErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Get role effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessRoleEffects
    */
   @Effect()
-  viewRole$: Observable<Action> = this.actions$
-    .ofType(viewRoleActions.VIEW_ROLE)
-    .map((action: viewRoleActions.ViewRoleAction) => action.payload)
-    .switchMap(id => {
+  viewRole$: Observable<Action> = this.actions$.pipe(
+    ofType(viewRoleActions.VIEW_ROLE),
+    map((action: viewRoleActions.ViewRoleAction) => action.payload),
+    switchMap(id => {
       return this.roleApiClient.get(id)
         .map(role => new viewRoleActions.ViewRoleSuccessAction(role))
         .catch(error => of(new viewRoleActions.ViewRoleErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Create role effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessRoleEffects
    */
   @Effect()
-  createRole$: Observable<Action> = this.actions$
-    .ofType(createRoleActions.CREATE_ROLE)
-    .map((action: createRoleActions.CreateRoleAction) => action.payload)
-    .switchMap(state => {
+  createRole$: Observable<Action> = this.actions$.pipe(
+    ofType(createRoleActions.CREATE_ROLE),
+    map((action: createRoleActions.CreateRoleAction) => action.payload),
+    switchMap(state => {
       return this.roleApiClient.create(state)
         .map(role => new createRoleActions.CreateRoleSuccessAction(role))
         .catch(error => of(new createRoleActions.CreateRoleErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Update role effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessRoleEffects
    */
   @Effect()
-  updateRole$: Observable<Action> = this.actions$
-    .ofType(updateRoleActions.UPDATE_ROLE)
-    .map((action: updateRoleActions.UpdateRoleAction) => action.payload)
-    .switchMap(roleForm => {
+  updateRole$: Observable<Action> = this.actions$.pipe(
+    ofType(updateRoleActions.UPDATE_ROLE),
+    map((action: updateRoleActions.UpdateRoleAction) => action.payload),
+    switchMap(roleForm => {
       return this.roleApiClient.update(roleForm, roleForm.id)
         .map(role => new updateRoleActions.UpdateRoleSuccessAction(role))
         .catch(error => of(new updateRoleActions.UpdateRoleErrorAction(error)));
-    });
+    })
+  )
+   ;
 
   /**
    * Delete role effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessRoleEffects
    */
   @Effect()
-  deleteRole$: Observable<Action> = this.actions$
-    .ofType(deleteRoleActions.DELETE_ROLE)
-    .map((action: deleteRoleActions.DeleteRoleAction) => action.payload)
-    .switchMap(id => {
+  deleteRole$: Observable<Action> = this.actions$.pipe(
+    ofType(deleteRoleActions.DELETE_ROLE),
+    map((action: deleteRoleActions.DeleteRoleAction) => action.payload),
+    switchMap(id => {
       return this.roleApiClient.deleteRecord(id)
         .mergeMap((role: Role) => {
           return [
@@ -115,19 +120,20 @@ export class AccessRoleEffects {
           ];
         })
         .catch(error => of(new deleteRoleActions.DeleteRoleErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Delete multiple role effect
-   * 
+   *
    * @type {Observable<Action>}
    * @memberof AccessRoleEffects
    */
   @Effect()
-  deleteMultipleRoles$: Observable<Action> = this.actions$
-    .ofType(deleteRoleActions.DELETE_MULTIPLE_ROLE)
-    .map((action: deleteRoleActions.DeleteMultipleRoleAction) => action.payload)
-    .switchMap(ids => {
+  deleteMultipleRoles$: Observable<Action> = this.actions$.pipe(
+    ofType(deleteRoleActions.DELETE_MULTIPLE_ROLE),
+    map((action: deleteRoleActions.DeleteMultipleRoleAction) => action.payload),
+    switchMap(ids => {
       return this.roleApiClient.deleteMultipleRecords(ids)
         .mergeMap((role: Role) => {
           return [
@@ -136,5 +142,6 @@ export class AccessRoleEffects {
           ];
         })
         .catch(error => of(new deleteRoleActions.DeleteRoleErrorAction(error)));
-    });
+    })
+  );
 }

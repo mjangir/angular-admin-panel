@@ -1,5 +1,5 @@
-import { 
-  Component, 
+import {
+  Component,
   OnInit,
   ViewChild,
   ElementRef,
@@ -18,22 +18,22 @@ import { SwalComponent } from '@toverux/ngx-sweetalert2';
 export class ListUsersContainer implements OnInit {
 
   title = 'Users List';
-  
-  @ViewChild(DatatableComponent)
+
+  @ViewChild(DatatableComponent,{static:false})
   table: DatatableComponent;
 
-  @ViewChild('filterInput') 
+  @ViewChild('filterInput',{static:false})
   private filterInput : ElementRef;
 
-  @ViewChild('deleteSingleSwal') 
+  @ViewChild('deleteSingleSwal',{static:false})
   private deleteSingleSwal: SwalComponent;
 
-  @ViewChild('deleteMultipleSwal') 
+  @ViewChild('deleteMultipleSwal',{static:false})
   private deleteMultipleSwal: SwalComponent;
 
-  @ViewChild('noRecordSelectedSwal') 
+  @ViewChild('noRecordSelectedSwal',{static:false})
   private noRecordSelectedSwal: SwalComponent;
-  
+
   private selectedIds: Array<number> = [];
 
   constructor(
@@ -48,8 +48,8 @@ export class ListUsersContainer implements OnInit {
 
   /**
    * Update filter users
-   * 
-   * @param event 
+   *
+   * @param event
    */
   updateFilter(event) {
     this.accessUserSandbox.users$ = this.accessUserSandbox.users$
@@ -70,9 +70,9 @@ export class ListUsersContainer implements OnInit {
 
   /**
    * Handle single record delete
-   * 
-   * @param {any} event 
-   * @param {number} id 
+   *
+   * @param {any} event
+   * @param {number} id
    * @memberof ListUsersContainer
    */
   handleSingleDelete(event, id: number) {
@@ -81,7 +81,7 @@ export class ListUsersContainer implements OnInit {
 
   /**
    * Handle multiple records delete
-   * 
+   *
    * @memberof ListUsersContainer
    */
   handleMultipleDelete() {
@@ -91,8 +91,8 @@ export class ListUsersContainer implements OnInit {
 
   /**
    * On table row select
-   * 
-   * @param {any} {selected} 
+   *
+   * @param {any} {selected}
    * @memberof ListUsersContainer
    */
   onRowSelect({selected}) {
@@ -101,7 +101,7 @@ export class ListUsersContainer implements OnInit {
 
   /**
    * Unsubscribe from all Observables
-   * 
+   *
    * @memberof CreateUserContainer
    */
   public onNgDestroy() {

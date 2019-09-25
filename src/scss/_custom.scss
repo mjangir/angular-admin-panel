@@ -1,7 +1,12 @@
 // Custom CSS
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+// @import '~@swimlane/ngx-datatable/release/index.css';
+// @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
+// @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
 
 app-admin-layout {
   display: flex;
@@ -49,12 +54,12 @@ angular2-multiselect {
 .custom-multiselect-checkbox-dp .c-token{
     background: #20a8d8 !important;
 }
-.custom-multiselect-checkbox-dp 
+.custom-multiselect-checkbox-dp
 .pure-checkbox label::before {
     border-color: #20a8d8 !important;
 }
-.custom-multiselect-checkbox-dp 
-.pure-checkbox 
+.custom-multiselect-checkbox-dp
+.pure-checkbox
 input[type="checkbox"]:checked + label[_ngcontent-c3]:before {
     background: #20a8d8 !important;
 }

@@ -1,6 +1,6 @@
 {
   "api": {
-    "baseUrl": "http://192.192.5.93:8881/api/v1"
+    "baseUrl": "https://laravel-adminpanel.vrkansagara.in/api/v1/"
   },
 
   "paths": {

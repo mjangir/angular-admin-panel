@@ -4,24 +4,24 @@ import {
   RequestOptions,
   Request,
   Response
-}                     from "@angular/http";
+} from "@angular/http";
 import { Observable } from "rxjs";
 import { HttpService } from "./http.service";
 
 export function methodBuilder(method: number) {
-  return function(url: string) {
-    return function(target: HttpService, propertyKey: string, descriptor: any) {
+  return function (url: string) {
+    return function (target: HttpService, propertyKey: string, descriptor: any) {
 
-      var pPath   = target[`${propertyKey}_Path_parameters`],
-          pQuery  = target[`${propertyKey}_Query_parameters`],
-          pBody   = target[`${propertyKey}_Body_parameters`],
-          pHeader = target[`${propertyKey}_Header_parameters`];
+      var pPath = target[`${propertyKey}_Path_parameters`],
+        pQuery = target[`${propertyKey}_Query_parameters`],
+        pBody = target[`${propertyKey}_Body_parameters`],
+        pHeader = target[`${propertyKey}_Header_parameters`];
 
-      descriptor.value = function(...args: any[]) {
-        var body:    string          = createBody(pBody, descriptor, args);
-        var resUrl:  string          = createPath(url, pPath, args);
-        var search:  URLSearchParams = createQuery(pQuery, args);
-        var headers: Headers         = createHeaders(pHeader, descriptor, this.getDefaultHeaders(), args);
+      descriptor.value = function (...args: any[]) {
+        var body: string = createBody(pBody, descriptor, args);
+        var resUrl: string = createPath(url, pPath, args);
+        var search: URLSearchParams = createQuery(pQuery, args);
+        var headers: Headers = createHeaders(pHeader, descriptor, this.getDefaultHeaders(), args);
 
         // Request options
         var options = new RequestOptions({
@@ -51,12 +51,12 @@ export function methodBuilder(method: number) {
 }
 
 export function paramBuilder(paramName: string) {
-  return function(key: string) {
-    return function(target: HttpService, propertyKey: string | symbol, parameterIndex: number) {
-      var metadataKey = `${propertyKey}_${paramName}_parameters`;
+  return function (key: string) {
+    return function (target: HttpService, propertyKey: string | symbol, parameterIndex: number) {
+      var metadataKey = `${propertyKey.toString()}_${paramName}_parameters`;
       var paramObj: any = {
-          key: key,
-          parameterIndex: parameterIndex
+        key: key,
+        parameterIndex: parameterIndex
       };
 
       if (Array.isArray(target[metadataKey])) target[metadataKey].push(paramObj);
@@ -89,16 +89,16 @@ function createQuery(pQuery: any, args: Array<any>): URLSearchParams {
 
   if (pQuery) {
     pQuery
-    .filter(p => args[p.parameterIndex]) // filter out optional parameters
-    .forEach(p => {
-      var key = p.key;
-      var value = args[p.parameterIndex];
-      // if the value is a instance of Object, we stringify it
-      if (value instanceof Object) {
-        value = JSON.stringify(value);
-      }
-      search.set(encodeURIComponent(key), encodeURIComponent(value));
-    });
+      .filter(p => args[p.parameterIndex]) // filter out optional parameters
+      .forEach(p => {
+        var key = p.key;
+        var value = args[p.parameterIndex];
+        // if the value is a instance of Object, we stringify it
+        if (value instanceof Object) {
+          value = JSON.stringify(value);
+        }
+        search.set(encodeURIComponent(key), encodeURIComponent(value));
+      });
   }
 
   return search;
@@ -114,7 +114,7 @@ function createHeaders(pHeader: any, descriptor: any, defaultHeaders: any, args:
       headers.append(k, descriptor.headers[k]);
     }
   }
-  
+
   // set parameter specific headers
   if (pHeader) {
     for (var k in pHeader) {
