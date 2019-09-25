@@ -1,5 +1,5 @@
-import { 
-  Component, 
+import {
+  Component,
   OnInit,
   ViewChild,
   ElementRef,
@@ -18,22 +18,22 @@ import { SwalComponent } from '@toverux/ngx-sweetalert2';
 export class ListRolesContainer implements OnInit {
 
   title = 'Roles List';
-  
-  @ViewChild(DatatableComponent)
+
+  @ViewChild(DatatableComponent,{static:false})
   table: DatatableComponent;
 
-  @ViewChild('filterInput') 
+  @ViewChild('filterInput'),{static:false}
   private filterInput : ElementRef;
 
-  @ViewChild('deleteSingleSwal') 
+  @ViewChild('deleteSingleSwal'),{static:false}
   private deleteSingleSwal: SwalComponent;
 
-  @ViewChild('deleteMultipleSwal') 
+  @ViewChild('deleteMultipleSwal'),{static:false}
   private deleteMultipleSwal: SwalComponent;
 
-  @ViewChild('noRecordSelectedSwal') 
+  @ViewChild('noRecordSelectedSwal'),{static:false}
   private noRecordSelectedSwal: SwalComponent;
-  
+
   private selectedIds: Array<number> = [];
 
   constructor(
@@ -48,8 +48,8 @@ export class ListRolesContainer implements OnInit {
 
   /**
    * Update filter roles
-   * 
-   * @param event 
+   *
+   * @param event
    */
   updateFilter(event) {
     this.accessRoleSandbox.roles$ = this.accessRoleSandbox.roles$
@@ -68,9 +68,9 @@ export class ListRolesContainer implements OnInit {
 
   /**
    * Handle single record delete
-   * 
-   * @param {any} event 
-   * @param {number} id 
+   *
+   * @param {any} event
+   * @param {number} id
    * @memberof ListRolesContainer
    */
   handleSingleDelete(event, id: number) {
@@ -79,7 +79,7 @@ export class ListRolesContainer implements OnInit {
 
   /**
    * Handle multiple records delete
-   * 
+   *
    * @memberof ListRolesContainer
    */
   handleMultipleDelete() {
@@ -88,8 +88,8 @@ export class ListRolesContainer implements OnInit {
 
   /**
    * On table row select
-   * 
-   * @param {any} {selected} 
+   *
+   * @param {any} {selected}
    * @memberof ListRolesContainer
    */
   onRowSelect({selected}) {

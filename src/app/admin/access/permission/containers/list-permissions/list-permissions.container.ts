@@ -1,5 +1,5 @@
-import { 
-  Component, 
+import {
+  Component,
   OnInit,
   ViewChild,
   ElementRef,
@@ -18,22 +18,22 @@ import { SwalComponent } from '@toverux/ngx-sweetalert2';
 export class ListPermissionsContainer implements OnInit {
 
   title = 'Permissions List';
-  
-  @ViewChild(DatatableComponent)
+
+  @ViewChild(DatatableComponent,{static:false})
   table: DatatableComponent;
 
-  @ViewChild('filterInput') 
+  @ViewChild('filterInput',{static:false})
   private filterInput : ElementRef;
 
-  @ViewChild('deleteSingleSwal') 
+  @ViewChild('deleteSingleSwal',{static:false})
   private deleteSingleSwal: SwalComponent;
 
-  @ViewChild('deleteMultipleSwal') 
+  @ViewChild('deleteMultipleSwal',{static:false})
   private deleteMultipleSwal: SwalComponent;
 
-  @ViewChild('noRecordSelectedSwal') 
+  @ViewChild('noRecordSelectedSwal',{static:false})
   private noRecordSelectedSwal: SwalComponent;
-  
+
   private selectedIds: Array<number> = [];
 
   constructor(
@@ -48,14 +48,14 @@ export class ListPermissionsContainer implements OnInit {
 
   /**
    * Update filter permissions
-   * 
-   * @param event 
+   *
+   * @param event
    */
   updateFilter(event) {
     this.accessPermissionSandbox.permissions$ = this.accessPermissionSandbox.permissions$
     .map(permissions => permissions.filter(permission => {
       let term = event.target.value;
-      return permission.name.toLowerCase().indexOf(term.toLowerCase()) > -1 || 
+      return permission.name.toLowerCase().indexOf(term.toLowerCase()) > -1 ||
             permission.displayName.toLowerCase().indexOf(term.toLowerCase()) > -1;
     }));
     this.table.offset = 0;
@@ -69,9 +69,9 @@ export class ListPermissionsContainer implements OnInit {
 
   /**
    * Handle single record delete
-   * 
-   * @param {any} event 
-   * @param {number} id 
+   *
+   * @param {any} event
+   * @param {number} id
    * @memberof ListPermissionsContainer
    */
   handleSingleDelete(event, id: number) {
@@ -80,7 +80,7 @@ export class ListPermissionsContainer implements OnInit {
 
   /**
    * Handle multiple records delete
-   * 
+   *
    * @memberof ListPermissionsContainer
    */
   handleMultipleDelete() {
@@ -90,8 +90,8 @@ export class ListPermissionsContainer implements OnInit {
 
   /**
    * On table row select
-   * 
-   * @param {any} {selected} 
+   *
+   * @param {any} {selected}
    * @memberof ListPermissionsContainer
    */
   onRowSelect({selected}) {
