@@ -55,14 +55,15 @@ export class AccessPermissionEffects {
    * @memberof AccessPermissionEffects
    */
   @Effect()
-  viewPermission$: Observable<Action> = this.actions$
-    .ofType(viewPermissionActions.VIEW_PERMISSION)
-    .map((action: viewPermissionActions.ViewPermissionAction) => action.payload)
-    .switchMap(id => {
+  viewPermission$: Observable<Action> = this.actions$.pipe(
+    ofType(viewPermissionActions.VIEW_PERMISSION),
+    map((action: viewPermissionActions.ViewPermissionAction) => action.payload),
+    switchMap(id => {
       return this.permissionApiClient.get(id)
         .map(permission => new viewPermissionActions.ViewPermissionSuccessAction(permission))
         .catch(error => of(new viewPermissionActions.ViewPermissionErrorAction(error)));
-    });
+    })
+  );
 
   /**
    * Delete permission effect
@@ -72,7 +73,6 @@ export class AccessPermissionEffects {
    */
   @Effect()
   deletePermission$: Observable<Action> = this.actions$.pipe(
-
     ofType(deletePermissionActions.DELETE_PERMISSION),
     map((action: deletePermissionActions.DeletePermissionAction) => action.payload),
     switchMap(id => {

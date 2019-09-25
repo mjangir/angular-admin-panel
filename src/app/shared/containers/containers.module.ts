@@ -1,24 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { TranslateModule }              from 'ng2-translate';
-import { SimpleLayoutComponent } from './simple-layout/simple-layout.component';
-import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
-
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ChartsModule } from 'ng2-charts';
+import { TranslateModule } from 'ng2-translate';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
-
+import { AuthSandbox } from '../../auth/auth.sandbox';
 // Import components
-import {
-  AppBreadcrumbsComponent,
-  AppFooterComponent,
-  AppHeaderComponent,
-  AppSidebarComponent,
-  AppSidebarMinimizerComponent,
-  APP_SIDEBAR_NAV
-} from '../components';
+import { AppBreadcrumbsComponent, AppFooterComponent, AppHeaderComponent, AppSidebarComponent, AppSidebarMinimizerComponent, APP_SIDEBAR_NAV } from '../components';
+// Import directives
+import { AsideToggleDirective, NAV_DROPDOWN_DIRECTIVES, ReplaceDirective, SIDEBAR_TOGGLE_DIRECTIVES } from '../directives';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { LayoutSandbox } from './layout.sandbox';
+import { SimpleLayoutComponent } from './simple-layout/simple-layout.component';
+
+
 
 const APP_COMPONENTS = [
   AppBreadcrumbsComponent,
@@ -30,15 +27,6 @@ const APP_COMPONENTS = [
 ];
 
 
-// Import directives
-import {
-  AsideToggleDirective,
-  NAV_DROPDOWN_DIRECTIVES,
-  ReplaceDirective,
-  SIDEBAR_TOGGLE_DIRECTIVES
-} from '../directives';
-import { LayoutSandbox } from './layout.sandbox';
-import { AuthSandbox } from '../../auth/auth.sandbox';
 
 const APP_DIRECTIVES = [
   AsideToggleDirective,
